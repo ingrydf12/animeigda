@@ -56,6 +56,10 @@ for (var xx = 0; xx < ds_w; xx++) {
 						if global.peca_mouse == -1 {
 							global.peca_mouse = ds_g[# xx,yy];
 							ds_g[# xx,yy] = -1;
+						} else {
+							var cell_mouse = global.peca_mouse;
+							global.peca_mouse = ds_g[# xx,yy];
+							ds_g[# xx,yy] = cell_mouse;
 						}
 					}
 				}

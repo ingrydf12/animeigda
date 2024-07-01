@@ -35,8 +35,8 @@
   "name":"animeigda",
   "resources":[
     {"id":{"name":"obj_controle_global","path":"objects/obj_controle_global/obj_controle_global.yy",},},
-    {"id":{"name":"obj_pecas","path":"objects/obj_pecas/obj_pecas.yy",},},
     {"id":{"name":"obj_persona","path":"objects/obj_persona/obj_persona.yy",},},
+    {"id":{"name":"obj_seletor_pecas","path":"objects/obj_seletor_pecas/obj_seletor_pecas.yy",},},
     {"id":{"name":"obj_tabuleiro","path":"objects/obj_tabuleiro/obj_tabuleiro.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"spr_teste","path":"sprites/spr_teste/spr_teste.yy",},},
