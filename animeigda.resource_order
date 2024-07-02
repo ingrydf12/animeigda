@@ -11,6 +11,8 @@
     {"name":"Objetos","order":9,"path":"folders/Objetos.yy",},
     {"name":"Particle Systems","order":15,"path":"folders/Particle Systems.yy",},
     {"name":"Scripts","order":5,"path":"folders/Scripts.yy",},
+    {"name":"GLOBAIS","order":2,"path":"folders/Scripts/GLOBAIS.yy",},
+    {"name":"YOUKAIS","order":1,"path":"folders/Scripts/YOUKAIS.yy",},
     {"name":"Sequências","order":11,"path":"folders/Sequências.yy",},
     {"name":"Shaders","order":6,"path":"folders/Shaders.yy",},
     {"name":"Sons","order":3,"path":"folders/Sons.yy",},
