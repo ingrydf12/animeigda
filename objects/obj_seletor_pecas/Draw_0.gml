@@ -68,6 +68,7 @@ for (var xx = 0; xx < ds_w; xx++) {
 				}
 				
 				draw_sprite_ext(spr_teste,ds_g[# xx,yy],x1,y1,.5,.5,0,c_white,alpha);
+				draw_text(x1,y1,ds_g[# xx,yy]);
 				//draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
 				//draw_set_alpha(1);
 				break;

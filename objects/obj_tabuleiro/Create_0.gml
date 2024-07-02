@@ -3,7 +3,9 @@
 //
 
 enum IdPecas {
-	Peca,Ambiente,Inimigo
+	ChochinObake,Dotaku,KasaObake,Kappa,Tanuki,AlturaPlayers, //YOUKAIS(PLAYER)
+	Ashigaru,Lanceiro,Arqueiro,Samurai,Hatamoto,AlturaInimigos,	//INIMIGOS
+	Arvore,Pedras,AlturaAmbientacao	//AMBIENTAÇÃO
 }
 
 #macro NADA -1
@@ -20,4 +22,6 @@ hcell = global.hcell;			//QUANTIDADE DE CÉLULAS NA ALTURA DO TABULEIRO
 global.grid_tabuleiro = ds_grid_create(wcell,hcell);	//GRID DO TABULEIRO
 ds_grid_set_region(global.grid_tabuleiro,0,0,wcell,hcell,NADA);
 
-global.grid_tabuleiro[# 0,2] = IdPecas.Ambiente;
+id_peca = noone;
+
+global.grid_tabuleiro[# 0,2] = IdPecas.Arvore;

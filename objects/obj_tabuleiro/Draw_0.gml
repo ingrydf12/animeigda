@@ -16,7 +16,7 @@ for (var xx = 0; xx < ds_w; xx++) {
 	for (var yy = 0; yy < ds_h; yy++) {
 		//DESENHAR ALGO SE O VALOR DAQUELA CÉLULA FOR IGUAL A '0'
 		switch ds_g[# xx,yy] {
-			//-1 -> NÃO EXISTE ALGO NAQUELA CÉLULA
+			//CASA VAZIA
 			case -1:
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				var x2 = x1+tamcell, y2 = y1+tamcell;
@@ -39,8 +39,18 @@ for (var xx = 0; xx < ds_w; xx++) {
 				draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
 				draw_set_alpha(1);
 				break;
-			//default -> EXISTE ALGO NAQUELA CÉLULA
-			default:
+			//PEÇAS DO PLAYER
+			case IdPecas.ChochinObake:
+				//id_peca = IdPecas.ChochinObake;
+			case IdPecas.Dotaku:
+				//id_peca = IdPecas.Dotaku;
+			case IdPecas.KasaObake:
+				//id_peca = IdPecas.KasaObake;
+			case IdPecas.Kappa:
+				//id_peca = IdPecas.Kappa;
+			case IdPecas.Tanuki:
+				//id_peca = IdPecas.Tanuki;
+				id_peca = ds_g[# xx,yy];
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				c = c_dkgray;
@@ -65,19 +75,9 @@ for (var xx = 0; xx < ds_w; xx++) {
 				}
 				
 				draw_sprite_ext(spr_teste,ds_g[# xx,yy],x1,y1,.5,.5,0,c_white,alpha);
+				draw_text(x1,y1,ds_g[# xx,yy]);
 				//draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
 				//draw_set_alpha(1);
-				break;
-			case IdPecas.Ambiente:
-				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
-				var x2 = x1+tamcell, y2 = y1+tamcell;
-				c = c_green;
-				draw_set_alpha(1);
-				
-				
-				//draw_set_alpha(.8);
-				draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
-				draw_set_alpha(1);
 				break;
 		}
 	}
