@@ -68,6 +68,17 @@ for (var xx = 0; xx < ds_w; xx++) {
 				//draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
 				//draw_set_alpha(1);
 				break;
+			case IdPecas.Ambiente:
+				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+				var x2 = x1+tamcell, y2 = y1+tamcell;
+				c = c_green;
+				draw_set_alpha(1);
+				
+				
+				//draw_set_alpha(.8);
+				draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
+				draw_set_alpha(1);
+				break;
 		}
 	}
 }
