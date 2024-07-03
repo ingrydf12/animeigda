@@ -16,7 +16,7 @@ function ds_grid_add_youkai() {
 	var yy = ds_grid_add_row(ds_g);
 	
 	for (var xx = 0; xx < ds_grid_width(ds_g); xx++) {
-		ds_g[# xx, yy] = argument[xx];
+		ds_g[# xx, yy] = argument[xx+1];
 	}
 }
 
