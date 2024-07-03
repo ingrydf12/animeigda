@@ -10,6 +10,7 @@
     {"name":"Linhas do tempo","order":8,"path":"folders/Linhas do tempo.yy",},
     {"name":"Objetos","order":9,"path":"folders/Objetos.yy",},
     {"name":"GLOBAIS","order":5,"path":"folders/Objetos/GLOBAIS.yy",},
+    {"name":"PECAS","order":7,"path":"folders/Objetos/PECAS.yy",},
     {"name":"HUD","order":6,"path":"folders/Objetos/HUD.yy",},
     {"name":"Particle Systems","order":15,"path":"folders/Particle Systems.yy",},
     {"name":"Scripts","order":5,"path":"folders/Scripts.yy",},
@@ -26,8 +27,9 @@
     {"name":"YOUKAIS","order":2,"path":"folders/Sprites/YOUKAIS.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"obj_mouse","order":2,"path":"objects/obj_mouse/obj_mouse.yy",},
     {"name":"obj_pecas_global","order":1,"path":"objects/obj_pecas_global/obj_pecas_global.yy",},
-    {"name":"obj_seletor_pecas","order":3,"path":"objects/obj_seletor_pecas/obj_seletor_pecas.yy",},
+    {"name":"obj_selecao_pecas","order":2,"path":"objects/obj_selecao_pecas/obj_selecao_pecas.yy",},
     {"name":"obj_tabuleiro","order":1,"path":"objects/obj_tabuleiro/obj_tabuleiro.yy",},
     {"name":"rm_menu","order":1,"path":"rooms/rm_menu/rm_menu.yy",},
     {"name":"scr_menu_inicial","order":1,"path":"scripts/scr_menu_inicial/scr_menu_inicial.yy",},

@@ -80,21 +80,3 @@ if global.peca_mouse != -1 {
 	
 	draw_sprite_ext(spr,0,mouse_x,mouse_y,escala,escala,0,c_white,1);
 }
-
-var sca = .3;
-var xsimb = mouse_x-((sprite_get_width(spr_teste)/2)*sca);
-var ysimb = mouse_y-((sprite_get_height(spr_teste)/2)*sca);
-switch global.mouse_check {
-	case MOUSE_NEUTRO:
-		draw_sprite_ext(sprNeutro,0,xsimb,ysimb,sca,sca,0,c_white,1);
-		break
-	case MOUSE_BLOQUEADO:
-		draw_sprite_ext(sprBloqueio,0,xsimb,ysimb,sca,sca,0,c_white,1);
-		break
-	case MOUSE_CHECKADO:
-		draw_sprite_ext(sprCheck,0,xsimb,ysimb,sca,sca,0,c_white,1);
-		break
-	case MOUSE_SWITCH:
-		draw_sprite_ext(sprSwitch,0,xsimb,ysimb,sca,sca,0,c_white,1);
-		break
-}

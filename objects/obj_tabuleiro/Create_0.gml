@@ -23,7 +23,6 @@ ds_grid_set_region(global.grid_tabuleiro,0,0,wcell,hcell,NADA);
 //	}
 //}
 
-
 switch room {
 	#region MAPA 1
 	case rm_mapa1:
@@ -52,20 +51,8 @@ switch room {
 		global.grid_tabuleiro[# 2,8] = IdPecas.Arvore;
 		global.grid_tabuleiro[# 6,8] = IdPecas.Arvore;
 		global.grid_tabuleiro[# 7,8] = IdPecas.Pedras;
-		
-		instance_create_layer(x,y,"Pecas",obj_seletor_pecas,{
-			pecas_disponiveis: [
-				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki),
-				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki),
-				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki),
-				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki),
-				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki),
-				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki),
-				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki),
-				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki),
-				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki)
-			]
-		})
 		break;
-	#endregion
 }
+
+global.selecao_pecas = true;
+instance_create_layer(x,y,"Pecas",obj_selecao_pecas);

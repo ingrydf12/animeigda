@@ -24,7 +24,7 @@ for (var xx = 0; xx < ds_w; xx++) {
 				c = color;
 				draw_set_alpha(1);
 				
-				if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+				if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
 					draw_set_alpha(.7);
 					mcheck = MOUSE_BLOQUEADO;
 					
@@ -66,7 +66,7 @@ for (var xx = 0; xx < ds_w; xx++) {
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				alpha = 1;
 				
-				if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+				if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
 					mcheck = MOUSE_SWITCH;
 					alpha = .8;
 				
