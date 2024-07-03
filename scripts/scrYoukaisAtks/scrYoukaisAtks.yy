@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scrYoukaisAtks",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scrYoukaisAtks",
+  "parent":{
+    "name":"YOUKAIS",
+    "path":"folders/Scripts/YOUKAIS.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

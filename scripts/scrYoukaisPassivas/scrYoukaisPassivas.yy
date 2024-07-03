@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scrYoukaisPassivas",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scrYoukaisPassivas",
+  "parent":{
+    "name":"YOUKAIS",
+    "path":"folders/Scripts/YOUKAIS.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scrShogunsPassivas",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scrShogunsPassivas",
+  "parent":{
+    "name":"SHOGUNS",
+    "path":"folders/Scripts/SHOGUNS.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

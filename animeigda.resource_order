@@ -12,6 +12,7 @@
     {"name":"Particle Systems","order":15,"path":"folders/Particle Systems.yy",},
     {"name":"Scripts","order":5,"path":"folders/Scripts.yy",},
     {"name":"GLOBAIS","order":2,"path":"folders/Scripts/GLOBAIS.yy",},
+    {"name":"SHOGUNS","order":3,"path":"folders/Scripts/SHOGUNS.yy",},
     {"name":"YOUKAIS","order":1,"path":"folders/Scripts/YOUKAIS.yy",},
     {"name":"Sequências","order":11,"path":"folders/Sequências.yy",},
     {"name":"Shaders","order":6,"path":"folders/Shaders.yy",},
@@ -23,5 +24,8 @@
     {"name":"obj_pecas_global","order":4,"path":"objects/obj_pecas_global/obj_pecas_global.yy",},
     {"name":"obj_seletor_pecas","order":3,"path":"objects/obj_seletor_pecas/obj_seletor_pecas.yy",},
     {"name":"obj_tabuleiro","order":1,"path":"objects/obj_tabuleiro/obj_tabuleiro.yy",},
+    {"name":"scrShogunsAvanco","order":2,"path":"scripts/scrShogunsAvanco/scrShogunsAvanco.yy",},
+    {"name":"scrShogunsPassivas","order":1,"path":"scripts/scrShogunsPassivas/scrShogunsPassivas.yy",},
+    {"name":"scrYoukaisPassivas","order":1,"path":"scripts/scrYoukaisPassivas/scrYoukaisPassivas.yy",},
   ],
 }

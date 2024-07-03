@@ -86,7 +86,7 @@ ds_grid_add_youkai(
 	[sprGuaxinim,sprTanuki],		//SPRITE
 	[1,3],							//LIMITE DE MOVIMENTOS
 	[atkArmadilha,noone],			//AÇÕES DISPONÍVEIS
-	[metamorfose,noone]				//PASSIVA
+	[youkaiMetamorfose,noone]				//PASSIVA
 );
 #endregion
 
