@@ -9,8 +9,8 @@
   "name":"obj_controle_global",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objetos",
-    "path":"folders/Objetos.yy",
+    "name":"GLOBAIS",
+    "path":"folders/Objetos/GLOBAIS.yy",
   },
   "parentObjectId":null,
   "persistent":false,
