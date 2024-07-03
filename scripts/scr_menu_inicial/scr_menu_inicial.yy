@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_menu_inicial",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_menu_inicial",
+  "parent":{
+    "name":"GLOBAIS",
+    "path":"folders/Scripts/GLOBAIS.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

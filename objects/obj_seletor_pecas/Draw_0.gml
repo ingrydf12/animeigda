@@ -8,7 +8,7 @@ var ds_h = ds_grid_height(ds_seletor),  ds_w = ds_grid_width(ds_seletor);	//ALTU
 var ds_tab_h = ds_grid_height(global.grid_tabuleiro), ds_tab_w = ds_grid_width(global.grid_tabuleiro);
 var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
 var buff = 6;		//ESPAÇAMENTOS ENTRE AS CÉLULAS
-var xinicial = rw/2-(((ds_tab_w/2)+1)*tamcell)-((ds_tab_w+1)*buff), yinicial = rh/2-((ds_tab_h/2)*tamcell)-((ds_tab_h/2)*buff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
+var xinicial = rw/2-(((ds_tab_w/2)+wcell)*tamcell)-((ds_tab_w+wcell)*buff), yinicial = rh/2-((ds_h/2)*tamcell)-((ds_h/2)*buff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
 //var xinicial = rw/2-(((ds_w/2)-1)*tamcell)-(((ds_w/2)-1)*xbuff), yinicial = rh/2-(((ds_h/2)-1)*tamcell)-(((ds_h/2)-1)*ybuff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
 var c = c_dkgray, alpha = 1, escala = global.escala_sprites;
 

@@ -5,7 +5,7 @@ randomize();
 
 tamcell = global.tamanho_cell;
 wcell = 1;		//QUANTIDADE DE CÉLULAS NA LARGURA DO SELETOR
-hcell = global.hcell;		//QUANTIDADE DE CÉLULAS NA ALTURA DO SELETOR
+hcell = array_length(pecas_disponiveis);		//QUANTIDADE DE CÉLULAS NA ALTURA DO SELETOR
 ds_seletor = ds_grid_create(wcell,hcell);
 ds_grid_set_region(ds_seletor,0,0,wcell,hcell,-1);
 

@@ -25,13 +25,27 @@ for (var xx = 0; xx < ds_w; xx++) {
 				draw_set_alpha(1);
 				
 				if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-					mcheck = MOUSE_CHECKADO;
 					draw_set_alpha(.7);
+					mcheck = MOUSE_BLOQUEADO;
+					
+					if xx >= 2 and yy >= 2 {
+						if xx <= wcell - 3 and yy <= hcell - 3 {
+							mcheck = MOUSE_CHECKADO;
+							
+							if mouse_check_button_pressed(mb_left) {
+								if global.peca_mouse != -1 {
+									ds_g[# xx,yy] = global.peca_mouse;
+									global.peca_mouse = -1;
+								}
+							}
+						}
+					}
+				}
 				
-					if mouse_check_button_pressed(mb_left) {
-						if global.peca_mouse != -1 {
-							ds_g[# xx,yy] = global.peca_mouse;
-							global.peca_mouse = -1;
+				if global.peca_mouse != -1 {
+					if xx >= 2 and yy >= 2 {
+						if xx <= wcell - 3 and yy <= hcell - 3 {
+							c = make_color_rgb(100,255,100);
 						}
 					}
 				}
@@ -82,6 +96,10 @@ for (var xx = 0; xx < ds_w; xx++) {
 					mcheck = MOUSE_BLOQUEADO;
 				}
 				
+				if global.peca_mouse != -1 {
+					c = c_red;
+				}
+				
 				draw_set_alpha(1);
 				draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
 				draw_sprite_ext(sprArvore,0,x1,y1,escala,escala,0,c_white,alpha);
@@ -95,6 +113,10 @@ for (var xx = 0; xx < ds_w; xx++) {
 				
 				if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
 					mcheck = MOUSE_BLOQUEADO;
+				}
+				
+				if global.peca_mouse != -1 {
+					c = c_red;
 				}
 				
 				draw_set_alpha(1);
