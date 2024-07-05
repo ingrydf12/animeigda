@@ -29,7 +29,8 @@ enum MenuElementType {
 enum IdPecas {
 	ChochinObake,Dotaku,KasaObake,Kappa,Tanuki,AlturaPlayers, //YOUKAIS(PLAYER)
 	Ashigaru,Lanceiro,Arqueiro,Samurai,Hatamoto,AlturaInimigos,	//INIMIGOS
-	Arvore,Pedras,AlturaAmbientacao	//AMBIENTAÇÃO
+	Arvore,Pedras,AlturaAmbientacao,	//AMBIENTAÇÃO
+	Sacerdotisa
 }
 
 //MACROS
@@ -43,9 +44,9 @@ enum IdPecas {
 window_set_cursor(cr_none);	//SUMIR O MOUSE
 global.mouse_check = MOUSE_NEUTRO;
 global.peca_mouse = NADA;
-global.tamanho_cell = 64;		//TAMANHO DE CADA CÉLULA DA GRID
-global.wcell = 9;			//QUANTIDADE DE CÉLULAS NA LARGURA DO TABULEIRO
-global.hcell = 9;			//QUANTIDADE DE CÉLULAS NA ALTURA DO TABULEIRO
+global.tamanho_cell = 48;		//TAMANHO DE CADA CÉLULA DA GRID
+global.wcell = 12;			//QUANTIDADE DE CÉLULAS NA LARGURA DO TABULEIRO
+global.hcell = 12;			//QUANTIDADE DE CÉLULAS NA ALTURA DO TABULEIRO
 global.escala_sprites = global.tamanho_cell/64;
 //global.color_roof = make_color_rgb(0,255,0);
 global.color_roof = c_gray;

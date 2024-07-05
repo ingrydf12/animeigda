@@ -7,6 +7,7 @@ var gw = global.view_w, gh = global.view_h;
 var mx = device_mouse_x_to_gui(0), my = device_mouse_y_to_gui(0);
 var c = c_white, alpha = 1;
 global.mouse_check = MOUSE_NEUTRO;
+draw_set_font(fnt_hud_menu);
 
 c = c_black;
 draw_set_alpha(.5);
@@ -32,32 +33,25 @@ for (var i = 0; i < total_slots; i++) {
 	
 	c = c_orange;
 	alpha = 1;
-	var id_peca = ds_grid[# 0, i];
-	var array = global.grid_pecas_youkais[# DadosYoukais.Sprite, id_peca];
-	var spr = array[0];
 	
 	c = c_white;
-	if point_in_rectangle(mx,my,xslot,yslot,xslot+tam_slot,yslot+tam_slot) {
+	if point_in_rectangle(mx,my,xslot,yslot,xslot+tam_slot,yslot+tam_slot) and peca_atual < limite_pecas {
 		alpha = .6;
 		c = c_gray;
 		
 		if mouse_check_button_pressed(mb_left) and i < IdPecas.AlturaPlayers {
 			pecas_disponiveis[peca_atual] = ds_grid[# 0, i];
 			peca_atual++;
-			
-			if peca_atual >= limite_pecas {
-				instance_create_layer(x,y,"Pecas",obj_aba_pecas,{
-					pecas_disponiveis: other.pecas_disponiveis
-				})
-				
-				global.selecao_pecas = false;
-				instance_destroy();
-			}
 		}
 	}
+	
 	draw_rectangle_color(xslot,yslot,xslot+tam_slot,yslot+tam_slot,c,c,c,c,false);
 	
 	if i < IdPecas.AlturaPlayers {
+		var id_peca = ds_grid[# 0, i];
+		var array = global.grid_pecas_youkais[# DadosYoukais.Sprite, id_peca];
+		var spr = array[0];
+		
 		draw_sprite_ext(spr,0,xslot,yslot,global.escala_sprites,global.escala_sprites,0,c_white,alpha);
 	}
 	
@@ -69,15 +63,57 @@ for (var i = 0; i < total_slots; i++) {
 }
 
 if peca_atual > 0 {
-	for (var i = 0; i < array_length(pecas_disponiveis); i++) {
+	for (var i = 0; i < peca_atual; i++) {
 		var id_peca = pecas_disponiveis[i];
 		var array = global.grid_pecas_youkais[# DadosYoukais.Sprite, id_peca];
 		var spr = array[0];
 		alpha = 1;
 		
 		var xslot = xtabela - margin_tabela - tam_slot;
-		var yslot = ytabela + ((i)*tam_slot) + ((i)*buff_slot);
+		var yslot = (ytabela+htabela/2) - (((array_length(pecas_disponiveis))/2)*buff_slot) - (((array_length(pecas_disponiveis))/2)*tam_slot) + ((i)*tam_slot) + ((i)*buff_slot);
+		
+		if point_in_rectangle(mx,my,xslot,yslot,xslot+tam_slot,yslot+tam_slot) {
+			if mouse_check_button_pressed(mb_left) {
+				array_delete(pecas_disponiveis,i,1);
+				peca_atual--;
+			}
+		}
 		
 		draw_sprite_ext(spr,0,xslot,yslot,global.escala_sprites,global.escala_sprites,0,c_white,alpha);
+		
+		if peca_atual >= limite_pecas {
+			var margquad = 200;
+			var wquad = 100;
+			var hquad = 50;
+			var xquad = gw-margquad-wquad;
+			var yquad = (gh/2)-(hquad/2);
+			c = c_white;
+			
+			if point_in_rectangle(mx,my,xquad,yquad,xquad+wquad,yquad+hquad) {
+				c = c_dkgray;
+				
+				if mouse_check_button_pressed(mb_left) {
+					instance_create_layer(x,y,"Pecas",obj_aba_pecas,{
+						pecas_disponiveis: other.pecas_disponiveis
+					})
+					
+					global.selecao_pecas = false;
+					instance_destroy();
+					exit;
+				}
+			}
+			
+			draw_rectangle_color(xquad,yquad,xquad+wquad,yquad+hquad,c,c,c,c,false);
+			
+			draw_set_valign(fa_middle)
+			draw_set_halign(fa_center);
+			draw_set_color(c_red);
+			draw_text(xquad+(wquad/2),gh/2,"PRONTO");
+			draw_set_color(c_white);
+			draw_set_valign(-1);
+			draw_set_halign(-1);
+		}
 	}
 }
+
+draw_set_font(-1);

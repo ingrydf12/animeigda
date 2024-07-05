@@ -38,7 +38,7 @@ ytabela = global.view_h/2 - htabela/2 - margin_tabela;
 xslotinicial = xtabela + margin_tabela;
 yslotinicial = ytabela + margin_tabela;
 
-ds_grid = ds_grid_create(IdPecas.AlturaPlayers,total_slots);
+ds_grid = ds_grid_create(1,total_slots);
 
 var i = 0; repeat(IdPecas.AlturaPlayers) {
 	ds_grid[# 0, i] = i;

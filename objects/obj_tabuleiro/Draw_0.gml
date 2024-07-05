@@ -28,8 +28,8 @@ for (var xx = 0; xx < ds_w; xx++) {
 					draw_set_alpha(.7);
 					mcheck = MOUSE_BLOQUEADO;
 					
-					if xx >= 2 and yy >= 2 {
-						if xx <= wcell - 3 and yy <= hcell - 3 {
+					if xx >= xsacerdotisa-2 and yy >= ysacerdotisa-2 {
+						if xx <= xsacerdotisa+2 and yy <= ysacerdotisa+2 {
 							mcheck = MOUSE_CHECKADO;
 							
 							if mouse_check_button_pressed(mb_left) {
@@ -43,14 +43,29 @@ for (var xx = 0; xx < ds_w; xx++) {
 				}
 				
 				if global.peca_mouse != -1 {
-					if xx >= 2 and yy >= 2 {
-						if xx <= wcell - 3 and yy <= hcell - 3 {
+					if xx >= xsacerdotisa-2 and yy >= ysacerdotisa-2 {
+						if xx <= xsacerdotisa+2 and yy <= ysacerdotisa+2 {
 							c = make_color_rgb(100,255,100);
 						}
 					}
 				}
 				
 				draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
+				draw_set_alpha(1);
+				break;
+			case IdPecas.Sacerdotisa:
+				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+				var x2 = x1+tamcell, y2 = y1+tamcell;
+				c = color;
+				alpha = 1;
+				
+				if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+					mcheck = MOUSE_BLOQUEADO;
+				}
+				
+				draw_set_alpha(1);
+				draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
+				draw_sprite_ext(sprSacerdotisa,0,x1,y1,escala,escala,0,c_white,alpha);
 				draw_set_alpha(1);
 				break;
 			//PEÇAS DO PLAYER

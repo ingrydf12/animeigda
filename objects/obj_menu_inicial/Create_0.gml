@@ -38,10 +38,10 @@ ds_menu_audio = create_menu_page(
 
 ds_menu_map_level = create_menu_page(
 	["MAPA 1", MenuElementType.ScriptRunner, room_transfer, rm_mapa1],
-	["MAPA 2", MenuElementType.ScriptRunner, room_transfer, rm_mapa1],
-	["MAPA 3", MenuElementType.ScriptRunner, room_transfer, rm_mapa1],
-	["MAPA 4", MenuElementType.ScriptRunner, room_transfer, rm_mapa1],
-	["MAPA 5", MenuElementType.ScriptRunner, room_transfer, rm_mapa1],
+	["MAPA 2", MenuElementType.ScriptRunner, room_transfer, rm_mapa2],
+	["MAPA 3", MenuElementType.ScriptRunner, room_transfer, rm_mapa3],
+	["MAPA 4", MenuElementType.ScriptRunner, room_transfer, rm_mapa4],
+	["MAPA 5", MenuElementType.ScriptRunner, room_transfer, rm_mapa5],
 	["VOLTAR", MenuElementType.PageTransfer, MenuPage.Main]
 );
 
