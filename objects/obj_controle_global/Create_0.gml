@@ -39,6 +39,8 @@ enum IdPecas {
 #macro MOUSE_BLOQUEADO "BLOCK"
 #macro MOUSE_CHECKADO "CHECK"
 #macro MOUSE_SWITCH "SWITCH"
+#macro TURNO_JOGADOR "player"
+#macro TURNO_ININIGO "enemy"
 
 //TABULEIRO
 window_set_cursor(cr_none);	//SUMIR O MOUSE
@@ -50,3 +52,5 @@ global.hcell = 12;			//QUANTIDADE DE CÉLULAS NA ALTURA DO TABULEIRO
 global.escala_sprites = global.tamanho_cell/64;
 //global.color_roof = make_color_rgb(0,255,0);
 global.color_roof = c_gray;
+
+global.turno = TURNO_JOGADOR;

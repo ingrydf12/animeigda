@@ -14,7 +14,7 @@ var c = c_dkgray, alpha = 1, escala = global.escala_sprites;
 
 //LOOP PARA PASSAR POR TODAS AS CÉLULAS DA GRID DO SELETOR
 for (var xx = 0; xx < ds_w; xx++) {
-	for (var yy = 0; yy < ds_h; yy++) {
+	for (var yy = 0; yy < array_length(pecas_disponiveis); yy++) {
 		//DESENHAR ALGO SE O VALOR DAQUELA CÉLULA FOR IGUAL A '0'
 		switch ds_seletor[# xx,yy] {
 			//-1 -> NÃO EXISTE ALGO NAQUELA CÉLULA
@@ -30,7 +30,7 @@ for (var xx = 0; xx < ds_w; xx++) {
 					if mouse_check_button_pressed(mb_left) {
 						if global.peca_mouse != -1 {
 							ds_seletor[# xx,yy] = global.peca_mouse;
-							 global.peca_mouse = -1;
+							global.peca_mouse = -1;
 						}
 					}
 				}
@@ -58,7 +58,10 @@ for (var xx = 0; xx < ds_w; xx++) {
 					if mouse_check_button_pressed(mb_left) {
 						if global.peca_mouse == -1 {
 							global.peca_mouse = ds_seletor[# xx,yy];
-							ds_seletor[# xx,yy] = -1;
+							if yy < array_length(pecas_disponiveis) {
+								ds_seletor[# xx,yy] = ds_seletor[# xx,yy+1];
+							}
+							array_delete(pecas_disponiveis,yy,1);
 						} else {
 							var cell_mouse = global.peca_mouse;
 							global.peca_mouse = ds_seletor[# xx,yy];
@@ -74,9 +77,13 @@ for (var xx = 0; xx < ds_w; xx++) {
 	}
 }
 
-if global.peca_mouse != -1 {
-	var peca = global.peca_mouse;
-	var spr = ds_youkais[# DadosYoukais.Sprite, peca][ds_youkais[# DadosYoukais.Estado, peca]];
+//if global.peca_mouse != -1 {
+//	var peca = global.peca_mouse;
+//	var spr = ds_youkais[# DadosYoukais.Sprite, peca][ds_youkais[# DadosYoukais.Estado, peca]];
 	
-	draw_sprite_ext(spr,0,mouse_x,mouse_y,escala,escala,0,c_white,1);
+//	draw_sprite_ext(spr,0,mouse_x,mouse_y,escala,escala,0,c_white,1);
+//}
+
+if array_length(pecas_disponiveis) <= 0 and global.peca_mouse == -1 and !instance_exists(obj_controle_turno) {
+	instance_create_layer(1056,320,"Tabuleiro",obj_controle_turno);
 }
