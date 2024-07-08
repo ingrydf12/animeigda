@@ -9,6 +9,12 @@ if position_meeting(mouse_x,mouse_y,self) and global.peca_mouse == -1 {
 		if mouse_check_button_pressed(mb_left) {
 			global.turno = TURNO_ININIGO;
 			
+			if primeiro_turno {
+				primeiro_turno = false;
+				
+				object_set_visible(objParShoguns,true);
+			}
+			
 			if instance_exists(obj_aba_pecas) {instance_destroy(obj_aba_pecas)}
 		}
 	}

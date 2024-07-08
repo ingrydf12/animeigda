@@ -1,16 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"obj_controle_turno",
+  "%Name":"objParShoguns",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_controle_turno",
+  "name":"objParShoguns",
   "overriddenProperties":[],
   "parent":{
-    "name":"HUD",
-    "path":"folders/Objetos/HUD.yy",
+    "name":"SHOGUNS",
+    "path":"folders/Objetos/PECAS/SHOGUNS.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -30,10 +31,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"sprTurnos",
-    "path":"sprites/sprTurnos/sprTurnos.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

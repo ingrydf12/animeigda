@@ -159,6 +159,27 @@ if instance_exists(obj_aba_pecas) {
 					break;
 				#endregion
 				
+				#region PEÇAS DOS INIMIGOS ANTES
+				case IdPecas.Ashigaru:
+				case IdPecas.Lanceiro:
+				case IdPecas.Arqueiro:
+				case IdPecas.Samurai:
+				case IdPecas.Hatamoto:
+					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+					var x2 = x1+tamcell, y2 = y1+tamcell;
+					alpha = 1;
+					
+					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
+						mcheck = MOUSE_BLOQUEADO;
+						alpha = .8;
+					}
+					
+					c = color;
+					draw_set_alpha(alpha);
+					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
+					draw_set_alpha(1);
+					break;
+				#endregion
 			}
 		}
 	}
@@ -303,6 +324,28 @@ if instance_exists(obj_aba_pecas) {
 								ds_g[# xx,yy] = cell_mouse;
 							}
 						}
+					}
+					
+					c = color;
+					draw_set_alpha(alpha);
+					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
+					draw_set_alpha(1);
+					break;
+				#endregion
+				
+				#region PEÇAS DOS INIMIGOS DURANTE
+				case IdPecas.Ashigaru:
+				case IdPecas.Lanceiro:
+				case IdPecas.Arqueiro:
+				case IdPecas.Samurai:
+				case IdPecas.Hatamoto:
+					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+					var x2 = x1+tamcell, y2 = y1+tamcell;
+					alpha = 1;
+					
+					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
+						mcheck = MOUSE_BLOQUEADO;
+						alpha = .8;
 					}
 					
 					c = color;
