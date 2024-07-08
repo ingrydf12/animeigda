@@ -22,3 +22,4 @@ image_yscale = global.escala_sprites;
 //VARIÁVEIS
 clicado = false;
 no_tabuleiro = false;
+hover = false;

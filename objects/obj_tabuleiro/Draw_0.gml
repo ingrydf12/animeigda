@@ -134,7 +134,7 @@ if instance_exists(obj_aba_pecas) {
 					alpha = 1;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
-						mcheck = MOUSE_SWITCH;
+						mcheck = MOUSE_BLOQUEADO;
 						alpha = .8;
 						
 						if mouse_check_button_pressed(mb_left) {
@@ -287,7 +287,7 @@ if instance_exists(obj_aba_pecas) {
 					alpha = 1;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
-						mcheck = MOUSE_SWITCH;
+						mcheck = MOUSE_BLOQUEADO;
 						alpha = .8;
 						
 						if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR {

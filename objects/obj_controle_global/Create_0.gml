@@ -54,3 +54,8 @@ global.escala_sprites = global.tamanho_cell/64;
 global.color_roof = c_gray;
 
 global.turno = TURNO_JOGADOR;
+
+global.informacoes_peca = false;
+global.informacoes_peca_inst = noone;
+
+global.informacoes_peca_id = noone;
