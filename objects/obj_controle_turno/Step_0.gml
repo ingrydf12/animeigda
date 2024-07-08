@@ -2,7 +2,7 @@
 /// Site: https://linktr.ee/luruska
 //
 
-if position_meeting(mouse_x,mouse_y,self) {
+if position_meeting(mouse_x,mouse_y,self) and global.peca_mouse == -1 {
 	if global.turno == TURNO_JOGADOR {
 		image_index = 1;
 		
@@ -13,7 +13,7 @@ if position_meeting(mouse_x,mouse_y,self) {
 		}
 	}
 } else {
-	if global.turno == TURNO_JOGADOR {
+	if global.turno == TURNO_JOGADOR and global.peca_mouse == -1 {
 		image_index = 0;
 	} else {
 		image_index = 1;

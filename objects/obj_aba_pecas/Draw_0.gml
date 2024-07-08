@@ -2,6 +2,14 @@
 /// Site: https://linktr.ee/luruska
 //
 
+if array_length(pecas_disponiveis) <= 0 and global.peca_mouse == -1 and !instance_exists(obj_controle_turno) {
+	instance_create_layer(1056,320,"Tabuleiro",obj_controle_turno);
+	
+	instance_destroy();
+}
+
+
+/*
 //VARIÁVEIS LOCAIS
 var ds_youkais = global.grid_pecas_youkais, ds_shoguns = global.grid_pecas_shoguns;	//FORMA SIMPLIFICADA PARA SE REFERENCIAR ÀS GRIDS
 var ds_h = ds_grid_height(ds_seletor),  ds_w = ds_grid_width(ds_seletor);	//ALTURA E LARGURA DA GRID DE FORMA SIMPLIFICADA
@@ -23,17 +31,6 @@ for (var xx = 0; xx < ds_w; xx++) {
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				c = c_dkgray;
 				draw_set_alpha(1);
-				
-				if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-					draw_set_alpha(.8);
-					
-					if mouse_check_button_pressed(mb_left) {
-						if global.peca_mouse != -1 {
-							ds_seletor[# xx,yy] = global.peca_mouse;
-							global.peca_mouse = -1;
-						}
-					}
-				}
 				
 				draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
 				draw_set_alpha(1);
@@ -57,6 +54,9 @@ for (var xx = 0; xx < ds_w; xx++) {
 					
 					if mouse_check_button_pressed(mb_left) {
 						if global.peca_mouse == -1 {
+							var inst = instance_nearest(mouse_x-global.tamanho_cell/2,mouse_y-global.tamanho_cell/2,objParYoukais);
+							inst.clicado = true;
+							
 							global.peca_mouse = ds_seletor[# xx,yy];
 							if yy < array_length(pecas_disponiveis) {
 								ds_seletor[# xx,yy] = ds_seletor[# xx,yy+1];

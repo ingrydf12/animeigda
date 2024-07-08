@@ -16,3 +16,46 @@ for (var xx = 0; xx < ds_grid_width(ds_seletor); xx++) {
 		//ds_seletor[# xx,yy] = irandom_range(IdPecas.ChochinObake,IdPecas.AlturaPlayers-1);
 	}
 }
+
+var ds_h = ds_grid_height(ds_seletor),  ds_w = ds_grid_width(ds_seletor);	//ALTURA E LARGURA DA GRID DE FORMA SIMPLIFICADA
+var ds_tab_h = ds_grid_height(global.grid_tabuleiro), ds_tab_w = ds_grid_width(global.grid_tabuleiro);
+var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
+var buff = 6;		//ESPAÇAMENTOS ENTRE AS CÉLULAS
+var xinicial = rw/2-(((ds_tab_w/2)+wcell)*tamcell)-((ds_tab_w+wcell)*buff), yinicial = rh/2-((ds_h/2)*tamcell)-((ds_h/2)*buff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
+
+for (var xx = 0; xx < ds_grid_width(ds_seletor); xx++) {
+	for (var yy = 0; yy < ds_grid_height(ds_seletor); yy++) {
+		switch ds_seletor[# xx,yy] {
+			case IdPecas.ChochinObake:
+				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+				var x2 = x1+tamcell, y2 = y1+tamcell;
+				
+				instance_create_layer(x1,y1,"Pecas",objChochinObake);
+				break;
+			case IdPecas.Dotaku:
+				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+				var x2 = x1+tamcell, y2 = y1+tamcell;
+				
+				instance_create_layer(x1,y1,"Pecas",objDotaku);
+				break;
+			case IdPecas.KasaObake:
+				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+				var x2 = x1+tamcell, y2 = y1+tamcell;
+				
+				instance_create_layer(x1,y1,"Pecas",objKasaObake);
+				break;
+			case IdPecas.Kappa:
+				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+				var x2 = x1+tamcell, y2 = y1+tamcell;
+				
+				instance_create_layer(x1,y1,"Pecas",objKappa);
+				break;
+			case IdPecas.Tanuki:
+				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+				var x2 = x1+tamcell, y2 = y1+tamcell;
+				
+				instance_create_layer(x1,y1,"Pecas",objTanuki);
+				break;
+		}
+	}
+}

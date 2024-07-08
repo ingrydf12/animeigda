@@ -25,8 +25,6 @@ for (var xx = 0; xx < ds_grid_width(global.grid_tabuleiro); xx++) {
 
 ds_grid_set_region(global.grid_tabuleiro,2,2,wcell-2,hcell-2,NADA);
 
-
-
 switch room {
 	#region MAPA 1
 	case rm_mapa1:
@@ -37,31 +35,6 @@ switch room {
 		global.grid_tabuleiro[# 11,3] = IdPecas.Ashigaru;
 		global.grid_tabuleiro[# 8,9] = IdPecas.Ashigaru;
 		global.grid_tabuleiro[# 4,10] = IdPecas.Ashigaru;
-		//global.grid_tabuleiro[# 0,0] = IdPecas.Pedras;
-		//global.grid_tabuleiro[# 2,0] = IdPecas.Pedras;
-		//global.grid_tabuleiro[# 8,0] = IdPecas.Pedras;
-		//global.grid_tabuleiro[# 10,0] = IdPecas.Pedras;
-		//global.grid_tabuleiro[# 11,0] = IdPecas.Pedras;
-		
-		//global.grid_tabuleiro[# 0,1] = IdPecas.Pedras;
-		//global.grid_tabuleiro[# 1,1] = IdPecas.Arvore;
-		//global.grid_tabuleiro[# 6,1] = IdPecas.Arvore;
-		//global.grid_tabuleiro[# 8,1] = IdPecas.Arvore;
-		
-		//global.grid_tabuleiro[# 0,2] = IdPecas.Arvore;
-		
-		//global.grid_tabuleiro[# 1,3] = IdPecas.Arvore;
-		
-		//global.grid_tabuleiro[# 1,6] = IdPecas.Arvore;
-		
-		//global.grid_tabuleiro[# 0,7] = IdPecas.Pedras;
-		//global.grid_tabuleiro[# 1,7] = IdPecas.Pedras;
-		//global.grid_tabuleiro[# 7,7] = IdPecas.Pedras;
-		//global.grid_tabuleiro[# 8,7] = IdPecas.Arvore;
-		
-		//global.grid_tabuleiro[# 2,8] = IdPecas.Arvore;
-		//global.grid_tabuleiro[# 6,8] = IdPecas.Arvore;
-		//global.grid_tabuleiro[# 7,8] = IdPecas.Pedras;
 		break;
 	#endregion
 	
@@ -113,6 +86,14 @@ switch room {
 		break;
 	#endregion
 }
+
+var ds_h = ds_grid_height(global.grid_tabuleiro),  ds_w = ds_grid_width(global.grid_tabuleiro);	//ALTURA E LARGURA DA GRID DE FORMA SIMPLIFICADA
+var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
+var buff = 6;		//ESPAÇAMENTOS ENTRE AS CÉLULAS
+var xinicial = rw/2-((ds_w/2)*tamcell)-((ds_w/2)*buff), yinicial = rh/2-((ds_h/2)*tamcell)-((ds_h/2)*buff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
+
+var x1 = xinicial+(xsacerdotisa*tamcell)+(xsacerdotisa*buff), y1 = yinicial+(ysacerdotisa*tamcell)+(ysacerdotisa*buff);
+instance_create_layer(x1,y1,"Pecas",objSacerdotisa);
 
 global.selecao_pecas = true;
 instance_create_layer(x,y,"Pecas",obj_selecao_pecas);

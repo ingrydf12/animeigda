@@ -45,18 +45,3 @@ var i = 0; repeat(IdPecas.AlturaPlayers) {
 	
 	i++;
 }
-
-//switch room {
-//	#region MAPA 1
-//	case rm_mapa1:
-//		instance_create_layer(x,y,"Pecas",obj_aba_pecas,{
-//			pecas_disponiveis: [
-//				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki),
-//				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki),
-//				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki),
-//				choose(IdPecas.ChochinObake,IdPecas.Dotaku,IdPecas.KasaObake,IdPecas.Kappa,IdPecas.Tanuki)
-//			]
-//		})
-//		break;
-//	#endregion
-//}

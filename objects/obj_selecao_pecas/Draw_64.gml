@@ -93,7 +93,7 @@ if peca_atual > 0 {
 				c = c_dkgray;
 				
 				if mouse_check_button_pressed(mb_left) {
-					instance_create_layer(x,y,"Pecas",obj_aba_pecas,{
+					instance_create_layer(x,y,"AbaPecas",obj_aba_pecas,{
 						pecas_disponiveis: other.pecas_disponiveis
 					})
 					
