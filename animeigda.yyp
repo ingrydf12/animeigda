@@ -55,7 +55,6 @@
     {"id":{"name":"obj_menu_inicial","path":"objects/obj_menu_inicial/obj_menu_inicial.yy",},},
     {"id":{"name":"obj_mouse","path":"objects/obj_mouse/obj_mouse.yy",},},
     {"id":{"name":"obj_pecas_global","path":"objects/obj_pecas_global/obj_pecas_global.yy",},},
-    {"id":{"name":"obj_persona","path":"objects/obj_persona/obj_persona.yy",},},
     {"id":{"name":"obj_selecao_pecas","path":"objects/obj_selecao_pecas/obj_selecao_pecas.yy",},},
     {"id":{"name":"obj_tabuleiro","path":"objects/obj_tabuleiro/obj_tabuleiro.yy",},},
     {"id":{"name":"objArqueiro","path":"objects/objArqueiro/objArqueiro.yy",},},

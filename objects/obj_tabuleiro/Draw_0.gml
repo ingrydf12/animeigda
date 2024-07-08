@@ -44,6 +44,8 @@ if instance_exists(obj_aba_pecas) {
 										inst.no_tabuleiro = true;
 										inst.x = x1;
 										inst.y = y1;
+										inst.xx = xx;
+										inst.yy = yy;
 										
 										ds_g[# xx,yy] = global.peca_mouse;
 										global.peca_mouse = -1;
