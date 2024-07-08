@@ -9,7 +9,7 @@ if point_in_rectangle(mouse_x,mouse_y,x,y,x+global.tamanho_cell,y+global.tamanho
 }
 
 if instance_exists(obj_controle_turno) {
-	if !obj_controle_turno.primeiro_turno {
+	if !global.primeiro_turno {
 		visible = true;
 	}
 }

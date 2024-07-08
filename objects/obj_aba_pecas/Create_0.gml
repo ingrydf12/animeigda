@@ -3,6 +3,8 @@
 //
 randomize();
 
+global.primeiro_turno = true;
+
 tamcell = global.tamanho_cell;
 wcell = 1;		//QUANTIDADE DE CÉLULAS NA LARGURA DO SELETOR
 hcell = array_length(pecas_disponiveis);		//QUANTIDADE DE CÉLULAS NA ALTURA DO SELETOR

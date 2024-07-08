@@ -25,7 +25,7 @@ if !no_tabuleiro and !clicado {
 	draw_set_alpha(1);
 }
 
-if hover {
+if hover or (clicado and !global.primeiro_turno) {
 	for (var xx = 0; xx < ((move*2)+1); xx++) {
 		var x1 = x + ((move*tamcell)+(move*buff)) - (xx*tamcell) - (xx*buff), y1 = y;
 		var x2 = x1 + tamcell, y2 = y1 + tamcell;
