@@ -20,25 +20,21 @@ if !no_tabuleiro {
 	
 	if point_in_rectangle(mouse_x,mouse_y,x,y,x+global.tamanho_cell,y+global.tamanho_cell) {
 		hover = true;
-		//if mouse_check_button_pressed(mb_right) {
-		//	if global.informacoes_peca_inst == self {
-		//		global.informacoes_peca = !global.informacoes_peca;
+		if mouse_check_button_pressed(mb_right) and global.peca_mouse == -1 {
+			if global.informacoes_peca_inst == self {
+				global.informacoes_peca = !global.informacoes_peca;
 				
-		//		if global.informacoes_peca {
-		//			global.informacoes_peca_inst = self;
-					
-		//			global.informacoes_peca_id = peca_id;
-		//		}
-		//	} else {
-		//		global.informacoes_peca = true;
+				if global.informacoes_peca {
+					global.informacoes_peca_inst = self;
+				}
+			} else {
+				global.informacoes_peca = true;
 				
-		//		if global.informacoes_peca {
-		//			global.informacoes_peca_inst = self;
-					
-		//			global.informacoes_peca_id = peca_id;
-		//		}
-		//	}
-		//}
+				if global.informacoes_peca {
+					global.informacoes_peca_inst = self;
+				}
+			}
+		}
 	}
 }
 

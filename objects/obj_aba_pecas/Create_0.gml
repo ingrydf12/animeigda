@@ -30,31 +30,41 @@ for (var xx = 0; xx < ds_grid_width(ds_seletor); xx++) {
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				instance_create_layer(x1,y1,"Pecas",objChochinObake);
+				instance_create_layer(x1,y1,"Pecas",objChochinObake,{
+					peca_id : IdPecas.ChochinObake
+				});
 				break;
 			case IdPecas.Dotaku:
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				instance_create_layer(x1,y1,"Pecas",objDotaku);
+				instance_create_layer(x1,y1,"Pecas",objDotaku,{
+					peca_id : IdPecas.Dotaku
+				});
 				break;
 			case IdPecas.KasaObake:
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				instance_create_layer(x1,y1,"Pecas",objKasaObake);
+				instance_create_layer(x1,y1,"Pecas",objKasaObake,{
+					peca_id : IdPecas.KasaObake
+				});
 				break;
 			case IdPecas.Kappa:
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				instance_create_layer(x1,y1,"Pecas",objKappa);
+				instance_create_layer(x1,y1,"Pecas",objKappa,{
+					peca_id : IdPecas.Kappa
+				});
 				break;
 			case IdPecas.Tanuki:
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				instance_create_layer(x1,y1,"Pecas",objTanuki);
+				instance_create_layer(x1,y1,"Pecas",objTanuki,{
+					peca_id : IdPecas.Tanuki
+				});
 				break;
 		}
 	}
