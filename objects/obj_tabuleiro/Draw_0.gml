@@ -235,7 +235,7 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 								}
 							} else {
 								if mouse_check_button_pressed(mb_left) {
-									inst = global.informacoes_peca_inst;
+									var inst = global.informacoes_peca_inst;
 									
 									if inst.can_move_to {
 										inst.x = x1;

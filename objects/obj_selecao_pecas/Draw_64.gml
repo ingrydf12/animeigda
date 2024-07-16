@@ -39,7 +39,7 @@ for (var i = 0; i < total_slots; i++) {
 		alpha = .6;
 		c = c_gray;
 		
-		if mouse_check_button_pressed(mb_left) and i < IdPecas.AlturaPlayers {
+		if mouse_check_button_pressed(mb_left) and i < array_length(pecas_youkais) {
 			pecas_disponiveis[peca_atual] = ds_grid[# 0, i];
 			peca_atual++;
 		}

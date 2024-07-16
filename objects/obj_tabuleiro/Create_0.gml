@@ -26,16 +26,11 @@ switch room {
 		ysacerdotisa = 4;
 		
 		array_shoguns = [
-			[IdPecas.Ashigaru,1,5],
-			[IdPecas.Ashigaru,1,7],
-			[IdPecas.Ashigaru,4,9],
-			[IdPecas.Ashigaru,6,9],
+			[IdPecas.Ashigaru,1,5,	objAshigaru],
+			[IdPecas.Ashigaru,1,7,	objAshigaru],
+			[IdPecas.Ashigaru,4,9,	objAshigaru],
+			[IdPecas.Ashigaru,6,9,	objAshigaru]
 		]
-		
-		instance_create_layer(xinicial+(1*tamcell)+(1*buff),yinicial+(5*tamcell)+(5*buff),"Pecas",objAshigaru,{visible: false});
-		instance_create_layer(xinicial+(1*tamcell)+(1*buff),yinicial+(7*tamcell)+(7*buff),"Pecas",objAshigaru,{visible: false});
-		instance_create_layer(xinicial+(4*tamcell)+(4*buff),yinicial+(9*tamcell)+(9*buff),"Pecas",objAshigaru,{visible: false});
-		instance_create_layer(xinicial+(6*tamcell)+(6*buff),yinicial+(9*tamcell)+(9*buff),"Pecas",objAshigaru,{visible: false});
 		break;
 	#endregion
 	
@@ -46,27 +41,19 @@ switch room {
 		ysacerdotisa = 2;
 		
 		array_shoguns = [
-			[IdPecas.Ashigaru,1,4],
-			[IdPecas.Ashigaru,1,5],
-			[IdPecas.Ashigaru,1,6],
-			[IdPecas.Ashigaru,5,10],
-			[IdPecas.Ashigaru,6,10],
-			[IdPecas.Arqueiro,0,5],
-			[IdPecas.Arqueiro,4,10],
-			[IdPecas.Arqueiro,7,10],
+			[IdPecas.Ashigaru,1,4,	objAshigaru],
+			[IdPecas.Ashigaru,1,5,	objAshigaru],
+			[IdPecas.Ashigaru,1,6,	objAshigaru],
+			[IdPecas.Ashigaru,5,10,	objAshigaru],
+			[IdPecas.Ashigaru,6,10,	objAshigaru],
+			[IdPecas.Arqueiro,0,5,	objArqueiro],
+			[IdPecas.Arqueiro,4,10,	objArqueiro],
+			[IdPecas.Arqueiro,7,10,	objArqueiro]
 		]
 		
 		array_youkais = [
-			[IdPecas.Dotaku,4,5]
+			[IdPecas.Dotaku,4,5,	objDotaku]
 		]
-		
-		//global.grid_tabuleiro[# 1,4] = IdPecas.Ashigaru;
-		//global.grid_tabuleiro[# 1,5] = IdPecas.Ashigaru;
-		//global.grid_tabuleiro[# 1,6] = IdPecas.Ashigaru;
-		
-		instance_create_layer(xinicial+(5*tamcell)+(5*buff),yinicial+(1*tamcell)+(1*buff),"Pecas",objLanceiro,{visible: false});
-		instance_create_layer(xinicial+(1*tamcell)+(1*buff),yinicial+(5*tamcell)+(5*buff),"Pecas",objAshigaru,{visible: false});
-		instance_create_layer(xinicial+(2*tamcell)+(2*buff),yinicial+(9*tamcell)+(9*buff),"Pecas",objArqueiro,{visible: false});
 		break;
 	#endregion
 	
@@ -77,35 +64,50 @@ switch room {
 		ysacerdotisa = 7;
 		
 		array_shoguns = [
-			[IdPecas.Ashigaru,1,5],
-			[IdPecas.Ashigaru,1,7],
-			[IdPecas.Ashigaru,4,9],
-			[IdPecas.Ashigaru,6,9],
+			[IdPecas.Ashigaru,0,4,	objAshigaru],
+			[IdPecas.Ashigaru,0,6,	objAshigaru],
+			[IdPecas.Arqueiro,0,5,	objArqueiro],
+			[IdPecas.Lanceiro,1,4,	objLanceiro],
+			[IdPecas.Lanceiro,1,5,	objLanceiro],
+			[IdPecas.Lanceiro,1,6,	objLanceiro]
 		]
 		
 		array_youkais = [
-			[IdPecas.Kappa,5,3],
-			[IdPecas.Kappa,5,8]
+			[IdPecas.Kappa,5,3,	objKappa],
+			[IdPecas.Kappa,5,8,	objKappa]
 		]
-		
-		instance_create_layer(xinicial+(5*tamcell)+(5*buff),yinicial+(1*tamcell)+(1*buff),"Pecas",objLanceiro,{visible: false});
-		instance_create_layer(xinicial+(1*tamcell)+(1*buff),yinicial+(5*tamcell)+(5*buff),"Pecas",objLanceiro,{visible: false});
-		instance_create_layer(xinicial+(2*tamcell)+(2*buff),yinicial+(9*tamcell)+(9*buff),"Pecas",objArqueiro,{visible: false});
 		break;
 	#endregion
 	
 	#region MAP 4
 	case rm_mapa4:
-		xsacerdotisa = 9;
-		ysacerdotisa = 7;
+		global.regra_mapa = REGRA_CORRIDA_SHOGUN;
+		xsacerdotisa = -1;
+		ysacerdotisa = -1;
 		
-		global.grid_tabuleiro[# 5,1] = IdPecas.Ashigaru;
-		global.grid_tabuleiro[# 1,5] = IdPecas.Ashigaru;
-		global.grid_tabuleiro[# 2,9] = IdPecas.Arqueiro;
+		array_shoguns = [
+			[IdPecas.Ashigaru,0,5,	objAshigaru],
+			[IdPecas.Ashigaru,0,7,	objAshigaru],
+			[IdPecas.Ashigaru,1,7,	objAshigaru],
+			[IdPecas.Ashigaru,1,8,	objAshigaru],
+			[IdPecas.Arqueiro,0,6,	objArqueiro],
+			[IdPecas.Lanceiro,1,4,	objLanceiro],
+			[IdPecas.Lanceiro,1,5,	objLanceiro],
+			[IdPecas.Samurai,0,4,	objSamurai],
+			[IdPecas.Samurai,0,8,	objSamurai]
+		]
 		
-		instance_create_layer(xinicial+(5*tamcell)+(5*buff),yinicial+(1*tamcell)+(1*buff),"Pecas",objAshigaru,{visible: false});
-		instance_create_layer(xinicial+(1*tamcell)+(1*buff),yinicial+(5*tamcell)+(5*buff),"Pecas",objAshigaru,{visible: false});
-		instance_create_layer(xinicial+(2*tamcell)+(2*buff),yinicial+(9*tamcell)+(9*buff),"Pecas",objArqueiro,{visible: false});
+		array_youkais = [
+			[IdPecas.KasaObake,5,4,		objKasaObake],
+			[IdPecas.KasaObake,5,8,		objKasaObake],
+			[IdPecas.Dotaku,4,6,		objDotaku],
+			[IdPecas.Tanuki,6,5,		objTanuki],
+			[IdPecas.Tanuki,6,6,		objTanuki],
+			[IdPecas.Kappa,10,4,		objKappa],
+			[IdPecas.ChochinObake,10,5,	objChochinObake],
+			[IdPecas.ChochinObake,10,6,	objChochinObake],
+		]
+		
 		break;
 	#endregion
 	
@@ -113,14 +115,6 @@ switch room {
 	case rm_mapa5:
 		xsacerdotisa = 5;
 		ysacerdotisa = 5;
-		
-		global.grid_tabuleiro[# 5,1] = IdPecas.Ashigaru;
-		global.grid_tabuleiro[# 1,5] = IdPecas.Samurai;
-		global.grid_tabuleiro[# 2,9] = IdPecas.Hatamoto;
-		
-		instance_create_layer(xinicial+(5*tamcell)+(5*buff),yinicial+(1*tamcell)+(1*buff),"Pecas",objAshigaru,{visible: false});
-		instance_create_layer(xinicial+(1*tamcell)+(1*buff),yinicial+(5*tamcell)+(5*buff),"Pecas",objSamurai,{visible: false});
-		instance_create_layer(xinicial+(2*tamcell)+(2*buff),yinicial+(9*tamcell)+(9*buff),"Pecas",objHatamoto,{visible: false});
 		break;
 	#endregion
 }
@@ -162,14 +156,43 @@ ds_grid_set_region(global.grid_tabuleiro,2,2,wcell-2,hcell-2,NADA);
 
 global.grid_tabuleiro[# xsacerdotisa,ysacerdotisa] = IdPecas.Sacerdotisa;
 
+var x1 = xinicial+(xsacerdotisa*tamcell)+(xsacerdotisa*buff), y1 = yinicial+(ysacerdotisa*tamcell)+(ysacerdotisa*buff);
 switch global.regra_mapa {
+	case noone:
+		instance_create_layer(x1,y1,"Pecas",objSacerdotisa);
+		break;
 	case REGRA_YOUKAIS_SPAWNADOS:
+		instance_create_layer(x1,y1,"Pecas",objSacerdotisa);
+		
 		for (var i = 0; i < array_length(array_youkais); i++) {
 			var arr = array_youkais[i];
 			var xx = arr[1];
 			var yy = arr[2];
 	
 			global.grid_tabuleiro[# xx,yy] = arr[0];
+			x1 = xinicial+(xx*tamcell)+(xx*buff); y1 = yinicial+(yy*tamcell)+(yy*buff);
+			instance_create_layer(x1,y1,"Pecas",arr[3],{
+				no_tabuleiro : true,
+				xtabuleiro : xx,
+				ytabuleiro : yy,
+				peca_id : arr[0]
+			});
+		}
+		break;
+	case REGRA_CORRIDA_SHOGUN:
+		for (var i = 0; i < array_length(array_youkais); i++) {
+			var arr = array_youkais[i];
+			var xx = arr[1];
+			var yy = arr[2];
+	
+			global.grid_tabuleiro[# xx,yy] = arr[0];
+			x1 = xinicial+(xx*tamcell)+(xx*buff); y1 = yinicial+(yy*tamcell)+(yy*buff);
+			instance_create_layer(x1,y1,"Pecas",arr[3],{
+				no_tabuleiro : true,
+				xtabuleiro : xx,
+				ytabuleiro : yy,
+				peca_id : arr[0]
+			});
 		}
 		break;
 }
@@ -180,24 +203,24 @@ for (var i = 0; i < array_length(array_shoguns); i++) {
 	var yy = arr[2];
 	
 	global.grid_tabuleiro[# xx,yy] = arr[0];
+	
+	x1 = xinicial+(xx*tamcell)+(xx*buff); y1 = yinicial+(yy*tamcell)+(yy*buff);
+	instance_create_layer(x1,y1,"Pecas",arr[3],{visible : false});
 }
 
 //LOOP PARA PASSAR POR TODAS AS CÉLULAS DA GRID
 for (var xx = 0; xx < ds_grid_width(global.grid_tabuleiro); xx++) {
 	for (var yy = 0; yy < ds_grid_height(global.grid_tabuleiro); yy++) {
+		x1 = xinicial+(xx*tamcell)+(xx*buff); y1 = yinicial+(yy*tamcell)+(yy*buff);
 		switch global.grid_tabuleiro[# xx,yy] {
 			case IdPecas.Arvore:
-				instance_create_layer(xinicial+(xx*tamcell)+(xx*buff),yinicial+(yy*tamcell)+(yy*buff),"Pecas",objArvore);
+				instance_create_layer(x1,y1,"Pecas",objArvore);
 				break;
 			case IdPecas.Pedras:
-				instance_create_layer(xinicial+(xx*tamcell)+(xx*buff),yinicial+(yy*tamcell)+(yy*buff),"Pecas",objPedras);
+				instance_create_layer(x1,y1,"Pecas",objPedras);
 				break;
 			case IdPecas.Agua:
-				instance_create_layer(xinicial+(xx*tamcell)+(xx*buff),yinicial+(yy*tamcell)+(yy*buff),"Pecas",objAgua);
-				break;
-			case IdPecas.Sacerdotisa:
-				var x1 = xinicial+(xsacerdotisa*tamcell)+(xsacerdotisa*buff), y1 = yinicial+(ysacerdotisa*tamcell)+(ysacerdotisa*buff);
-				instance_create_layer(x1,y1,"Pecas",objSacerdotisa);
+				instance_create_layer(x1,y1,"Pecas",objAgua);
 				break;
 		}
 	}
