@@ -1,17 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"objSacerdotisa",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"objArvore",
+  "eventList":[],
   "managed":true,
-  "name":"objSacerdotisa",
+  "name":"objArvore",
   "overriddenProperties":[],
   "parent":{
-    "name":"PECAS",
-    "path":"folders/Objetos/PECAS.yy",
+    "name":"AMBIENTACAO",
+    "path":"folders/Objetos/PECAS/AMBIENTACAO.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"objParAmbientacao",
+    "path":"objects/objParAmbientacao/objParAmbientacao.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -30,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sprSacerdotisa",
-    "path":"sprites/sprSacerdotisa/sprSacerdotisa.yy",
+    "name":"sprArvore",
+    "path":"sprites/sprArvore/sprArvore.yy",
   },
   "spriteMaskId":null,
   "visible":true,

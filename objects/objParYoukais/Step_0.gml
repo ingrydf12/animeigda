@@ -15,6 +15,11 @@ if !no_tabuleiro {
 			}
 		}
 	}
+	
+	if clicado {
+		x = mouse_x-sprite_width/2;
+		y = mouse_y-sprite_height/2;
+	}
 } else {
 	hover = false;
 	
@@ -36,14 +41,4 @@ if !no_tabuleiro {
 			}
 		}
 	}
-}
-
-if clicado {
-	
-	if global.primeiro_turno {
-		x = mouse_x-sprite_width/2;
-		y = mouse_y-sprite_height/2;
-	}
-	
-	hover = false;
 }

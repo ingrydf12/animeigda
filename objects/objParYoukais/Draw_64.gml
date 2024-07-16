@@ -41,7 +41,7 @@ if global.informacoes_peca {
 			if point_in_rectangle(mx,my,xpassiva,ypassiva,xpassiva+wpassiva,ypassiva+hpassiva) {
 				alpha = .7;
 				
-				if mouse_check_button_pressed(mb_left) {
+				if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR {
 					estado = 1;
 					
 					sprite = array_sprites[estado];

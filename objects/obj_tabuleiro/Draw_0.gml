@@ -12,7 +12,7 @@ var xinicial = rw/2-((ds_w/2)*tamcell)-((ds_w/2)*buff), yinicial = rh/2-((ds_h/2
 var color = global.color_roof, c = color, alpha = 1, escala = global.escala_sprites;
 var mcheck = MOUSE_NEUTRO;
 
-if instance_exists(obj_aba_pecas) {
+if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 	
 	#region DURANTE A FASE DE POSIÇÃO DE PEÇAS
 	//LOOP PARA PASSAR POR TODAS AS CÉLULAS DA GRID
@@ -84,7 +84,7 @@ if instance_exists(obj_aba_pecas) {
 					draw_set_alpha(1);
 					draw_set_alpha(alpha);
 					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
-					draw_sprite_ext(sprArvore,0,x1,y1,escala,escala,0,c_white,1);
+					//draw_sprite_ext(sprArvore,0,x1,y1,escala,escala,0,c_white,1);
 					draw_set_alpha(1);
 					break;
 				case IdPecas.Pedras:
@@ -101,7 +101,24 @@ if instance_exists(obj_aba_pecas) {
 					
 					draw_set_alpha(alpha);
 					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
-					draw_sprite_ext(sprPedras,0,x1,y1,escala,escala,0,c_white,1);
+					//draw_sprite_ext(sprPedras,0,x1,y1,escala,escala,0,c_white,1);
+					draw_set_alpha(1);
+					break;
+				case IdPecas.Agua:
+					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+					var x2 = x1+tamcell, y2 = y1+tamcell;
+					c = color;
+					alpha = 1;
+					
+					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+						alpha = .7
+						
+						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
+					}
+					
+					draw_set_alpha(alpha);
+					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
+					//draw_sprite_ext(sprPedras,0,x1,y1,escala,escala,0,c_white,1);
 					draw_set_alpha(1);
 					break;
 				#endregion
@@ -139,19 +156,6 @@ if instance_exists(obj_aba_pecas) {
 						mcheck = MOUSE_BLOQUEADO;
 						alpha = .8;
 						
-						if mouse_check_button_pressed(mb_left) {
-							if global.peca_mouse == -1 {
-								var inst = instance_nearest(mouse_x-global.tamanho_cell/2,mouse_y-global.tamanho_cell/2,objParYoukais);
-								inst.clicado = true;
-								
-								global.peca_mouse = ds_g[# xx,yy];
-								ds_g[# xx,yy] = -1;
-							} else {
-								var cell_mouse = global.peca_mouse;
-								//global.peca_mouse = ds_g[# xx,yy];
-								ds_g[# xx,yy] = cell_mouse;
-							}
-						}
 					}
 					
 					c = color;
@@ -208,21 +212,40 @@ if instance_exists(obj_aba_pecas) {
 						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
 						
 						if global.turno == TURNO_JOGADOR {
-							if xx >= xsacerdotisa-2 and yy >= ysacerdotisa-2 {
-								if xx <= xsacerdotisa+2 and yy <= ysacerdotisa+2 {
-									if global.peca_mouse != -1 {mcheck = MOUSE_CHECKADO}
-									
-									if mouse_check_button_pressed(mb_left) {
-										if global.peca_mouse != -1 {
-											var inst = instance_nearest(mouse_x-global.tamanho_cell/2,mouse_y-global.tamanho_cell/2,objParYoukais);
-											inst.clicado = false;
-											inst.no_tabuleiro = true;
-											inst.x = x1;
-											inst.y = y1;
-											
-											ds_g[# xx,yy] = global.peca_mouse;
-											global.peca_mouse = -1;
+							if global.primeiro_turno {
+								if xx >= xsacerdotisa-2 and yy >= ysacerdotisa-2 {
+									if xx <= xsacerdotisa+2 and yy <= ysacerdotisa+2 {
+										if global.peca_mouse != -1 {mcheck = MOUSE_CHECKADO}
+										
+										if mouse_check_button_pressed(mb_left) {
+											if global.peca_mouse != -1 {
+												var inst = instance_nearest(mouse_x-global.tamanho_cell/2,mouse_y-global.tamanho_cell/2,objParYoukais);
+												inst.clicado = false;
+												inst.no_tabuleiro = true;
+												inst.x = x1;
+												inst.y = y1;
+												
+												ds_g[# xx,yy] = global.peca_mouse;
+												global.peca_mouse = -1;
+												inst.xtabuleiro = xx;
+												inst.ytabuleiro = yy;
+											}
 										}
+									}
+								}
+							} else {
+								if mouse_check_button_pressed(mb_left) {
+									inst = global.informacoes_peca_inst;
+									
+									if inst.can_move_to {
+										inst.x = x1;
+										inst.y = y1;
+										
+										ds_g[# inst.xtabuleiro,inst.ytabuleiro] = NADA;
+										ds_g[# xx,yy] = inst.peca_id;
+										inst.xtabuleiro = xx;
+										inst.ytabuleiro = yy;
+										inst.can_move_to = false;
 									}
 								}
 							}
@@ -258,7 +281,7 @@ if instance_exists(obj_aba_pecas) {
 					draw_set_alpha(1);
 					draw_set_alpha(alpha);
 					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
-					draw_sprite_ext(sprArvore,0,x1,y1,escala,escala,0,c_white,1);
+					//draw_sprite_ext(sprArvore,0,x1,y1,escala,escala,0,c_white,1);
 					draw_set_alpha(1);
 					break;
 				case IdPecas.Pedras:
@@ -275,7 +298,24 @@ if instance_exists(obj_aba_pecas) {
 					
 					draw_set_alpha(alpha);
 					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
-					draw_sprite_ext(sprPedras,0,x1,y1,escala,escala,0,c_white,1);
+					//draw_sprite_ext(sprPedras,0,x1,y1,escala,escala,0,c_white,1);
+					draw_set_alpha(1);
+					break;
+				case IdPecas.Agua:
+					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+					var x2 = x1+tamcell, y2 = y1+tamcell;
+					c = color;
+					alpha = 1;
+					
+					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+						alpha = .7
+						
+						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
+					}
+					
+					draw_set_alpha(alpha);
+					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
+					//draw_sprite_ext(sprPedras,0,x1,y1,escala,escala,0,c_white,1);
 					draw_set_alpha(1);
 					break;
 				#endregion
@@ -313,18 +353,31 @@ if instance_exists(obj_aba_pecas) {
 						mcheck = MOUSE_BLOQUEADO;
 						alpha = .8;
 						
-						if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR {
-							if global.peca_mouse == -1 {
-								var inst = instance_nearest(mouse_x-global.tamanho_cell/2,mouse_y-global.tamanho_cell/2,objParYoukais);
-								inst.clicado = true;
+						//if global.primeiro_turno {
+						//	if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR {
+						//		if global.peca_mouse == -1 {
+						//			var inst = instance_nearest(mouse_x-global.tamanho_cell/2,mouse_y-global.tamanho_cell/2,objParYoukais);
+						//			inst.clicado = true;
 								
-								global.peca_mouse = ds_g[# xx,yy];
-								ds_g[# xx,yy] = -1;
-							} else {
-								var cell_mouse = global.peca_mouse;
-								//global.peca_mouse = ds_g[# xx,yy];
-								ds_g[# xx,yy] = cell_mouse;
-							}
+						//			global.peca_mouse = ds_g[# xx,yy];
+						//			ds_g[# xx,yy] = -1;
+						//		} else {
+						//			var cell_mouse = global.peca_mouse;
+						//			//global.peca_mouse = ds_g[# xx,yy];
+						//			ds_g[# xx,yy] = cell_mouse;
+						//		}
+						//	}
+						//} else {
+						//	if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR {
+						//		var inst = instance_nearest(mouse_x-global.tamanho_cell/2,mouse_y-global.tamanho_cell/2,objParYoukais);
+						//		inst.about_to_move = !inst.about_to_move;
+						//		global.informacoes_peca_inst = inst;
+						//	}
+						//}
+						if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR {
+							var inst = instance_nearest(mouse_x-global.tamanho_cell/2,mouse_y-global.tamanho_cell/2,objParYoukais);
+							inst.about_to_move = !inst.about_to_move;
+							global.informacoes_peca_inst = inst;
 						}
 					}
 					

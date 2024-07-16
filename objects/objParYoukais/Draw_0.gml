@@ -25,7 +25,7 @@ if !no_tabuleiro and !clicado {
 	draw_set_alpha(1);
 }
 
-if hover or (clicado and !global.primeiro_turno) {
+if hover or (global.informacoes_peca and global.informacoes_peca_inst == self and !global.primeiro_turno) {
 	for (var xx = 0; xx < ((move*2)+1); xx++) {
 		var x1 = x + ((move*tamcell)+(move*buff)) - (xx*tamcell) - (xx*buff), y1 = y;
 		var x2 = x1 + tamcell, y2 = y1 + tamcell;
@@ -55,6 +55,50 @@ if hover or (clicado and !global.primeiro_turno) {
 			draw_set_alpha(.4);
 			draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
 			draw_set_alpha(1);
+		}
+	}
+}
+
+can_move_to = false;
+
+if about_to_move {
+	for (var xx = 0; xx < ((move*2)+1); xx++) {
+		var x1 = x + ((move*tamcell)+(move*buff)) - (xx*tamcell) - (xx*buff), y1 = y;
+		var x2 = x1 + tamcell, y2 = y1 + tamcell;
+		c = c_yellow;
+		
+		if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,true) or collision_rectangle(x1,y1,x2,y2,objSacerdotisa,false,true) {
+			c = c_red;
+		}
+		
+		if x1 < (xinicial+(ds_w*tamcell)+(ds_w*buff)) and x1 >= (xinicial) {
+			draw_set_alpha(.4);
+			draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
+			draw_set_alpha(1);
+			
+			if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+				can_move_to = true;
+			}
+		}
+	}
+	
+	for (var xx = 0; xx < ((move*2)+1); xx++) {
+		var x1 = x, y1 = y + ((move*tamcell)+(move*buff)) - (xx*tamcell) - (xx*buff);
+		var x2 = x1 + tamcell, y2 = y1 + tamcell;
+		c = c_yellow;
+		
+		if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,true) {
+			c = c_red;
+		}
+		
+		if y1 < (yinicial+(ds_h*tamcell)+(ds_h*buff)) and y1 >= (yinicial) {
+			draw_set_alpha(.4);
+			draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
+			draw_set_alpha(1);
+			
+			if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+				can_move_to = true;
+			}
 		}
 	}
 }

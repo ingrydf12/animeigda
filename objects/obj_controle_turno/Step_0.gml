@@ -7,7 +7,7 @@ if position_meeting(mouse_x,mouse_y,self) and global.peca_mouse == -1 {
 		image_index = 1;
 		
 		if mouse_check_button_pressed(mb_left) {
-			global.turno = TURNO_ININIGO;
+			global.turno = TURNO_INIMIGO;
 			
 			if global.primeiro_turno {
 				global.primeiro_turno = false;
@@ -16,6 +16,8 @@ if position_meeting(mouse_x,mouse_y,self) and global.peca_mouse == -1 {
 			}
 			
 			if instance_exists(obj_aba_pecas) {instance_destroy(obj_aba_pecas)}
+			
+			//global.turno = TURNO_JOGADOR;
 		}
 	}
 } else {

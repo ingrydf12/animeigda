@@ -47,7 +47,7 @@ for (var i = 0; i < total_slots; i++) {
 	
 	draw_rectangle_color(xslot,yslot,xslot+tam_slot,yslot+tam_slot,c,c,c,c,false);
 	
-	if i < IdPecas.AlturaPlayers {
+	if i < array_length(pecas_youkais) {
 		var id_peca = ds_grid[# 0, i];
 		var array = global.grid_pecas_youkais[# DadosYoukais.Sprite, id_peca];
 		var spr = array[0];

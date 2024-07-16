@@ -3,8 +3,6 @@
 //
 randomize();
 
-global.primeiro_turno = true;
-
 tamcell = global.tamanho_cell;
 wcell = 1;		//QUANTIDADE DE CÉLULAS NA LARGURA DO SELETOR
 hcell = array_length(pecas_disponiveis);		//QUANTIDADE DE CÉLULAS NA ALTURA DO SELETOR
@@ -32,41 +30,56 @@ for (var xx = 0; xx < ds_grid_width(ds_seletor); xx++) {
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				instance_create_layer(x1,y1,"Pecas",objChochinObake,{
+				var inst = instance_create_layer(x1,y1,"Pecas",objChochinObake,{
 					peca_id : IdPecas.ChochinObake
 				});
+				
+				inst.xtabuleiro = xx;
+				inst.ytabuleiro = yy;
 				break;
 			case IdPecas.Dotaku:
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				instance_create_layer(x1,y1,"Pecas",objDotaku,{
+				var inst = instance_create_layer(x1,y1,"Pecas",objDotaku,{
 					peca_id : IdPecas.Dotaku
 				});
+				
+				inst.xtabuleiro = xx;
+				inst.ytabuleiro = yy;
 				break;
 			case IdPecas.KasaObake:
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				instance_create_layer(x1,y1,"Pecas",objKasaObake,{
+				var inst = instance_create_layer(x1,y1,"Pecas",objKasaObake,{
 					peca_id : IdPecas.KasaObake
 				});
+				
+				inst.xtabuleiro = xx;
+				inst.ytabuleiro = yy;
 				break;
 			case IdPecas.Kappa:
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				instance_create_layer(x1,y1,"Pecas",objKappa,{
+				var inst = instance_create_layer(x1,y1,"Pecas",objKappa,{
 					peca_id : IdPecas.Kappa
 				});
+				
+				inst.xtabuleiro = xx;
+				inst.ytabuleiro = yy;
 				break;
 			case IdPecas.Tanuki:
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				instance_create_layer(x1,y1,"Pecas",objTanuki,{
+				var inst = instance_create_layer(x1,y1,"Pecas",objTanuki,{
 					peca_id : IdPecas.Tanuki
 				});
+				
+				inst.xtabuleiro = xx;
+				inst.ytabuleiro = yy;
 				break;
 		}
 	}

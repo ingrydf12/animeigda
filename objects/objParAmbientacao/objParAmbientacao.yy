@@ -1,15 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"objSacerdotisa",
+  "%Name":"objParAmbientacao",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"objSacerdotisa",
+  "name":"objParAmbientacao",
   "overriddenProperties":[],
   "parent":{
-    "name":"PECAS",
-    "path":"folders/Objetos/PECAS.yy",
+    "name":"AMBIENTACAO",
+    "path":"folders/Objetos/PECAS/AMBIENTACAO.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -29,10 +29,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"sprSacerdotisa",
-    "path":"sprites/sprSacerdotisa/sprSacerdotisa.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }
