@@ -1,20 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"objParAmbientacao",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"objParPecas",
+  "eventList":[],
   "managed":true,
-  "name":"objParAmbientacao",
+  "name":"objParPecas",
   "overriddenProperties":[],
   "parent":{
-    "name":"AMBIENTACAO",
-    "path":"folders/Objetos/PECAS/AMBIENTACAO.yy",
+    "name":"PECAS",
+    "path":"folders/Objetos/PECAS.yy",
   },
-  "parentObjectId":{
-    "name":"objParPecas",
-    "path":"objects/objParPecas/objParPecas.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

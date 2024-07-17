@@ -26,3 +26,4 @@ clicado = false;
 hover = false;
 about_to_move = false;
 can_move_to = false;
+moved = false;

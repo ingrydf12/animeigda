@@ -33,7 +33,7 @@ if hover or (global.informacoes_peca and global.informacoes_peca_inst == self an
 		var x2 = x1 + tamcell, y2 = y1 + tamcell;
 		c = c_yellow;
 		
-		if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,true) {
+		if collision_rectangle(x1,y1,x2,y2,objParPecas,false,true) {
 			c = c_red;
 		}
 		
@@ -49,7 +49,7 @@ if hover or (global.informacoes_peca and global.informacoes_peca_inst == self an
 		var x2 = x1 + tamcell, y2 = y1 + tamcell;
 		c = c_yellow;
 		
-		if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,true) {
+		if collision_rectangle(x1,y1,x2,y2,objParPecas,false,true) {
 			c = c_red;
 		}
 		
@@ -69,38 +69,42 @@ if about_to_move {
 		var x2 = x1 + tamcell, y2 = y1 + tamcell;
 		c = c_yellow;
 		
-		if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,true) or collision_rectangle(x1,y1,x2,y2,objSacerdotisa,false,true) {
+		if collision_rectangle(x1,y1,x2,y2,objParPecas,false,true) {
 			c = c_red;
 		}
 		
 		if x1 < (xinicial+(ds_w*tamcell)+(ds_w*buff)) and x1 >= (xinicial) {
-			draw_set_alpha(.4);
-			draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
-			draw_set_alpha(1);
 			
 			if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
 				can_move_to = true;
+				c = c_purple;
 			}
+			
+			draw_set_alpha(.4);
+			draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
+			draw_set_alpha(1);
 		}
 	}
 	
-	for (var xx = 0; xx < ((move*2)+1); xx++) {
-		var x1 = x, y1 = y + ((move*tamcell)+(move*buff)) - (xx*tamcell) - (xx*buff);
+	for (var yy = 0; yy < ((move*2)+1); yy++) {
+		var x1 = x, y1 = y + ((move*tamcell)+(move*buff)) - (yy*tamcell) - (yy*buff);
 		var x2 = x1 + tamcell, y2 = y1 + tamcell;
 		c = c_yellow;
 		
-		if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,true) {
+		if collision_rectangle(x1,y1,x2,y2,objParPecas,false,true) {
 			c = c_red;
 		}
 		
 		if y1 < (yinicial+(ds_h*tamcell)+(ds_h*buff)) and y1 >= (yinicial) {
-			draw_set_alpha(.4);
-			draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
-			draw_set_alpha(1);
 			
 			if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
 				can_move_to = true;
+				c = c_purple;
 			}
+			
+			draw_set_alpha(.4);
+			draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
+			draw_set_alpha(1);
 		}
 	}
 }

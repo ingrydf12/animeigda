@@ -44,8 +44,8 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 										inst.no_tabuleiro = true;
 										inst.x = x1;
 										inst.y = y1;
-										inst.xx = xx;
-										inst.yy = yy;
+										inst.xtabuleiro = xx;
+										inst.ytabuleiro = yy;
 										
 										ds_g[# xx,yy] = global.peca_mouse;
 										global.peca_mouse = -1;
@@ -237,7 +237,7 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 								if mouse_check_button_pressed(mb_left) {
 									var inst = global.informacoes_peca_inst;
 									
-									if inst.can_move_to {
+									if inst.can_move_to and !inst.moved {
 										inst.x = x1;
 										inst.y = y1;
 										
@@ -246,6 +246,7 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 										inst.xtabuleiro = xx;
 										inst.ytabuleiro = yy;
 										inst.can_move_to = false;
+										inst.moved = true;
 									}
 								}
 							}
@@ -376,6 +377,16 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 						//}
 						if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR {
 							var inst = instance_nearest(mouse_x-global.tamanho_cell/2,mouse_y-global.tamanho_cell/2,objParYoukais);
+							var inst_n = instance_number(objParYoukais);
+							if inst_n > 0 {
+								for (var i = 0; i < inst_n; i++) {
+									var other_insts = instance_find(objParYoukais,i);
+									
+									if other_insts != inst {
+										other_insts.about_to_move = false;
+									}
+								}
+							}
 							inst.about_to_move = !inst.about_to_move;
 							global.informacoes_peca_inst = inst;
 						}
@@ -384,6 +395,7 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					c = color;
 					draw_set_alpha(alpha);
 					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
+					//draw_text(x1,y1,ds_g[# xx,yy]);
 					draw_set_alpha(1);
 					break;
 				#endregion
@@ -406,6 +418,7 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					c = color;
 					draw_set_alpha(alpha);
 					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
+					//draw_text(x1,y1,ds_g[# xx,yy]);
 					draw_set_alpha(1);
 					break;
 				#endregion

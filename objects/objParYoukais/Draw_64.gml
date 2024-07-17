@@ -8,6 +8,7 @@ var gw = display_get_gui_width(), gh = display_get_gui_height();
 var mx = device_mouse_x_to_gui(0), my = device_mouse_y_to_gui(0);
 var margin = 50;
 var c = c_gray, alpha = 1;
+draw_set_font(fnt_hud_menu)
 
 if global.informacoes_peca {
 	if global.informacoes_peca_inst == self {
@@ -57,7 +58,11 @@ if global.informacoes_peca {
 		draw_set_alpha(alpha);
 		draw_rectangle_color(xpassiva,ypassiva,xpassiva+wpassiva,ypassiva+hpassiva,c,c,c,c,false);
 		draw_set_alpha(1);
+		draw_set_valign(fa_middle);
 		draw_text(xpassiva+(wpassiva/2),ypassiva+(hpassiva/2),"DISFARCE");
-		draw_set_halign(-1);
 	}
 }
+
+draw_set_halign(-1);
+draw_set_valign(-1);
+draw_set_font(-1);

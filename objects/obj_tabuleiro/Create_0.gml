@@ -240,7 +240,12 @@ for (var i = 0; i < array_length(array_shoguns); i++) {
 	global.grid_tabuleiro[# xx,yy] = arr[0];
 	
 	x1 = xinicial+(xx*tamcell)+(xx*buff); y1 = yinicial+(yy*tamcell)+(yy*buff);
-	instance_create_layer(x1,y1,"Pecas",arr[3],{visible : false});
+	instance_create_layer(x1,y1,"Pecas",arr[3],{
+		visible : false,
+		xtabuleiro : xx,
+		ytabuleiro : yy,
+		shogun_id : arr[0]
+	});
 }
 
 //LOOP PARA PASSAR POR TODAS AS CÉLULAS DA GRID

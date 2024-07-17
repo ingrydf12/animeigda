@@ -11,7 +11,10 @@
     "name":"PECAS",
     "path":"folders/Objetos/PECAS.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"objParPecas",
+    "path":"objects/objParPecas/objParPecas.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

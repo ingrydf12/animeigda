@@ -9,8 +9,8 @@
   "name":"objSpawner",
   "overriddenProperties":[],
   "parent":{
-    "name":"SHOGUNS",
-    "path":"folders/Objetos/PECAS/SHOGUNS.yy",
+    "name":"PECAS",
+    "path":"folders/Objetos/PECAS.yy",
   },
   "parentObjectId":null,
   "persistent":false,

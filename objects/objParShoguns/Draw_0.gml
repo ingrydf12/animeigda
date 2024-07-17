@@ -18,7 +18,7 @@ if hover {
 		var x2 = x1 + tamcell, y2 = y1 + tamcell;
 		c = c_yellow;
 		
-		if collision_rectangle(x1,y1,x2,y2,objParShoguns,false,true) {
+		if collision_rectangle(x1,y1,x2,y2,objParPecas,false,true) {
 			c = c_red;
 		}
 		
@@ -34,7 +34,7 @@ if hover {
 		var x2 = x1 + tamcell, y2 = y1 + tamcell;
 		c = c_yellow;
 		
-		if collision_rectangle(x1,y1,x2,y2,objParShoguns,false,true) {
+		if collision_rectangle(x1,y1,x2,y2,objParPecas,false,true) {
 			c = c_red;
 		}
 		
