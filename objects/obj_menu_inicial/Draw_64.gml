@@ -29,6 +29,22 @@ for (var i = 0; i < ds_h; i++) {
 		c = c_orange;
 	}
 	
+	if page == MenuPage.MapLevel {
+		if file_exists("save.sav") {
+			ini_open("save.sav");
+			
+			var save = ini_read_real("mapas_liberados","Mapa "+string(i+1),false);
+			
+			ini_close();
+			
+			if !save and i < ds_h-1 {
+				c = c_gray;
+			}
+		} else {
+			if i > 0 and i < ds_h-1 {c = c_gray}
+		}
+	}
+	
 	draw_text_color(lx_txt+xoff,ly_txt,ds_grid[# 0, i],c,c,c,c,1);
 }
 

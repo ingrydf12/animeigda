@@ -2,7 +2,7 @@
 /// Site: https://linktr.ee/luruska
 //
 
-if global.selecao_pecas {exit}
+if global.selecao_pecas or (global.derrota or global.vitoria) {exit}
 
 var gw = display_get_gui_width(), gh = display_get_gui_height();
 var mx = device_mouse_x_to_gui(0), my = device_mouse_y_to_gui(0);

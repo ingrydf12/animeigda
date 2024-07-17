@@ -59,16 +59,42 @@ if inputting {
 	}
 	
 	if k_enter {
-		switch (ds_grid[# 1, menu_option[page]]) {
-			case MenuElementType.ScriptRunner: script_execute(ds_grid[# 2, menu_option[page]]); break;
-			case MenuElementType.PageTransfer:
-				page = ds_grid[# 2, menu_option[page]];
-				menu_option[page] = 0;
-				break;
-			case MenuElementType.Slider:
-			case MenuElementType.Toggle:
-				inputting = !inputting;
-				break;
+		if page != MenuPage.MapLevel {
+			switch (ds_grid[# 1, menu_option[page]]) {
+				case MenuElementType.ScriptRunner: script_execute(ds_grid[# 2, menu_option[page]]); break;
+				case MenuElementType.PageTransfer:
+					page = ds_grid[# 2, menu_option[page]];
+					menu_option[page] = 0;
+					break;
+				case MenuElementType.Slider:
+				case MenuElementType.Toggle:
+					inputting = !inputting;
+					break;
+			}
+		} else {
+			switch (ds_grid[# 1, menu_option[page]]) {
+				case MenuElementType.ScriptRunner:
+					if file_exists("save.sav") {
+						ini_open("save.sav");
+						
+						var save = ini_read_real("mapas_liberados","Mapa "+string(menu_option[page]+1),false);
+						
+						ini_close();
+						
+						if save {
+							script_execute(ds_grid[# 2, menu_option[page]]);
+						}
+					} else {
+						if menu_option[page] == 0 {
+							script_execute(ds_grid[# 2, menu_option[page]]);
+						}
+					}
+					break;
+				case MenuElementType.PageTransfer:
+					page = ds_grid[# 2, menu_option[page]];
+					menu_option[page] = 0;
+					break;
+			}
 		}
 	}
 	

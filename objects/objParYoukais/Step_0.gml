@@ -2,6 +2,8 @@
 /// Site: https://linktr.ee/luruska
 //
 
+if (global.derrota or global.vitoria) {exit}
+
 if !no_tabuleiro {
 	if point_in_rectangle(mouse_x,mouse_y,x,y,x+global.tamanho_cell,y+global.tamanho_cell) {
 	

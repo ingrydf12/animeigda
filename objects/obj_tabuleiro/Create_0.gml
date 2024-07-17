@@ -5,6 +5,7 @@
 randomize();
 
 global.primeiro_turno = true;
+global.sacerdotisa_vida = 10;
 
 tamcell = global.tamanho_cell;		//TAMANHO DE CADA CÉLULA DA GRID
 wcell = global.wcell;			//QUANTIDADE DE CÉLULAS NA LARGURA DO TABULEIRO
@@ -22,6 +23,8 @@ switch room {
 	#region MAPA 1
 	case rm_mapa1:
 		global.regra_mapa = noone;
+		global.mapa_atual = "Mapa 1";
+		global.proximo_mapa = "Mapa 2";
 		xsacerdotisa = 9;
 		ysacerdotisa = 4;
 		
@@ -34,9 +37,11 @@ switch room {
 		break;
 	#endregion
 	
-	#region MAP 2
+	#region MAPA 2
 	case rm_mapa2:
 		global.regra_mapa = REGRA_YOUKAIS_SPAWNADOS;
+		global.mapa_atual = "Mapa 2";
+		global.proximo_mapa = "Mapa 3";
 		xsacerdotisa = 10;
 		ysacerdotisa = 2;
 		
@@ -57,9 +62,11 @@ switch room {
 		break;
 	#endregion
 	
-	#region MAP 3
+	#region MAPA 3
 	case rm_mapa3:
 		global.regra_mapa = REGRA_YOUKAIS_SPAWNADOS;
+		global.mapa_atual = "Mapa 3";
+		global.proximo_mapa = "Mapa 4";
 		xsacerdotisa = 9;
 		ysacerdotisa = 7;
 		
@@ -79,9 +86,11 @@ switch room {
 		break;
 	#endregion
 	
-	#region MAP 4
+	#region MAPA 4
 	case rm_mapa4:
 		global.regra_mapa = REGRA_CORRIDA_SHOGUN;
+		global.mapa_atual = "Mapa 4";
+		global.proximo_mapa = "Mapa 5";
 		xsacerdotisa = -1;
 		ysacerdotisa = -1;
 		
@@ -111,10 +120,33 @@ switch room {
 		break;
 	#endregion
 	
-	#region MAP 5
+	#region MAPA 5
 	case rm_mapa5:
+		global.regra_mapa = REGRA_HORDA;
+		global.mapa_atual = "Mapa 5";
+		global.proximo_mapa = "Mapa 5";
 		xsacerdotisa = 5;
 		ysacerdotisa = 5;
+		
+		array_shoguns = [
+			[IdPecas.Ashigaru,1,11,		objAshigaru],
+			[IdPecas.Ashigaru,10,11,	objAshigaru],
+			[IdPecas.Arqueiro,0,11,		objArqueiro],
+			[IdPecas.Arqueiro,11,11,	objArqueiro],
+			[IdPecas.Lanceiro,0,0,		objLanceiro],
+			[IdPecas.Lanceiro,1,0,		objLanceiro],
+			[IdPecas.Lanceiro,10,0,		objLanceiro],
+			[IdPecas.Lanceiro,11,0,		objLanceiro],
+			[IdPecas.Lanceiro,0,10,		objLanceiro],
+			[IdPecas.Lanceiro,11,10,	objLanceiro],
+			[IdPecas.Samurai,0,1,		objSamurai],
+			[IdPecas.Samurai,1,1,		objSamurai],
+			[IdPecas.Samurai,10,1,		objSamurai],
+			[IdPecas.Samurai,11,1,		objSamurai],
+			[IdPecas.Hatamoto,1,10,		objHatamoto],
+			[IdPecas.Hatamoto,10,10,	objHatamoto],
+		]
+		
 		break;
 	#endregion
 }
@@ -184,7 +216,7 @@ switch global.regra_mapa {
 			var arr = array_youkais[i];
 			var xx = arr[1];
 			var yy = arr[2];
-	
+			
 			global.grid_tabuleiro[# xx,yy] = arr[0];
 			x1 = xinicial+(xx*tamcell)+(xx*buff); y1 = yinicial+(yy*tamcell)+(yy*buff);
 			instance_create_layer(x1,y1,"Pecas",arr[3],{
@@ -194,6 +226,9 @@ switch global.regra_mapa {
 				peca_id : arr[0]
 			});
 		}
+		break;
+	case REGRA_HORDA:
+		instance_create_layer(x1,y1,"Pecas",objSacerdotisa);
 		break;
 }
 

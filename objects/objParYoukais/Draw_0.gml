@@ -2,7 +2,7 @@
 /// Site: https://linktr.ee/luruska
 //
 
-if global.selecao_pecas {exit}
+if global.selecao_pecas or (global.derrota or global.vitoria) {exit}
 
 var ds_g = global.grid_tabuleiro;
 var ds_h = ds_grid_height(ds_g),  ds_w = ds_grid_width(ds_g);	//ALTURA E LARGURA DA GRID DE FORMA SIMPLIFICADA
