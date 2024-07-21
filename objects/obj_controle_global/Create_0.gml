@@ -39,6 +39,8 @@ enum IdPecas {
 #macro MOUSE_BLOQUEADO "BLOCK"
 #macro MOUSE_CHECKADO "CHECK"
 #macro MOUSE_SWITCH "SWITCH"
+#macro MOUSE_ATAQUE "ATAQUE"
+#macro MOUSE_INTERACT "INTERACT"
 #macro TURNO_JOGADOR "player"
 #macro TURNO_INIMIGO "enemy"
 
@@ -46,6 +48,9 @@ enum IdPecas {
 #macro REGRA_MAPA_PERSONAL "eu que essa bagaça de mapa"
 #macro REGRA_CORRIDA_SHOGUN "corrida fds"
 #macro REGRA_HORDA "battle beetle reference"
+
+#macro TILE_MOVE "move"
+#macro TILE_ATTACK "attack"
 
 //TABULEIRO
 window_set_cursor(cr_none);	//SUMIR O MOUSE
@@ -62,5 +67,3 @@ global.turno = TURNO_JOGADOR;
 
 global.informacoes_peca = false;
 global.informacoes_peca_inst = noone;
-
-global.informacoes_peca_id = noone;

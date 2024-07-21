@@ -35,17 +35,21 @@ if global.informacoes_peca {
 		//VIDA
 		draw_text(xvida,yvida,str_hp);
 		
+		//DISFARCE
 		var xpassiva = xinfo+buff_dados, ypassiva = yvida+buff_quad+string_height(str_hp);
 		var wpassiva = 126, hpassiva = 30;
-		//DISFARCE
+		
 		alpha = 1;
 		if estado == 0 {
 			c = c_green;
 			if point_in_rectangle(mx,my,xpassiva,ypassiva,xpassiva+wpassiva,ypassiva+hpassiva) {
 				alpha = .7;
 				
-				if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR {
+				if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR and !global.primeiro_turno {
 					estado = 1;
+					can_attack = false;
+					modo_exposicao = TILE_MOVE;
+					tile_mode = noone;
 					
 					sprite = array_sprites[estado];
 					sprite_index = sprite;
@@ -60,6 +64,39 @@ if global.informacoes_peca {
 		draw_set_alpha(1);
 		draw_set_valign(fa_middle);
 		draw_text(xpassiva+(wpassiva/2),ypassiva+(hpassiva/2),"DISFARCE");
+		
+		//ATAQUE
+		var xataque = xpassiva, yataque = ypassiva+buff_quad+hpassiva;
+		var wataque = wpassiva, hataque = hpassiva;
+		
+		alpha = 1;
+		c = c_green;
+		var exc = "!";
+		if can_attack {
+			c = c_gray;
+			exc = "";
+		}
+		
+		if point_in_rectangle(mx,my,xataque,yataque,xataque+wataque,yataque+hataque) {
+			alpha = .7;
+				
+			if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR and array_ataques[estado] != noone and !global.primeiro_turno {
+				can_attack = !can_attack;
+				
+				if can_attack {
+					modo_exposicao = TILE_ATTACK;
+					tile_mode = modo_exposicao;
+				} else {
+					modo_exposicao = TILE_MOVE;
+					tile_mode = noone;
+				}
+			}
+		}
+		
+		draw_set_alpha(alpha);
+		draw_rectangle_color(xataque,yataque,xataque+wataque,yataque+hataque,c,c,c,c,false);
+		draw_set_alpha(1);
+		draw_text(xataque+(wataque/2),yataque+(hataque/2),"ATACAR"+exc);
 	}
 }
 

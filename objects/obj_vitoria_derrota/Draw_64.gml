@@ -52,6 +52,7 @@ if global.vitoria {
 			
 			ini_open("save.sav");
 			
+			ini_write_real("mapas_liberados",global.mapa_atual,true);
 			ini_write_real("mapas_liberados",global.proximo_mapa,true);
 			
 			ini_close();

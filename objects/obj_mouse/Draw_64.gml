@@ -19,4 +19,10 @@ switch global.mouse_check {
 	case MOUSE_SWITCH:
 		draw_sprite_ext(sprSwitch,0,xsimb,ysimb,sca,sca,0,c_white,1);
 		break
+	case MOUSE_ATAQUE:
+		draw_sprite_ext(sprAtk,0,xsimb,ysimb,sca,sca,0,c_white,1);
+		break
+	case MOUSE_INTERACT:
+		draw_sprite_ext(sprInteract,0,xsimb,ysimb,sca,sca,0,c_white,1);
+		break
 }

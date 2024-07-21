@@ -22,8 +22,14 @@ image_yscale = global.escala_sprites;
 //----------------------------
 
 //VARIÁVEIS
-clicado = false;
-hover = false;
-about_to_move = false;
-can_move_to = false;
-moved = false;
+modo_exposicao = TILE_MOVE;
+tile_mode = noone;		//VARIÁVEL RESPONS[AVEL POR DIZER QUAIS CÉLULAS DEVEM SER DESENHADAS
+clicado = false;		//PODER MOVER DURANTE AS POSIÇÕES DE PEÇAS
+//hover = false;			//APARECER AS CÉLULAS POSSÍVEIS PARA SE MOVIMENTAR AO PASSAR O MOUSE POR CIMA
+can_move = false;		//ESTADO DE CLIQUE (ESQUERDO) INDICANDO QUE AQUELA PEÇA IRÁ SE MOVER
+can_move_to = false;	//VARIÁVEL INDICANDO QUE AQUELA CÉLULA ESTÁ LIVRE PARA O JOGADOR MOVER A PEÇA
+moved = false;			//JÁ MOVEU ESSA PEÇA
+can_attack = false;		//ESTADO DE CLIQUE (ESQUERDO) APÓS ATIVAR O MODO DE ATAQUE DAQUELA PEÇA
+can_attack_to = false;	//VARIÁVEL INDICANDO QUE AQUELA CÉLULA ESTÁ LIVRE PARA PODER ATACAR
+attacked = false;
+selecionado = false;

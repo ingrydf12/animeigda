@@ -57,7 +57,7 @@ ds_grid_add_youkai(
 	[0,2],							//STATUS DE DANO
 	[sprMiniSombra,sprKasaObake],	//SPRITE
 	[1,2],							//LIMITE DE MOVIMENTOS
-	[noone,atkPerto],				//AÇÕES DISPONÍVEIS
+	[noone,[atkPerto,1,1]],				//AÇÕES DISPONÍVEIS
 	[youkaiDisfarce,noone]			//PASSIVA
 );
 #endregion
@@ -71,7 +71,7 @@ ds_grid_add_youkai(
 	[0,3],							//STATUS DE DANO
 	[sprTartagira,sprKappa],		//SPRITE
 	[1,3],							//LIMITE DE MOVIMENTOS
-	[noone,atkPerto],				//AÇÕES DISPONÍVEIS
+	[noone,[atkPerto,1,1]],				//AÇÕES DISPONÍVEIS
 	[youkaiDisfarce,noone]			//PASSIVA
 );
 #endregion
@@ -85,7 +85,7 @@ ds_grid_add_youkai(
 	[0,0],							//STATUS DE DANO
 	[sprGuaxinim,sprTanuki],		//SPRITE
 	[1,3],							//LIMITE DE MOVIMENTOS
-	[atkArmadilha,noone],			//AÇÕES DISPONÍVEIS
+	[[atkArmadilha,1,1],noone],			//AÇÕES DISPONÍVEIS
 	[youkaiMetamorfose,noone]				//PASSIVA
 );
 #endregion
