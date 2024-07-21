@@ -5,7 +5,6 @@
 randomize();
 
 global.primeiro_turno = true;
-global.sacerdotisa_vida = 10;
 
 tamcell = global.tamanho_cell;		//TAMANHO DE CADA CÉLULA DA GRID
 wcell = global.wcell;			//QUANTIDADE DE CÉLULAS NA LARGURA DO TABULEIRO

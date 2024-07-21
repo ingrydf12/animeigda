@@ -75,7 +75,7 @@ if can_attack or can_move {
 					draw_set_alpha(1);
 				}
 			}
-		
+			
 			//EIXO Y:
 			for (var yy = 0; yy < ((move*2)+1); yy++) {
 				var x1 = x, y1 = y - ((move*tamcell) + (move*buff)) + ((yy*tamcell) + (yy*buff));
@@ -142,6 +142,8 @@ if can_attack or can_move {
 											
 											var inst = instance_nearest(x1,y1,objParShoguns);
 											inst.vida_atual-=array_dano[estado];
+											inst.estado = 1;
+											inst.was_attacked = true;
 										}
 									}
 								}
@@ -173,6 +175,8 @@ if can_attack or can_move {
 											
 											var inst = instance_nearest(x1,y1,objParShoguns);
 											inst.vida_atual-=array_dano[estado];
+											inst.estado = 1;
+											inst.was_attacked = true;
 										}
 									}
 								}
@@ -219,6 +223,7 @@ if can_attack or can_move {
 														
 														for (var i = 0; i < int_n; i++) {
 															var inst = ds_list_find_value(inst_list, i);
+															inst.estado = 1;
 															inst.was_attacked = true;
 															inst.vida_atual-=array_dano[estado];
 														}

@@ -64,6 +64,15 @@ global.escala_sprites = global.tamanho_cell/64;
 global.color_roof = c_gray;
 
 global.turno = TURNO_JOGADOR;
+global.sacerdotisa_vida = 2;
 
 global.informacoes_peca = false;
 global.informacoes_peca_inst = noone;
+
+if file_exists("save.sav") {
+	ini_open("save.sav");
+	
+	ini_write_real("mapas_liberados","Mapa 1",true);
+	
+	ini_close();
+}

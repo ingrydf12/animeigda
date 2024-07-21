@@ -119,7 +119,7 @@ ds_grid_add_shogun(
 	1,									//STATUS DE DANO
 	sprSoldado,							//SPRITE
 	2,									//LIMITE DE MOVIMENTOS
-	[inimigoAvancar,atkPertoInimigo],	//AÇÕES DISPONÍVEIS
+	[inimigoAvancar,[atkPertoInimigo,1,1]],	//AÇÕES DISPONÍVEIS
 	noone								//PASSIVA
 );
 #endregion
@@ -161,7 +161,7 @@ ds_grid_add_shogun(
 	4,									//STATUS DE DANO
 	sprSamurai,							//SPRITE
 	1,									//LIMITE DE MOVIMENTOS
-	[inimigoAvancar,atkPertoInimigo],	//AÇÕES DISPONÍVEIS
+	[inimigoAvancar,[atkPertoInimigo,1,1]],	//AÇÕES DISPONÍVEIS
 	imunidadeFrontal					//PASSIVA
 );
 #endregion
@@ -175,7 +175,7 @@ ds_grid_add_shogun(
 	5,									//STATUS DE DANO
 	sprGeneral,							//SPRITE
 	3,									//LIMITE DE MOVIMENTOS
-	[inimigoAvancar,atkPertoInimigo],	//AÇÕES DISPONÍVEIS
+	[inimigoAvancar,[atkPertoInimigo,1,1]],	//AÇÕES DISPONÍVEIS
 	noone								//PASSIVA
 );
 #endregion

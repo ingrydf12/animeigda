@@ -21,8 +21,12 @@ if position_meeting(mouse_x,mouse_y,self) and global.peca_mouse == -1 {
 				for (var i = 0; i < inst_n; i++) {
 					var inst = instance_find(objParYoukais,i);
 					
+					inst.tile_mode = noone;
+					inst.can_move = false;
+					inst.can_attack = false;
+					inst.selecionado = false;
+					inst.attacked = false;
 					inst.moved = false;
-					inst.about_to_move = false;
 				}
 			}
 			

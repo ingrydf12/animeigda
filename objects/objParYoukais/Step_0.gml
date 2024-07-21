@@ -49,6 +49,7 @@ if !no_tabuleiro {
 					selecionado = true;
 					can_move = true;
 					can_attack = false;
+					tile_mode = TILE_MOVE;
 				} else {
 					selecionado = false;
 					can_move = false;
@@ -63,6 +64,7 @@ if !no_tabuleiro {
 					selecionado = true;
 					can_move = true;
 					can_attack = false;
+					tile_mode = TILE_MOVE;
 				}
 			}
 			

@@ -2,7 +2,7 @@
 /// Site: https://linktr.ee/luruska
 //
 function atkPertoInimigo(){
-
+	
 }
 
 function atkDistanciaInimigo() {
