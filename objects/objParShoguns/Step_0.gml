@@ -24,6 +24,16 @@ if moving and !moved {
 	x = lerp(x, xdest, .15);
 	y = lerp(y, ydest, .15);
 	
+	if place_meeting(x,y,objParYoukais) {
+		var nearest_youkai = instance_nearest(x,y,objParYoukais);
+		
+		if nearest_youkai.estado == 0 {
+			global.grid_tabuleiro[# nearest_youkai.xtabuleiro, nearest_youkai.ytabuleiro] = NADA;
+			
+			instance_destroy(nearest_youkai);
+		}
+	}
+	
 	if point_distance(x,y,xdest,ydest) <= 1 {
 		moving = false;
 		moved = true;

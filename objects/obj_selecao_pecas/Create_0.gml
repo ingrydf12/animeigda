@@ -46,7 +46,7 @@ yslotinicial = ytabela + margin_tabela;
 ds_grid = ds_grid_create(1,total_slots);
 
 var i = 0; repeat(array_length(pecas_youkais)) {
-	ds_grid[# 0, i] = i;
+	ds_grid[# 0, i] = pecas_youkais[i];
 	
 	i++;
 }
