@@ -4,7 +4,7 @@
 
 switch room {
 	case rm_mapa1:
-		limite_pecas = 3;
+		limite_pecas = 6;
 		pecas_youkais = [IdPecas.ChochinObake, IdPecas.KasaObake];
 		break;
 	case rm_mapa2:

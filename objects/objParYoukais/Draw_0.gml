@@ -50,7 +50,8 @@ if can_attack or can_move {
 				
 				if moved {c = make_color_rgb(180,90,100)}
 			
-				if collision_rectangle(x1,y1,x2,y2,objParPecas,false,true) {c = c_red}
+				var colid = collision_rectangle(x1,y1,x2,y2,objParPecas,false,true);
+				if colid {c = c_red}
 			
 				if (x1 >= xinicial and x1 < (xinicial+(ds_w*tamcell)+(ds_w*buff)) and x1 != x) {
 					
@@ -58,7 +59,7 @@ if can_attack or can_move {
 						if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
 							c = c_orange;
 							
-							if mouse_check_button_pressed(mb_left) {
+							if mouse_check_button_pressed(mb_left) and !colid {
 								moved = true;
 								can_move = false;
 								
@@ -86,8 +87,9 @@ if can_attack or can_move {
 				c = c_yellow;
 				
 				if moved {c = make_color_rgb(180,90,100)}
-			
-				if collision_rectangle(x1,y1,x2,y2,objParPecas,false,true) {c = c_red}
+				
+				var colid = collision_rectangle(x1,y1,x2,y2,objParPecas,false,true);
+				if colid {c = c_red}
 			
 				if (y1 >= yinicial and y1 < (yinicial+(ds_h*tamcell)+(ds_h*buff)) and y1 != y) {
 					
@@ -95,7 +97,7 @@ if can_attack or can_move {
 						if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
 							c = c_orange;
 							
-							if mouse_check_button_pressed(mb_left) {
+							if mouse_check_button_pressed(mb_left) and !colid {
 								moved = true;
 								can_move = false;
 								
