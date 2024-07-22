@@ -38,6 +38,7 @@ if !no_tabuleiro {
 					other_insts.can_move = false;
 					other_insts.can_attack = false;
 					other_insts.selecionado = false;
+					other_insts.modo_exposicao = TILE_MOVE;
 					//}
 				}
 			}

@@ -30,6 +30,17 @@ if position_meeting(mouse_x,mouse_y,self) and global.peca_mouse == -1 {
 				}
 			}
 			
+			var shoguns_n = instance_number(objParShoguns);
+			if shoguns_n > 0 {
+				for (var i = 0; i < shoguns_n; i++) {
+					var inst = instance_find(objParShoguns,i);
+					
+					inst.reset_state_timer++;
+					inst.moved = false;
+					//inst.attacked = false;
+				}
+			}
+			
 			//global.turno = TURNO_JOGADOR;
 		}
 	}

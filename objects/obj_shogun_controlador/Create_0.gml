@@ -1,7 +1,7 @@
 /// Insta: @jlgamedesign
 /// Site: https://linktr.ee/luruska
 //
-#macro TIMEOUT game_get_speed(gamespeed_fps) * 2.2
+#macro TIMEOUT game_get_speed(gamespeed_fps) * .2
 
 timer_action = 0;
 num_inst = 0;

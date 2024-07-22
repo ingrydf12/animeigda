@@ -80,7 +80,7 @@ if global.informacoes_peca {
 		if point_in_rectangle(mx,my,xataque,yataque,xataque+wataque,yataque+hataque) {
 			alpha = .7;
 				
-			if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR and array_ataques[estado] != noone and !global.primeiro_turno {
+			if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR and array_ataques[estado] != noone and !global.primeiro_turno and !attacked {
 				can_attack = !can_attack;
 				
 				if can_attack {

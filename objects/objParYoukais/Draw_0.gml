@@ -47,6 +47,8 @@ if can_attack or can_move {
 				var x1 = x - ((move*tamcell) + (move*buff)) + ((xx*tamcell) + (xx*buff)), y1 = y;
 				var x2 = x1 + tamcell, y2 = y1 + tamcell;
 				c = c_yellow;
+				
+				if moved {c = make_color_rgb(180,90,100)}
 			
 				if collision_rectangle(x1,y1,x2,y2,objParPecas,false,true) {c = c_red}
 			
@@ -58,6 +60,7 @@ if can_attack or can_move {
 							
 							if mouse_check_button_pressed(mb_left) {
 								moved = true;
+								can_move = false;
 								
 								ds_g[# xtabuleiro, ytabuleiro] = NADA;
 								xtabuleiro += (xx-move);
@@ -81,6 +84,8 @@ if can_attack or can_move {
 				var x1 = x, y1 = y - ((move*tamcell) + (move*buff)) + ((yy*tamcell) + (yy*buff));
 				var x2 = x1 + tamcell, y2 = y1 + tamcell;
 				c = c_yellow;
+				
+				if moved {c = make_color_rgb(180,90,100)}
 			
 				if collision_rectangle(x1,y1,x2,y2,objParPecas,false,true) {c = c_red}
 			
@@ -92,6 +97,7 @@ if can_attack or can_move {
 							
 							if mouse_check_button_pressed(mb_left) {
 								moved = true;
+								can_move = false;
 								
 								ds_g[# xtabuleiro, ytabuleiro] = NADA;
 								ytabuleiro += (yy-move);
@@ -116,7 +122,7 @@ if can_attack or can_move {
 		
 			#region ATACAR
 			//DESENHAR OS TILES DE ATAQUE
-			var arr = array_ataques[1];
+			var arr = array_ataques[estado];
 			var range_min = arr[1], range_max = arr[2];
 		
 			switch peca_id {
@@ -139,11 +145,14 @@ if can_attack or can_move {
 									if (ds_g[# xinim, yinim] > IdPecas.AlturaPlayers and ds_g[# xinim, yinim] < IdPecas.AlturaInimigos) {
 										if mouse_check_button_pressed(mb_left) {
 											attacked = true;
+											can_attack = false;
+											modo_exposicao = TILE_MOVE;
+											tile_mode = TILE_MOVE;
 											
 											var inst = instance_nearest(x1,y1,objParShoguns);
 											inst.vida_atual-=array_dano[estado];
 											inst.estado = 1;
-											inst.was_attacked = true;
+											inst.reset_state_timer = 0;
 										}
 									}
 								}
@@ -172,11 +181,14 @@ if can_attack or can_move {
 									if (ds_g[# xinim, yinim] > IdPecas.AlturaPlayers and ds_g[# xinim, yinim] < IdPecas.AlturaInimigos) {
 										if mouse_check_button_pressed(mb_left) {
 											attacked = true;
+											can_attack = false;
+											modo_exposicao = TILE_MOVE;
+											tile_mode = TILE_MOVE;
 											
 											var inst = instance_nearest(x1,y1,objParShoguns);
 											inst.vida_atual-=array_dano[estado];
 											inst.estado = 1;
-											inst.was_attacked = true;
+											inst.reset_state_timer = 0;
 										}
 									}
 								}
@@ -190,55 +202,131 @@ if can_attack or can_move {
 					break;
 				
 				case IdPecas.Dotaku:
-					//EIXO X:
-					for (var xx = 0; xx < ((range_min*2)+1); xx++) {
-						for (var yy = 0; yy < ((range_min*2)+1); yy++) {
-							var x1 = x - ((range_min*tamcell) + (range_min*buff)) + ((xx*tamcell) + (xx*buff));
-							var y1 = y - ((range_min*tamcell) + (range_min*buff)) + ((yy*tamcell) + (yy*buff));
-							var x2 = x1 + tamcell, y2 = y1 + tamcell;
-							c = c_purple;
+					if estado == 1 {
+						//MODO SCARY (ESTADO = 1)
 						
-							//if collision_rectangle(x1,y1,x2,y2,objParPecas,false,true) {c = c_gray}
-						
-							if (x1 != x or y1 != y) {
-								if (x1 >= xinicial and x1 < (xinicial+(ds_w*tamcell)+(ds_w*buff))) {
-									if (y1 >= yinicial and y1 < (yinicial+(ds_h*tamcell)+(ds_h*buff))) {
-										
-										if global.turno == TURNO_JOGADOR and !attacked and !global.primeiro_turno {
-											if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-												c = make_color_rgb(200,0,200);
-												
-												//LOCALIZAR TODOS OS INIMIGOS NA ÁREA DE ATAQUE
-												var x1col = x - ((range_min*tamcell) + (range_min*buff)), y1col = y - ((range_min*tamcell) + (range_min*buff));
-												var x2col = x + tamcell + ((range_min*tamcell) + (range_min*buff)), y2col = y + tamcell + ((range_min*tamcell) + (range_min*buff));
-												var inst_list = ds_list_create();
-												
-												c = c_red;
-												draw_rectangle_color(x1col,y1col,x2col,y2col,c,c,c,c,true);
-												var int_n = collision_rectangle_list(x1col,y1col,x2col,y2col, objParShoguns, false, true,inst_list,false);
-												
-												if int_n > 0 {
-													if mouse_check_button_pressed(mb_left) {
-														attacked = true;
-														
-														for (var i = 0; i < int_n; i++) {
-															var inst = ds_list_find_value(inst_list, i);
-															inst.estado = 1;
-															inst.was_attacked = true;
-															inst.vida_atual-=array_dano[estado];
+						//ÁREA AO REDOR DO DOTAKU
+						for (var xx = 0; xx < ((range_min*2)+1); xx++) {
+							for (var yy = 0; yy < ((range_min*2)+1); yy++) {
+								var x1 = x - ((range_min*tamcell) + (range_min*buff)) + ((xx*tamcell) + (xx*buff));
+								var y1 = y - ((range_min*tamcell) + (range_min*buff)) + ((yy*tamcell) + (yy*buff));
+								var x2 = x1 + tamcell, y2 = y1 + tamcell;
+								c = c_purple;
+								
+								if (x1 != x or y1 != y) {
+									if (x1 >= xinicial and x1 < (xinicial+(ds_w*tamcell)+(ds_w*buff))) {
+										if (y1 >= yinicial and y1 < (yinicial+(ds_h*tamcell)+(ds_h*buff))) {
+											
+											if global.turno == TURNO_JOGADOR and !attacked and !global.primeiro_turno {
+												if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+													c = make_color_rgb(200,0,200);
+													
+													//LOCALIZAR TODOS OS INIMIGOS NA ÁREA DE ATAQUE
+													var x1col = x - ((range_min*tamcell) + (range_min*buff)), y1col = y - ((range_min*tamcell) + (range_min*buff));
+													var x2col = x + tamcell + ((range_min*tamcell) + (range_min*buff)), y2col = y + tamcell + ((range_min*tamcell) + (range_min*buff));
+													var inst_list = ds_list_create();
+													
+													c = c_red;
+													draw_rectangle_color(x1col,y1col,x2col,y2col,c,c,c,c,true);
+													var int_n = collision_rectangle_list(x1col,y1col,x2col,y2col, objParShoguns, false, true,inst_list,false);
+													
+													if int_n > 0 {
+														if mouse_check_button_pressed(mb_left) {
+															attacked = true;
+															can_attack = false;
+															modo_exposicao = TILE_MOVE;
+															tile_mode = TILE_MOVE;
+															
+															for (var i = 0; i < int_n; i++) {
+																var inst = ds_list_find_value(inst_list, i);
+																inst.estado = 1;
+																inst.vida_atual-=array_dano[estado];
+																inst.reset_state_timer = 0;
+															}
 														}
 													}
+													
+													ds_list_destroy(inst_list);
 												}
-												
-												ds_list_destroy(inst_list);
 											}
+											
+											draw_set_alpha(.3);
+											draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
+											draw_set_alpha(1);
 										}
-							
-										draw_set_alpha(.3);
-										draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
-										draw_set_alpha(1);
 									}
 								}
+							}
+						}
+					} else {
+						//MODO DISFARCE (ESTADO = 0)
+						
+						//EIXO X:
+						for (var xx = 0; xx < ((range_max*2)+1); xx++) {
+							var x1 = x - ((range_max*tamcell) + (range_max*buff)) + ((xx*tamcell) + (xx*buff)), y1 = y;
+							var x2 = x1 + tamcell, y2 = y1 + tamcell;
+							c = c_purple;
+							
+							if (x1 >= xinicial and x1 < (xinicial+(ds_w*tamcell)+(ds_w*buff)) and x1 != x) {
+								
+								if global.turno == TURNO_JOGADOR and !attacked and !global.primeiro_turno {
+									if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+										c = make_color_rgb(200,0,200);
+										var xinim = xtabuleiro + (xx-range_max), yinim = ytabuleiro;
+										
+										if (ds_g[# xinim, yinim] > IdPecas.AlturaPlayers and ds_g[# xinim, yinim] < IdPecas.AlturaInimigos) {
+											if mouse_check_button_pressed(mb_left) {
+												attacked = true;
+												can_attack = false;
+												modo_exposicao = TILE_MOVE;
+												tile_mode = TILE_MOVE;
+												
+												var inst = instance_nearest(x1,y1,objParShoguns);
+												inst.vida_atual-=array_dano[estado];
+												inst.estado = 1;
+												inst.reset_state_timer = 0;
+											}
+										}
+									}
+								}
+								
+								draw_set_alpha(.3);
+								draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
+								draw_set_alpha(1);
+							}
+						}
+						
+						//EIXO Y:
+						for (var yy = 0; yy < ((range_max*2)+1); yy++) {
+							var x1 = x, y1 = y - ((range_max*tamcell) + (range_max*buff)) + ((yy*tamcell) + (yy*buff));
+							var x2 = x1 + tamcell, y2 = y1 + tamcell;
+							c = c_purple;
+							
+							if (y1 >= yinicial and y1 < (yinicial+(ds_h*tamcell)+(ds_h*buff)) and y1 != y) {
+								if global.turno == TURNO_JOGADOR and !attacked and !global.primeiro_turno {
+									if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+										c = make_color_rgb(200,0,200);
+										var xinim = xtabuleiro, yinim = ytabuleiro + (yy-range_max);
+										
+										if (ds_g[# xinim, yinim] > IdPecas.AlturaPlayers and ds_g[# xinim, yinim] < IdPecas.AlturaInimigos) {
+											if mouse_check_button_pressed(mb_left) {
+												attacked = true;
+												can_attack = false;
+												modo_exposicao = TILE_MOVE;
+												tile_mode = TILE_MOVE;
+												
+												var inst = instance_nearest(x1,y1,objParShoguns);
+												inst.vida_atual-=array_dano[estado];
+												inst.estado = 1;
+												inst.reset_state_timer = 0;
+											}
+										}
+									}
+								}
+								
+								draw_set_alpha(.3);
+								draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
+								draw_set_alpha(1);
 							}
 						}
 					}

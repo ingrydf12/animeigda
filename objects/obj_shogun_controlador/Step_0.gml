@@ -28,32 +28,43 @@ if global.turno == TURNO_INIMIGO {
 			var nearest_youkai = instance_nearest(inst.x,inst.y,objParYoukais);
 			//AÇÃO EXECUTADA PELO SHOGUN
 			
-			//VERIFICAR PRIMEIRO SE EXISTE UM YOUKAI (PRECISA TER SIDO ATACADO ANTES, ESTADO = 1) OU UMA SACERDOTISA POR PERTO (ESTADO = 0)
-			if (inst.estado == 0 ? sacerdotisaProxima(inst.moves, inst.x, inst.y) : youkaiProximo(inst.moves, inst.x, inst.y)) {
-				//SE ALGUM DOS 2 ESTIVER DENTRO DO ALCANCE DO GOLPE, ENTÃO O SHOGUN IRÁ ATACAR
+			var arr = inst.array_acoes[1];
+			var atk = arr[0];
+			var range_min = arr[1];
+			var range_max = arr[2];
+			
+			if inst.moving {exit}
+			
+			if inst.moved {
 				
-				if inst.estado == 0 {
-					global.sacerdotisa_vida-=inst.dano;
-				} else {
-					nearest_youkai.vida_atual-=inst.dano;
-					inst.estado = 0;
+				if (inst.estado == 0 ? sacerdotisaProxima(range_min, range_max, inst.x, inst.y) : youkaiProximo(range_min, range_max, inst.x, inst.y)) {
+					//SE ALGUM DOS 2 ESTIVER DENTRO DO ALCANCE DO GOLPE, ENTÃO O SHOGUN IRÁ ATACAR
+					
+					switch atk {
+						case atkPertoInimigo: script_execute(atk,inst, nearest_youkai); break;
+						case atkDistanciaInimigo: script_execute(atk, inst,nearest_youkai,range_min,range_max); break;
+					}
 				}
 				
 				num_inst++;
-				//with(inst) {
-				//	var arr = array_acoes[estado];
-				//	script_execute(arr[0],arr[1],arr[2]);
-				//}
+				tries = 0;
+				exit;
+			}
+			
+			//VERIFICAR PRIMEIRO SE EXISTE UM YOUKAI (PRECISA TER SIDO ATACADO ANTES, ESTADO = 1) OU UMA SACERDOTISA POR PERTO (ESTADO = 0)
+			if (inst.estado == 0 ? sacerdotisaProxima(range_min, range_max, inst.x, inst.y) : youkaiProximo(range_min, range_max, inst.x, inst.y)) {
+				//SE ALGUM DOS 2 ESTIVER DENTRO DO ALCANCE DO GOLPE, ENTÃO O SHOGUN IRÁ ATACAR
 				
+				switch atk {
+					case atkPertoInimigo: script_execute(atk,inst, nearest_youkai); break;
+					case atkDistanciaInimigo: script_execute(atk, inst,nearest_youkai,range_min,range_max); break;
+				}
+				
+				num_inst++;
 			} else {
 				
 				#region SHOGUNS ANDAR
 				//SE NÃO TIVER YOUKAI OU SACERDOTISA POR PERTO, ENTÃO ELES IRÃO APENAS ANDAR
-				//inimigoAvancar(
-				//	inst.moves,
-				//	(inst.estado == 0 ? obj_tabuleiro.xsacerdotisa : nearest_youkai.xtabuleiro),
-				//	(inst.estado == 0 ? obj_tabuleiro.ysacerdotisa : nearest_youkai.ytabuleiro)
-				//);
 				xtab = inst.xtabuleiro;
 				ytab = inst.ytabuleiro;
 				
@@ -150,12 +161,10 @@ if global.turno == TURNO_INIMIGO {
 				
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 				
-				inst.x = x1;
-				inst.y = y1;
-				
-				if xx != xtab or yy != ytab {
-					num_inst++;
-					tries = 0;
+				if (xx != xtab or yy != ytab) {
+					inst.moving = true;
+					inst.xdest = x1;
+					inst.ydest = y1;
 				}
 				
 				#endregion

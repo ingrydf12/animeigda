@@ -6,6 +6,7 @@
 peca_id =			shogun_id-IdPecas.Ashigaru;
 nome =				global.grid_pecas_shoguns[# DadosShoguns.Nome, peca_id];
 estado =			global.grid_pecas_shoguns[# DadosShoguns.Estado, peca_id];
+//estado =			1
 vida_max =			global.grid_pecas_shoguns[# DadosShoguns.Vida, peca_id];
 vida_atual =		vida_max;
 dano =				global.grid_pecas_shoguns[# DadosShoguns.Dano, peca_id];
@@ -25,3 +26,9 @@ clicado = false;
 hover = false;
 attack = false;
 was_attacked = false;
+reset_state_round = 3;
+reset_state_timer = 0;
+moving = false;
+moved = false;
+xdest = x;
+ydest = y;
