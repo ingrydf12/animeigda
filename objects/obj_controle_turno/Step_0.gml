@@ -27,6 +27,7 @@ if position_meeting(mouse_x,mouse_y,self) and global.peca_mouse == -1 {
 					inst.selecionado = false;
 					inst.attacked = false;
 					inst.moved = false;
+					inst.disfarce_round_timer++;
 				}
 			}
 			
@@ -38,6 +39,17 @@ if position_meeting(mouse_x,mouse_y,self) and global.peca_mouse == -1 {
 					inst.reset_state_timer++;
 					inst.moved = false;
 					//inst.attacked = false;
+				}
+			}
+			
+			if instance_exists(objSpawner) {
+				var spawners_n = instance_number(objSpawner);
+				if spawners_n > 0 {
+					for (var i = 0; i < spawners_n; i++) {
+						var inst = instance_find(objSpawner,i);
+					
+						inst.round_count++;
+					}
 				}
 			}
 			

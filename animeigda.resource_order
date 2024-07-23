@@ -69,6 +69,7 @@
     {"name":"sprAtk","order":4,"path":"sprites/sprAtk/sprAtk.yy",},
     {"name":"sprCheck","order":2,"path":"sprites/sprCheck/sprCheck.yy",},
     {"name":"sprChochinObake","order":1,"path":"sprites/sprChochinObake/sprChochinObake.yy",},
+    {"name":"sprDirecaoPeca","order":10,"path":"sprites/sprDirecaoPeca/sprDirecaoPeca.yy",},
     {"name":"sprDotaku","order":3,"path":"sprites/sprDotaku/sprDotaku.yy",},
     {"name":"sprGeneral","order":1,"path":"sprites/sprGeneral/sprGeneral.yy",},
     {"name":"sprGuaxinim","order":9,"path":"sprites/sprGuaxinim/sprGuaxinim.yy",},

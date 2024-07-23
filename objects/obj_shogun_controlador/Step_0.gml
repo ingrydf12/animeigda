@@ -87,6 +87,15 @@ if global.turno == TURNO_INIMIGO {
 								
 								xx = inst.xtabuleiro;
 								ds_g[# xx,yy] = inst.shogun_id;
+							} else if (ds_g[# xx+quantia_andada,yy] < IdPecas.AlturaPlayers) {
+								var youkai_disfarcado_proximo = instance_nearest(xinicial+((xx+quantia_andada)*tamcell)+((xx+quantia_andada)*buff), inst.y, objParYoukais);
+								if youkai_disfarcado_proximo.estado == 0 {
+									ds_g[# xx,yy] = NADA;
+									inst.xtabuleiro += quantia_andada;
+									
+									xx = inst.xtabuleiro;
+									ds_g[# xx,yy] = inst.shogun_id;
+								}
 							}
 						} else { //ANDAR EM Y
 							//DETERMINAR UMA QUANTIA DE PASSOS PARA O SHOGUN ANDAR
@@ -99,6 +108,15 @@ if global.turno == TURNO_INIMIGO {
 								
 								yy = inst.ytabuleiro;
 								ds_g[# xx,yy] = inst.shogun_id;
+							} else if (ds_g[# xx,yy+quantia_andada] < IdPecas.AlturaPlayers) {
+								var youkai_disfarcado_proximo = instance_nearest(inst.x, yinicial+((yy+quantia_andada)*tamcell)+((yy+quantia_andada)*buff), objParYoukais);
+								if youkai_disfarcado_proximo.estado == 0 {
+									ds_g[# xx,yy] = NADA;
+									inst.ytabuleiro += quantia_andada;
+									
+									yy = inst.ytabuleiro;
+									ds_g[# xx,yy] = inst.shogun_id;
+								}
 							}
 						}
 						break;
@@ -115,6 +133,15 @@ if global.turno == TURNO_INIMIGO {
 							
 							xx = inst.xtabuleiro;
 							ds_g[# xx,yy] = inst.shogun_id;
+						} else if (ds_g[# xx+quantia_andada,yy] < IdPecas.AlturaPlayers) {
+							var youkai_disfarcado_proximo = instance_nearest(xinicial+((xx+quantia_andada)*tamcell)+((xx+quantia_andada)*buff), inst.y, objParYoukais);
+							if youkai_disfarcado_proximo.estado == 0 {
+								ds_g[# xx,yy] = NADA;
+								inst.xtabuleiro += quantia_andada;
+								
+								xx = inst.xtabuleiro;
+								ds_g[# xx,yy] = inst.shogun_id;
+							}
 						}
 						break;
 					
@@ -129,6 +156,15 @@ if global.turno == TURNO_INIMIGO {
 							
 							yy = inst.ytabuleiro;
 							ds_g[# xx,yy] = inst.shogun_id;
+						} else if (ds_g[# xx,yy+quantia_andada] < IdPecas.AlturaPlayers) {
+							var youkai_disfarcado_proximo = instance_nearest(inst.x, yinicial+((yy+quantia_andada)*tamcell)+((yy+quantia_andada)*buff), objParYoukais);
+							if youkai_disfarcado_proximo.estado == 0 {
+								ds_g[# xx,yy] = NADA;
+								inst.ytabuleiro += quantia_andada;
+								
+								yy = inst.ytabuleiro;
+								ds_g[# xx,yy] = inst.shogun_id;
+							}
 						}
 						break;
 					case 2:	//ESQUERDA
@@ -142,6 +178,15 @@ if global.turno == TURNO_INIMIGO {
 							
 							xx = inst.xtabuleiro;
 							ds_g[# xx,yy] = inst.shogun_id;
+						} else if (ds_g[# xx+quantia_andada,yy] < IdPecas.AlturaPlayers) {
+							var youkai_disfarcado_proximo = instance_nearest(xinicial+((xx+quantia_andada)*tamcell)+((xx+quantia_andada)*buff), inst.y, objParYoukais);
+							if youkai_disfarcado_proximo.estado == 0 {
+								ds_g[# xx,yy] = NADA;
+								inst.xtabuleiro += quantia_andada;
+								
+								xx = inst.xtabuleiro;
+								ds_g[# xx,yy] = inst.shogun_id;
+							}
 						}
 						break;
 					case 3:	//BAIXO
@@ -155,6 +200,15 @@ if global.turno == TURNO_INIMIGO {
 							
 							yy = inst.ytabuleiro;
 							ds_g[# xx,yy] = inst.shogun_id;
+						} else if (ds_g[# xx,yy+quantia_andada] < IdPecas.AlturaPlayers) {
+							var youkai_disfarcado_proximo = instance_nearest(inst.x, yinicial+((yy+quantia_andada)*tamcell)+((yy+quantia_andada)*buff), objParYoukais);
+							if youkai_disfarcado_proximo.estado == 0 {
+								ds_g[# xx,yy] = NADA;
+								inst.ytabuleiro += quantia_andada;
+								
+								yy = inst.ytabuleiro;
+								ds_g[# xx,yy] = inst.shogun_id;
+							}
 						}
 						break;
 				}
@@ -165,6 +219,7 @@ if global.turno == TURNO_INIMIGO {
 					inst.moving = true;
 					inst.xdest = x1;
 					inst.ydest = y1;
+					inst.direcao_peca = floor(point_direction(inst.x,inst.y,x1,y1)/90);
 				}
 				
 				#endregion

@@ -100,6 +100,7 @@
     {"id":{"name":"sprBloqueio","path":"sprites/sprBloqueio/sprBloqueio.yy",},},
     {"id":{"name":"sprCheck","path":"sprites/sprCheck/sprCheck.yy",},},
     {"id":{"name":"sprChochinObake","path":"sprites/sprChochinObake/sprChochinObake.yy",},},
+    {"id":{"name":"sprDirecaoPeca","path":"sprites/sprDirecaoPeca/sprDirecaoPeca.yy",},},
     {"id":{"name":"sprDotaku","path":"sprites/sprDotaku/sprDotaku.yy",},},
     {"id":{"name":"sprGeneral","path":"sprites/sprGeneral/sprGeneral.yy",},},
     {"id":{"name":"sprGuaxinim","path":"sprites/sprGuaxinim/sprGuaxinim.yy",},},

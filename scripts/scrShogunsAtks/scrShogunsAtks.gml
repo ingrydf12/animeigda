@@ -4,8 +4,10 @@
 function atkPertoInimigo(shogun, alvo){
 	if shogun.estado == 0 {
 		global.sacerdotisa_vida-=shogun.dano;
+		shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,objSacerdotisa.x,objSacerdotisa.y)/90);
 	} else {
 		alvo.vida_atual-=shogun.dano;
+		shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,alvo.x,alvo.y)/90);
 	}
 }
 
@@ -38,7 +40,8 @@ function atkDistanciaInimigo() {
 		
 			if (x1 >= xmin and x1 <= xmax) {
 				if collision_rectangle(x1,y1,x2,y2,objSacerdotisa,false,false) {
-					show_message("opa, tem uma sacerdotisa ali");
+					shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,x1,y1)/90);
+					
 					global.sacerdotisa_vida-=shogun.dano;
 				}
 			}
@@ -61,7 +64,11 @@ function atkDistanciaInimigo() {
 			var xmax = xshogun, ymax = yshogun + ( lado * ((d_max*tamcell) + (d_max*buff)) );
 		
 			if (y1 >= ymin and y1 <= ymax) {
-				if collision_rectangle(x1,y1,x2,y2,objSacerdotisa,false,false) {show_message("opa, tem uma sacerdotisa ali"); return true}
+				if collision_rectangle(x1,y1,x2,y2,objSacerdotisa,false,false) {
+					shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,x1,y1)/90);
+					
+					global.sacerdotisa_vida-=shogun.dano;
+				}
 			}
 		
 			i++;
@@ -83,7 +90,8 @@ function atkDistanciaInimigo() {
 		
 			if (x1 >= xmin and x1 <= xmax) {
 				if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,false) {
-					show_message("opa, tem um youkai ali");
+					shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,x1,y1)/90);
+					
 					alvo.vida_atual-=shogun.dano;
 				}
 			}
@@ -107,7 +115,8 @@ function atkDistanciaInimigo() {
 			
 			if (y1 >= ymin and y1 <= ymax) {
 				if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,false) {
-					show_message("opa, tem um youkai ali");
+					shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,x1,y1)/90);
+					
 					alvo.vida_atual-=shogun.dano;
 				}
 			}

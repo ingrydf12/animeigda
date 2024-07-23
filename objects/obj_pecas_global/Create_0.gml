@@ -155,7 +155,7 @@ ds_grid_add_shogun(
 #region Samurai
 ds_grid_add_shogun(
 	global.grid_pecas_shoguns,			//GRID
-	"Arqueiro",							//NOME
+	"Samurai",							//NOME
 	0,									//ESTADO ATUAL
 	6,									//STATUS DE VIDA
 	4,									//STATUS DE DANO

@@ -70,12 +70,12 @@ switch room {
 		ysacerdotisa = 7;
 		
 		array_shoguns = [
-			[IdPecas.Ashigaru,0,4,	objAshigaru],
-			[IdPecas.Ashigaru,0,6,	objAshigaru],
-			[IdPecas.Arqueiro,0,5,	objArqueiro],
 			[IdPecas.Lanceiro,1,4,	objLanceiro],
 			[IdPecas.Lanceiro,1,5,	objLanceiro],
-			[IdPecas.Lanceiro,1,6,	objLanceiro]
+			[IdPecas.Lanceiro,1,6,	objLanceiro],
+			[IdPecas.Ashigaru,0,4,	objAshigaru],
+			[IdPecas.Ashigaru,0,6,	objAshigaru],
+			[IdPecas.Arqueiro,0,5,	objArqueiro]
 		]
 		
 		array_youkais = [
@@ -116,6 +116,7 @@ switch room {
 			[IdPecas.ChochinObake,10,6,	objChochinObake],
 		]
 		
+		global.primeiro_turno = false;
 		break;
 	#endregion
 	
@@ -128,23 +129,30 @@ switch room {
 		ysacerdotisa = 5;
 		
 		array_shoguns = [
-			[IdPecas.Ashigaru,1,11,		objAshigaru],
-			[IdPecas.Ashigaru,10,11,	objAshigaru],
-			[IdPecas.Arqueiro,0,11,		objArqueiro],
-			[IdPecas.Arqueiro,11,11,	objArqueiro],
-			[IdPecas.Lanceiro,0,0,		objLanceiro],
-			[IdPecas.Lanceiro,1,0,		objLanceiro],
-			[IdPecas.Lanceiro,10,0,		objLanceiro],
-			[IdPecas.Lanceiro,11,0,		objLanceiro],
-			[IdPecas.Lanceiro,0,10,		objLanceiro],
-			[IdPecas.Lanceiro,11,10,	objLanceiro],
 			[IdPecas.Samurai,0,1,		objSamurai],
 			[IdPecas.Samurai,1,1,		objSamurai],
 			[IdPecas.Samurai,10,1,		objSamurai],
 			[IdPecas.Samurai,11,1,		objSamurai],
 			[IdPecas.Hatamoto,1,10,		objHatamoto],
 			[IdPecas.Hatamoto,10,10,	objHatamoto],
+			[IdPecas.Lanceiro,1,0,		objLanceiro],
+			[IdPecas.Lanceiro,0,0,		objLanceiro],
+			[IdPecas.Lanceiro,10,0,		objLanceiro],
+			[IdPecas.Lanceiro,11,0,		objLanceiro],
+			[IdPecas.Lanceiro,0,10,		objLanceiro],
+			[IdPecas.Lanceiro,11,10,	objLanceiro],
+			[IdPecas.Ashigaru,1,11,		objAshigaru],
+			[IdPecas.Ashigaru,10,11,	objAshigaru],
+			[IdPecas.Arqueiro,0,11,		objArqueiro],
+			[IdPecas.Arqueiro,11,11,	objArqueiro],
 		]
+		
+		array_spawner = [
+			[0,0],
+			[11,0],
+			[0,11],
+			[11,11]
+		];
 		
 		break;
 	#endregion
@@ -165,7 +173,7 @@ for (var xx = 0; xx < ds_grid_width(global.grid_tabuleiro); xx++) {
 	for (var yy = 0; yy < ds_grid_height(global.grid_tabuleiro); yy++) {
 		var spawn = random(1);
 		
-		if spawn > .55 {
+		if spawn > .55 and global.regra_mapa != REGRA_HORDA {
 			switch room {
 				default:
 					global.grid_tabuleiro[# xx,yy] = IdPecas.Arvore;
@@ -228,6 +236,18 @@ switch global.regra_mapa {
 		break;
 	case REGRA_HORDA:
 		instance_create_layer(x1,y1,"Pecas",objSacerdotisa);
+		
+		for (var i = 0; i < array_length(array_spawner); i++) {
+			var arr = array_spawner[i];
+			var xx = arr[0];
+			var yy = arr[1];
+			
+			x1 = xinicial+(xx*tamcell)+(xx*buff); y1 = yinicial+(yy*tamcell)+(yy*buff);
+			instance_create_layer(x1,y1,"Pecas",objSpawner,{
+				xtab : xx,
+				ytab : yy
+			});
+		}
 		break;
 }
 

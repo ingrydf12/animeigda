@@ -64,7 +64,7 @@ global.escala_sprites = global.tamanho_cell/64;
 global.color_roof = c_gray;
 
 global.turno = TURNO_JOGADOR;
-global.sacerdotisa_vida = 2;
+global.sacerdotisa_vida = 10;
 
 global.informacoes_peca = false;
 global.informacoes_peca_inst = noone;

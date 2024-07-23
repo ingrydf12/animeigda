@@ -1,7 +1,7 @@
 /// Insta: @jlgamedesign
 /// Site: https://linktr.ee/luruska
 //
-var inst = instance_find(objParShoguns, num_inst);
+//var inst = instance_find(objParShoguns, num_inst);
 
 //draw_text(20,20,num_inst);
 //if inst != noone {

@@ -2,9 +2,28 @@
 /// Site: https://linktr.ee/luruska
 //
 
-if instance_exists(obj_controle_turno) {
-	if !global.primeiro_turno {
-		visible = true;
+//if instance_exists(obj_controle_turno) {
+//	if !global.primeiro_turno {
+//		visible = true;
+//	}
+//}
+
+if point_in_rectangle(mouse_x,mouse_y,x,y,x+global.tamanho_cell,y+global.tamanho_cell) {
+	if mouse_check_button_pressed(mb_right) {
+		if informacoes {
+			informacoes = false;
+		} else {
+			var inst_n = instance_number(objParShoguns);
+			if inst_n > 0 {
+				for (var i = 0; i < inst_n; i++) {
+					var other_insts = instance_find(objParShoguns,i);
+				
+					other_insts.informacoes = false;
+				}
+			}
+			
+			informacoes = true;
+		}
 	}
 }
 
@@ -28,7 +47,7 @@ if moving and !moved {
 		var nearest_youkai = instance_nearest(x,y,objParYoukais);
 		
 		if nearest_youkai.estado == 0 {
-			global.grid_tabuleiro[# nearest_youkai.xtabuleiro, nearest_youkai.ytabuleiro] = NADA;
+			//global.grid_tabuleiro[# nearest_youkai.xtabuleiro, nearest_youkai.ytabuleiro] = NADA;
 			
 			instance_destroy(nearest_youkai);
 		}

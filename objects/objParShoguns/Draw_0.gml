@@ -14,4 +14,6 @@ var move = moves;
 
 
 draw_self();
-draw_text(x,y,estado);
+//draw_text(x,y,estado);
+
+draw_sprite_ext(sprDirecaoPeca,0,x+tamcell/2,y+tamcell/2,image_xscale,image_yscale,direcao_peca*90,c_white,1);

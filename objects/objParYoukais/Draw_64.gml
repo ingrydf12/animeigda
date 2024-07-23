@@ -6,7 +6,7 @@ if global.selecao_pecas or (global.derrota or global.vitoria) {exit}
 
 var gw = display_get_gui_width(), gh = display_get_gui_height();
 var mx = device_mouse_x_to_gui(0), my = device_mouse_y_to_gui(0);
-var margin = 50;
+var margin = 50, str_h = string_height("I");
 var c = c_gray, alpha = 1;
 draw_set_font(fnt_hud_menu)
 
@@ -24,19 +24,26 @@ if global.informacoes_peca {
 		draw_rectangle_color(xinfo,yinfo,xinfo+winfo,yinfo+hinfo,c,c,c,c,false);
 		
 		var buff_dados = 4;
-		var xnome = xinfo+(winfo/2), ynome = yinfo+buff_dados;
+		
 		//NOME
+		var xnome = xinfo+(winfo/2), ynome = yinfo+buff_dados;
 		draw_set_halign(fa_middle);
 		draw_text(xnome,ynome,nome);
 		
 		
-		var xvida = xnome, yvida = ynome+buff_quad+string_height(nome);
-		var str_hp = "HP: "+string(vida_atual)+"/"+string(vida_max);
 		//VIDA
+		var xvida = xnome, yvida = ynome+buff_quad+str_h;
+		var str_hp = "HP: "+string(vida_atual)+"/"+string(vida_max);
 		draw_text(xvida,yvida,str_hp);
 		
+		//DANO
+		var xdano = xvida, ydano = yvida+buff_dados+str_h;
+		var str_dano = "Dano: " + string(dano);
+		
+		draw_text(xdano,ydano,str_dano);
+		
 		//DISFARCE
-		var xpassiva = xinfo+buff_dados, ypassiva = yvida+buff_quad+string_height(str_hp);
+		var xpassiva = xinfo+buff_dados, ypassiva = ydano+buff_quad+str_h;
 		var wpassiva = 126, hpassiva = 30;
 		
 		alpha = 1;
@@ -47,16 +54,37 @@ if global.informacoes_peca {
 				
 				if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR and !global.primeiro_turno {
 					estado = 1;
+					disfarce_round_timer = 0;
 					can_attack = false;
 					modo_exposicao = TILE_MOVE;
 					tile_mode = noone;
 					
+					dano = array_dano[estado];
 					sprite = array_sprites[estado];
 					sprite_index = sprite;
 				}
 			}
 		} else {
 			c = c_dkgray;
+			
+			if disfarce_round_timer > disfarce_rounds {
+				c = c_red;
+				
+				if point_in_rectangle(mx,my,xpassiva,ypassiva,xpassiva+wpassiva,ypassiva+hpassiva) {
+					alpha = .7;
+				
+					if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR and !global.primeiro_turno {
+						estado = 0;
+						can_attack = false;
+						modo_exposicao = TILE_MOVE;
+						tile_mode = noone;
+						
+						dano = array_dano[estado];
+						sprite = array_sprites[estado];
+						sprite_index = sprite;
+					}
+				}
+			}
 		}
 		
 		draw_set_alpha(alpha);
@@ -81,6 +109,7 @@ if global.informacoes_peca {
 			alpha = .7;
 				
 			if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR and array_ataques[estado] != noone and !global.primeiro_turno and !attacked {
+				//can_move = false;
 				can_attack = !can_attack;
 				
 				if can_attack {

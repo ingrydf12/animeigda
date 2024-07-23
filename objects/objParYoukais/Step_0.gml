@@ -45,7 +45,7 @@ if !no_tabuleiro {
 			
 			if global.informacoes_peca_inst == self {
 				global.informacoes_peca = !global.informacoes_peca;
-			
+				
 				if global.informacoes_peca {
 					selecionado = true;
 					can_move = true;
@@ -60,6 +60,7 @@ if !no_tabuleiro {
 				
 			} else {
 				global.informacoes_peca_inst = self;
+				global.informacoes_peca = true;
 			
 				if global.informacoes_peca {
 					selecionado = true;
@@ -86,21 +87,7 @@ if vida_atual <= 0 {
 	instance_destroy()
 }
 
-		//if point_in_rectangle(mouse_x,mouse_y,x,y,x+global.tamanho_cell,y+global.tamanho_cell) {
-		//	tile_mode = TILE_MOVE;
-		//	if mouse_check_button_pressed(mb_right) and global.peca_mouse == -1 {
-		//		if global.informacoes_peca_inst == self {
-		//			global.informacoes_peca = !global.informacoes_peca;
-				
-		//			if global.informacoes_peca {
-		//				global.informacoes_peca_inst = self;
-		//			}
-		//		} else {
-		//			global.informacoes_peca = true;
-				
-		//			if global.informacoes_peca {
-		//				global.informacoes_peca_inst = self;
-		//			}
-		//		}
-		//	}
-		//}
+var arr = array_ataques[estado];
+if arr != noone {
+	var atk = arr[0];
+}
