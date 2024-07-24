@@ -4,6 +4,11 @@
 
 if (global.derrota or global.vitoria) {exit}
 
+//ATUALIZAR DADOS CONFORME O ESTADO ATUAL DA PEÇA
+dano = array_dano[estado];
+sprite = array_sprites[estado];
+sprite_index = sprite;
+
 if !no_tabuleiro {
 	if point_in_rectangle(mouse_x,mouse_y,x,y,x+global.tamanho_cell,y+global.tamanho_cell) {
 	
@@ -85,6 +90,15 @@ if !no_tabuleiro {
 if vida_atual <= 0 {
 	global.grid_tabuleiro[# xtabuleiro, ytabuleiro] = NADA;
 	instance_destroy()
+}
+
+if armadilha and armadilha_timer > armadilha_timer_limit {
+	estado = 2;
+	armadilha = false;
+	armadilha_timer = 0;
+	
+	//MUDAR O CAMPO VISUAL (TILES DE MOVIMENTO) DA PEÇA PARA O MODO DE MOVIMENTAÇÃO
+	tile_mode = noone;
 }
 
 var arr = array_ataques[estado];

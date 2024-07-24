@@ -38,3 +38,6 @@ direcao_peca = 2;
 disfarce_rounds = 2;
 disfarce_round_timer = 0;
 imune = false;
+armadilha = false;
+armadilha_timer_limit = 1;
+armadilha_timer = 0;

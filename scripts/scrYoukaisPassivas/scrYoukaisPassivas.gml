@@ -9,10 +9,9 @@ function youkaiAvancar() {
 	var x1 = argument[0], y1 = argument[1];
 	var ds_g = global.grid_tabuleiro;
 	
-	moved = true;
-	//can_move = false;
+	//moved = true;
 	direcao_peca = floor((point_direction(x,y,x1,y1))/90);
-								
+	
 	ds_g[# xtabuleiro, ytabuleiro] = NADA;
 	xtabuleiro += (xx-move);
 	ds_g[# xtabuleiro, ytabuleiro] = peca_id;

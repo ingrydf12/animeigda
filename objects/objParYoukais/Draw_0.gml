@@ -60,7 +60,6 @@ if can_attack or can_move {
 							
 							if mouse_check_button_pressed(mb_left) and !colid {
 								moved = true;
-								//can_move = false;
 								direcao_peca = floor((point_direction(x,y,x1,y1))/90);
 								
 								ds_g[# xtabuleiro, ytabuleiro] = NADA;
@@ -97,7 +96,6 @@ if can_attack or can_move {
 							
 							if mouse_check_button_pressed(mb_left) and !colid {
 								moved = true;
-								//can_move = false;
 								direcao_peca = floor((point_direction(x,y,x1,y1))/90);
 								
 								ds_g[# xtabuleiro, ytabuleiro] = NADA;

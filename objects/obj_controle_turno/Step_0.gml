@@ -28,6 +28,7 @@ if position_meeting(mouse_x,mouse_y,self) and global.peca_mouse == -1 {
 					inst.attacked = false;
 					inst.moved = false;
 					inst.disfarce_round_timer++;
+					inst.armadilha_timer++;
 				}
 			}
 			

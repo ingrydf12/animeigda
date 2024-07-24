@@ -78,15 +78,15 @@ ds_grid_add_youkai(
 
 #region Tanuki
 ds_grid_add_youkai(
-	global.grid_pecas_youkais,		//GRID
-	"Tanuki",						//NOME
-	0,								//ESTADO ATUAL
-	1,								//STATUS DE VIDA
-	[0,0],							//STATUS DE DANO
-	[sprGuaxinim,sprTanuki],		//SPRITE
-	[1,3],							//LIMITE DE MOVIMENTOS
-	[[atkArmadilha,1,1],noone],		//AÇÕES DISPONÍVEIS
-	[youkaiMetamorfose,noone]		//PASSIVA
+	global.grid_pecas_youkais,			//GRID
+	"Tanuki",							//NOME
+	0,									//ESTADO ATUAL
+	1,									//STATUS DE VIDA
+	[0,3,0],							//STATUS DE DANO
+	[sprGuaxinim,sprGuaxinim,sprTanuki],//SPRITE
+	[1,0,3],							//LIMITE DE MOVIMENTOS
+	[noone,[atkArmadilha,1,1],noone],	//AÇÕES DISPONÍVEIS
+	[youkaiMetamorfose,noone,noone]		//PASSIVA
 );
 #endregion
 

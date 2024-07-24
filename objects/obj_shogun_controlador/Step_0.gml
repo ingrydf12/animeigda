@@ -61,6 +61,7 @@ if global.turno == TURNO_INIMIGO {
 				}
 				
 				num_inst++;
+				tries = 0;
 			} else {
 				
 				#region SHOGUNS ANDAR
@@ -69,148 +70,39 @@ if global.turno == TURNO_INIMIGO {
 				ytab = inst.ytabuleiro;
 				
 				//AÇÕES DAS PEÇAS
-				dir = floor( ((inst.estado == 0 ? point_direction(inst.x, inst.y,objSacerdotisa.x,objSacerdotisa.y) : point_direction(inst.x,inst.y,nearest_youkai.x,nearest_youkai.y))+45) /90);
-				var lado = choose(0,1), quantia_andada = 0;
+				var dir = floor( ((inst.estado == 0 ? point_direction(inst.x, inst.y,objSacerdotisa.x,objSacerdotisa.y) : point_direction(inst.x,inst.y,nearest_youkai.x,nearest_youkai.y))+45) /90);
+				if tries >= limit_tries {dir = irandom_range(0,3)}
 				
-				if tries >= limit_tries {dir = 5}
+				var quantia_andada = irandom_range(1, inst.moves);
 				
-				switch dir {
-					default: //NÃO CONSEGUE SE MOVER
-						if lado == 0 { //ANDAR EM X
-							//DETERMINAR UMA QUANTIA DE PASSOS PARA O SHOGUN ANDAR
-							quantia_andada = irandom_range((-inst.moves), inst.moves);
-							
-							//SE NESSE NOVO LOCAL EXISTIR NADA, ENTÃO ELE IRÁ PARA LÁ
-							if (ds_g[# xx+quantia_andada,yy] == NADA) {
-								ds_g[# xx,yy] = NADA;
-								inst.xtabuleiro += quantia_andada;
-								
-								xx = inst.xtabuleiro;
-								ds_g[# xx,yy] = inst.shogun_id;
-							} else if (ds_g[# xx+quantia_andada,yy] < IdPecas.AlturaPlayers) {
-								var youkai_disfarcado_proximo = instance_nearest(xinicial+((xx+quantia_andada)*tamcell)+((xx+quantia_andada)*buff), inst.y, objParYoukais);
-								if youkai_disfarcado_proximo.estado == 0 {
-									ds_g[# xx,yy] = NADA;
-									inst.xtabuleiro += quantia_andada;
-									
-									xx = inst.xtabuleiro;
-									ds_g[# xx,yy] = inst.shogun_id;
-								}
-							}
-						} else { //ANDAR EM Y
-							//DETERMINAR UMA QUANTIA DE PASSOS PARA O SHOGUN ANDAR
-							quantia_andada = irandom_range((-inst.moves),inst.moves);
-							
-							//SE NESSE NOVO LOCAL EXISTIR NADA, ENTÃO ELE IRÁ PARA LÁ
-							if (ds_g[# xx,yy+quantia_andada] == NADA) {
-								ds_g[# xx,yy] = NADA;
-								inst.ytabuleiro += quantia_andada;
-								
-								yy = inst.ytabuleiro;
-								ds_g[# xx,yy] = inst.shogun_id;
-							} else if (ds_g[# xx,yy+quantia_andada] < IdPecas.AlturaPlayers) {
-								var youkai_disfarcado_proximo = instance_nearest(inst.x, yinicial+((yy+quantia_andada)*tamcell)+((yy+quantia_andada)*buff), objParYoukais);
-								if youkai_disfarcado_proximo.estado == 0 {
-									ds_g[# xx,yy] = NADA;
-									inst.ytabuleiro += quantia_andada;
-									
-									yy = inst.ytabuleiro;
-									ds_g[# xx,yy] = inst.shogun_id;
-								}
-							}
-						}
-						break;
+				var xalvo = xx+lengthdir_x(quantia_andada,dir*90), yalvo = yy+lengthdir_y(quantia_andada,dir*90);
+				//show_message("X: " + string(xalvo) + " | Y: " + string(yalvo));
+				
+				if (ds_g[# xalvo, yalvo] == NADA) {
+					ds_g[# xx, yy] = NADA;
 					
-					case 0:	//DIREITA
-					case 4:	//DIREITA
-						//DETERMINAR UMA QUANTIA DE PASSOS PARA O SHOGUN ANDAR
-						quantia_andada = irandom_range(1, inst.moves);
-						
-						//SE NESSE NOVO LOCAL EXISTIR NADA, ENTÃO ELE IRÁ PARA LÁ
-						if (ds_g[# xx+quantia_andada,yy] == NADA) {
-							ds_g[# xx,yy] = NADA;
-							inst.xtabuleiro += quantia_andada;
-							
-							xx = inst.xtabuleiro;
-							ds_g[# xx,yy] = inst.shogun_id;
-						} else if (ds_g[# xx+quantia_andada,yy] < IdPecas.AlturaPlayers) {
-							var youkai_disfarcado_proximo = instance_nearest(xinicial+((xx+quantia_andada)*tamcell)+((xx+quantia_andada)*buff), inst.y, objParYoukais);
-							if youkai_disfarcado_proximo.estado == 0 {
-								ds_g[# xx,yy] = NADA;
-								inst.xtabuleiro += quantia_andada;
-								
-								xx = inst.xtabuleiro;
-								ds_g[# xx,yy] = inst.shogun_id;
-							}
-						}
-						break;
+					xx = xalvo; yy = yalvo;
+					inst.xtabuleiro = xx; inst.ytabuleiro = yy;
 					
-					case 1:	//CIMA
-						//DETERMINAR UMA QUANTIA DE PASSOS PARA O SHOGUN ANDAR
-						quantia_andada = irandom_range((-inst.moves),-1);
-						
-						//SE NESSE NOVO LOCAL EXISTIR NADA, ENTÃO ELE IRÁ PARA LÁ
-						if (ds_g[# xx,yy+quantia_andada] == NADA) {
-							ds_g[# xx,yy] = NADA;
-							inst.ytabuleiro += quantia_andada;
-							
-							yy = inst.ytabuleiro;
-							ds_g[# xx,yy] = inst.shogun_id;
-						} else if (ds_g[# xx,yy+quantia_andada] < IdPecas.AlturaPlayers) {
-							var youkai_disfarcado_proximo = instance_nearest(inst.x, yinicial+((yy+quantia_andada)*tamcell)+((yy+quantia_andada)*buff), objParYoukais);
-							if youkai_disfarcado_proximo.estado == 0 {
-								ds_g[# xx,yy] = NADA;
-								inst.ytabuleiro += quantia_andada;
+					ds_g[# xx, yy] = inst.shogun_id;
+					
+				} else if (ds_g[# xalvo, yalvo] < IdPecas.AlturaPlayers) {
+					var xyoukai = xinicial+((xalvo*tamcell)+(xalvo*buff)), yyoukai = yinicial+((yalvo*tamcell)+(yalvo*buff))
+					var youkai_dest = instance_nearest(xyoukai,yyoukai,objParYoukais);
+					
+					switch youkai_dest.peca_id {
+						default: //TODAS AS PEÇAS
+							if youkai_dest.estado == 0 {
+								ds_g[# xx, yy] = NADA;
 								
-								yy = inst.ytabuleiro;
-								ds_g[# xx,yy] = inst.shogun_id;
-							}
-						}
-						break;
-					case 2:	//ESQUERDA
-						//DETERMINAR UMA QUANTIA DE PASSOS PARA O SHOGUN ANDAR
-						quantia_andada = irandom_range((-inst.moves),-1);
-						
-						//SE NESSE NOVO LOCAL EXISTIR NADA, ENTÃO ELE IRÁ PARA LÁ
-						if (ds_g[# xx+quantia_andada,yy] == NADA) {
-							ds_g[# xx,yy] = NADA;
-							inst.xtabuleiro += quantia_andada;
-							
-							xx = inst.xtabuleiro;
-							ds_g[# xx,yy] = inst.shogun_id;
-						} else if (ds_g[# xx+quantia_andada,yy] < IdPecas.AlturaPlayers) {
-							var youkai_disfarcado_proximo = instance_nearest(xinicial+((xx+quantia_andada)*tamcell)+((xx+quantia_andada)*buff), inst.y, objParYoukais);
-							if youkai_disfarcado_proximo.estado == 0 {
-								ds_g[# xx,yy] = NADA;
-								inst.xtabuleiro += quantia_andada;
+								xx = xalvo; yy = yalvo;
+								inst.xtabuleiro = xx; inst.ytabuleiro = yy;
 								
-								xx = inst.xtabuleiro;
-								ds_g[# xx,yy] = inst.shogun_id;
+								ds_g[# xx, yy] = inst.shogun_id;
 							}
-						}
-						break;
-					case 3:	//BAIXO
-						//DETERMINAR UMA QUANTIA DE PASSOS PARA O SHOGUN ANDAR
-						quantia_andada = irandom_range(1, inst.moves);
-						
-						//SE NESSE NOVO LOCAL EXISTIR NADA, ENTÃO ELE IRÁ PARA LÁ
-						if (ds_g[# xx,yy+quantia_andada] == NADA) {
-							ds_g[# xx,yy] = NADA;
-							inst.ytabuleiro += quantia_andada;
-							
-							yy = inst.ytabuleiro;
-							ds_g[# xx,yy] = inst.shogun_id;
-						} else if (ds_g[# xx,yy+quantia_andada] < IdPecas.AlturaPlayers) {
-							var youkai_disfarcado_proximo = instance_nearest(inst.x, yinicial+((yy+quantia_andada)*tamcell)+((yy+quantia_andada)*buff), objParYoukais);
-							if youkai_disfarcado_proximo.estado == 0 {
-								ds_g[# xx,yy] = NADA;
-								inst.ytabuleiro += quantia_andada;
-								
-								yy = inst.ytabuleiro;
-								ds_g[# xx,yy] = inst.shogun_id;
-							}
-						}
-						break;
+							break;
+						case IdPecas.Tanuki: break;
+					}
 				}
 				
 				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
@@ -220,6 +112,7 @@ if global.turno == TURNO_INIMIGO {
 					inst.xdest = x1;
 					inst.ydest = y1;
 					inst.direcao_peca = floor(point_direction(inst.x,inst.y,x1,y1)/90);
+					tries = 0;
 				}
 				
 				#endregion

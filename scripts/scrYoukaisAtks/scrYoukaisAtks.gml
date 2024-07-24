@@ -79,8 +79,8 @@ function atkDistancia(){
 }
 
 function atkArea() {
-	///@arg DistanciaMinina
-	///@arg DistanciaMaxima
+	///@arg list_shoguns
+	///@arg qnt_shoguns
 	
 	var inst_list = argument[0], inst_n = argument[1];
 	

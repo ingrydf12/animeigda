@@ -2,7 +2,7 @@
 /// Site: https://linktr.ee/luruska
 //
 
-draw_text(20,20,global.sacerdotisa_vida)
+//draw_text(20,20,global.sacerdotisa_vida)
 
 //VARIÁVEIS LOCAIS
 var ds_g = global.grid_tabuleiro, ds_youkais = global.grid_pecas_youkais, ds_shoguns = global.grid_pecas_shoguns;	//FORMA SIMPLIFICADA PARA SE REFERENCIAR ÀS GRIDS
@@ -210,8 +210,6 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2)  {
 						draw_set_alpha(.7);
-						
-						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
 					}
 					
 					if global.peca_mouse != -1 {
@@ -291,8 +289,6 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
 						alpha = .7;
-						
-						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
 					}
 					
 					draw_set_alpha(alpha);
@@ -336,7 +332,7 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					global.peca_mouse = NADA;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
-						mcheck = MOUSE_BLOQUEADO;
+						mcheck = MOUSE_INTERACT;
 						alpha = .8;
 					}
 					
