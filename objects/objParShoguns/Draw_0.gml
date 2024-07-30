@@ -13,7 +13,15 @@ var c = c_yellow;
 var move = moves;
 
 
-draw_self();
-//draw_text(x,y,estado);
+var sc = image_xscale+.5;
+draw_sprite_ext(sprite_index,image_index,x-((tamcell/2)*(sc-image_xscale)),y-((tamcell*.8)*(sc-image_xscale)),sc,sc,0,c_white,1);
+//draw_self();
+
+if global.selecao_pecas or (global.derrota or global.vitoria) {exit}
+
+if informacoes {
+	c = c_red;
+	draw_rectangle_color(x,y,x+tamcell,y+tamcell,c,c,c,c,true);
+}
 
 draw_sprite_ext(sprDirecaoPeca,0,x+tamcell/2,y+tamcell/2,image_xscale,image_yscale,direcao_peca*90,c_white,1);

@@ -35,8 +35,8 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 						
 						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
 						
-						if xx >= xsacerdotisa-2 and yy >= ysacerdotisa-2 {
-							if xx <= xsacerdotisa+2 and yy <= ysacerdotisa+2 {
+						if (xx >= xsacerdotisa-raio_sacerdotisa and yy >= ysacerdotisa-raio_sacerdotisa) {
+							if (xx <= xsacerdotisa+raio_sacerdotisa and yy <= ysacerdotisa+raio_sacerdotisa) {
 								if global.peca_mouse != -1 {mcheck = MOUSE_CHECKADO}
 							
 								if mouse_check_button_pressed(mb_left) {
@@ -58,8 +58,8 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					}
 					
 					if global.peca_mouse != -1 {
-						if xx >= xsacerdotisa-2 and yy >= ysacerdotisa-2 {
-							if xx <= xsacerdotisa+2 and yy <= ysacerdotisa+2 {
+						if xx >= xsacerdotisa-raio_sacerdotisa and yy >= ysacerdotisa-raio_sacerdotisa {
+							if xx <= xsacerdotisa+raio_sacerdotisa and yy <= ysacerdotisa+raio_sacerdotisa {
 								c = make_color_rgb(100,255,100);
 							}
 						}
@@ -213,8 +213,8 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					}
 					
 					if global.peca_mouse != -1 {
-						if xx >= xsacerdotisa-2 and yy >= ysacerdotisa-2 {
-							if xx <= xsacerdotisa+2 and yy <= ysacerdotisa+2 {
+						if (xx >= xsacerdotisa-raio_sacerdotisa and yy >= ysacerdotisa-raio_sacerdotisa) {
+							if (xx <= xsacerdotisa+raio_sacerdotisa and yy <= ysacerdotisa+raio_sacerdotisa) {
 								c = make_color_rgb(100,255,100);
 							}
 						}

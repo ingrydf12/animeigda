@@ -10,8 +10,8 @@
   "name":"obj_vitoria_derrota",
   "overriddenProperties":[],
   "parent":{
-    "name":"GLOBAIS",
-    "path":"folders/Objetos/GLOBAIS.yy",
+    "name":"HUD",
+    "path":"folders/Objetos/HUD.yy",
   },
   "parentObjectId":null,
   "persistent":true,

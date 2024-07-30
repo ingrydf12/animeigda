@@ -14,27 +14,25 @@ global.view_h = view_get_hport(view_camera[0]);		//ALTURA DA 'GUI' DO PLAYER
 
 ds_menu_main = create_menu_page(
 	["INICIAR", MenuElementType.PageTransfer, MenuPage.MapLevel],
-	["CONFIGURAÇÕES", MenuElementType.PageTransfer, MenuPage.Settings],
+	["OPÇÕES", MenuElementType.PageTransfer, MenuPage.Settings],
 	["SAIR", MenuElementType.ScriptRunner, exit_game]
 );
 
 ds_menu_settings = create_menu_page(
-	["VÍDEO", MenuElementType.PageTransfer, MenuPage.Video],
-	["ÁUDIO", MenuElementType.PageTransfer, MenuPage.Audio],
+	["TELA CHEIA", MenuElementType.Toggle, change_window_mode,	0, ["OFF", "ON"]],
+	["GERAL", MenuElementType.Slider, change_volume,			1, [0,1]],
+	["EFEITOS", MenuElementType.Slider, change_volume,			1, [0,1]],
+	["MÚSICA", MenuElementType.Slider, change_volume,			1, [0,1]],
 	["VOLTAR", MenuElementType.PageTransfer, MenuPage.Main]
 );
 
-ds_menu_video = create_menu_page(
-	["TELA CHEIA", MenuElementType.Toggle, change_window_mode, 0, ["OFF", "ON"]],
-	["VOLTAR", MenuElementType.PageTransfer, MenuPage.Settings]
-);
+//ds_menu_video = create_menu_page(
+//	["VOLTAR", MenuElementType.PageTransfer, MenuPage.Settings]
+//);
 
-ds_menu_audio = create_menu_page(
-	["VOLUME GERAL", MenuElementType.Slider, change_volume,		1, [0,1]],
-	["EFEITOS SONOROS", MenuElementType.Slider, change_volume,	1, [0,1]],
-	["MÚSICA", MenuElementType.Slider, change_volume,		1, [0,1]],
-	["VOLTAR", MenuElementType.PageTransfer, MenuPage.Settings]
-);
+//ds_menu_audio = create_menu_page(
+//	["VOLTAR", MenuElementType.PageTransfer, MenuPage.Settings]
+//);
 
 ds_menu_map_level = create_menu_page(
 	["MAPA 1", MenuElementType.ScriptRunner, room_transfer, rm_mapa1],
@@ -49,8 +47,8 @@ page = MenuPage.Main;
 menu_pages = [
 	ds_menu_main,
 	ds_menu_settings,
-	ds_menu_video,
-	ds_menu_audio,
+	//ds_menu_video,
+	//ds_menu_audio,
 	ds_menu_map_level
 ];
 
@@ -61,3 +59,5 @@ repeat (arr_leng) {
 }
 
 inputting = false;
+input_color = make_color_rgb(83,14,16);
+non_option_color = make_color_rgb(94,82,77);

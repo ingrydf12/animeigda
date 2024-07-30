@@ -4,6 +4,7 @@
 //var inst = instance_find(objParShoguns, num_inst);
 
 //draw_text(20,20,num_inst);
+//draw_text(20,40,tries);
 //if inst != noone {
 //	draw_text(20,60,inst.estado == 0 ? "Sacerdotisa" : "Youkais");
 //}

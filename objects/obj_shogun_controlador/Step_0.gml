@@ -3,6 +3,7 @@
 //
 
 if room == rm_menu {exit}
+if global.vitoria or global.derrota {exit}
 
 //VARIÁVEIS LOCAIS
 var ds_g = global.grid_tabuleiro;	//FORMA SIMPLIFICADA PARA SE REFERENCIAR ÀS GRIDS
@@ -10,9 +11,6 @@ var ds_h = ds_grid_height(ds_g),  ds_w = ds_grid_width(ds_g);	//ALTURA E LARGURA
 var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
 var buff = 6, tamcell = global.tamanho_cell;		//ESPAÇAMENTOS ENTRE AS CÉLULAS
 var xinicial = rw/2-((ds_w/2)*tamcell)-((ds_w/2)*buff), yinicial = rh/2-((ds_h/2)*tamcell)-((ds_h/2)*buff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
-
-
-if global.vitoria or global.derrota {exit}
 
 if global.turno == TURNO_INIMIGO {
 	timer_action++;
@@ -24,6 +22,7 @@ if global.turno == TURNO_INIMIGO {
 		
 		if num_inst < inst_limit {
 			var inst = instance_find(objParShoguns, num_inst);
+			inst.alvo = true;
 			var xx = inst.xtabuleiro, yy = inst.ytabuleiro;
 			var nearest_youkai = instance_nearest(inst.x,inst.y,objParYoukais);
 			//AÇÃO EXECUTADA PELO SHOGUN
@@ -44,10 +43,13 @@ if global.turno == TURNO_INIMIGO {
 						case atkPertoInimigo: script_execute(atk,inst, nearest_youkai); break;
 						case atkDistanciaInimigo: script_execute(atk, inst,nearest_youkai,range_min,range_max); break;
 					}
+					
+					inst.attacking = true;
 				}
 				
 				num_inst++;
 				tries = 0;
+				inst.alvo = false;
 				exit;
 			}
 			
@@ -60,8 +62,12 @@ if global.turno == TURNO_INIMIGO {
 					case atkDistanciaInimigo: script_execute(atk, inst,nearest_youkai,range_min,range_max); break;
 				}
 				
+				inst.attacking = true;
+				
 				num_inst++;
 				tries = 0;
+				inst.alvo = false;
+				exit;
 			} else {
 				
 				#region SHOGUNS ANDAR
@@ -70,13 +76,24 @@ if global.turno == TURNO_INIMIGO {
 				ytab = inst.ytabuleiro;
 				
 				//AÇÕES DAS PEÇAS
-				var dir = floor( ((inst.estado == 0 ? point_direction(inst.x, inst.y,objSacerdotisa.x,objSacerdotisa.y) : point_direction(inst.x,inst.y,nearest_youkai.x,nearest_youkai.y))+45) /90);
-				if tries >= limit_tries {dir = irandom_range(0,3)}
+				var dir = floor( ((inst.estado == 0 ? point_direction(inst.x, inst.y,objSacerdotisa.x,objSacerdotisa.y) : point_direction(inst.x,inst.y,nearest_youkai.x,nearest_youkai.y))+(irandom_range(0,90))) /90);
+				if tries >= limit_tries {
+					dir = irandom_range(0,3);
+					
+					if tries >= limit_tries_to_pass {
+						num_inst++;
+						tries = 0;
+						inst.alvo = false;
+						exit;
+					}
+				}
 				
 				var quantia_andada = irandom_range(1, inst.moves);
+				//show_message("Quadrados: " + string(quantia_andada));
 				
 				var xalvo = xx+lengthdir_x(quantia_andada,dir*90), yalvo = yy+lengthdir_y(quantia_andada,dir*90);
 				//show_message("X: " + string(xalvo) + " | Y: " + string(yalvo));
+				inst.direcao_peca = floor(point_direction(xx,yy,xalvo,yalvo)/90);
 				
 				if (ds_g[# xalvo, yalvo] == NADA) {
 					ds_g[# xx, yy] = NADA;
@@ -101,7 +118,12 @@ if global.turno == TURNO_INIMIGO {
 								ds_g[# xx, yy] = inst.shogun_id;
 							}
 							break;
-						case IdPecas.Tanuki: break;
+						case IdPecas.Tanuki:
+							if youkai_dest.estado == 1 {
+								xx = xalvo; yy = yalvo;
+								inst.xtabuleiro = xx; inst.ytabuleiro = yy;
+							}
+							break;
 					}
 				}
 				
@@ -111,7 +133,7 @@ if global.turno == TURNO_INIMIGO {
 					inst.moving = true;
 					inst.xdest = x1;
 					inst.ydest = y1;
-					inst.direcao_peca = floor(point_direction(inst.x,inst.y,x1,y1)/90);
+					//inst.direcao_peca = floor(point_direction(inst.x,inst.y,x1,y1)/90);
 					tries = 0;
 				}
 				

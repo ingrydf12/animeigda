@@ -3,6 +3,8 @@
 //
 
 var ds_grid = menu_pages[page], ds_h = ds_grid_height(ds_grid);
+//FUNDO
+var back_id = layer_background_get_id("Background");
 
 #region INPUTS
 var k_up = keyboard_check_pressed(ord("W")) or keyboard_check_pressed(vk_up);
@@ -96,14 +98,26 @@ if inputting {
 					break;
 			}
 		}
+		
+		switch page {
+			default:
+				layer_background_sprite(back_id,menu);
+				break;
+			case MenuPage.Settings:
+				layer_background_sprite(back_id,configuracoes);
+				break;
+			case MenuPage.MapLevel:
+				layer_background_sprite(back_id,mapa);
+				break;
+		}
 	}
 	
 	if k_escape {
 		switch page {
-			case MenuPage.Video:
-			case MenuPage.Audio:
-				page = MenuPage.Settings;
-				break;
+			//case MenuPage.Video:
+			//case MenuPage.Audio:
+			//	page = MenuPage.Settings;
+			//	break;
 			case MenuPage.Settings:
 			case MenuPage.MapLevel:
 				page = MenuPage.Main;

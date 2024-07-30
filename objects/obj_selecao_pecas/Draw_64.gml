@@ -3,11 +3,12 @@
 //
 
 //VARIÁVEIS
+var escala = global.escala_sprites;
 var gw = global.view_w, gh = global.view_h;
 var mx = device_mouse_x_to_gui(0), my = device_mouse_y_to_gui(0);
 var c = c_white, alpha = 1;
 global.mouse_check = MOUSE_NEUTRO;
-draw_set_font(fnt_hud_menu);
+draw_set_font(fnt_opcoes_menu);
 
 c = c_black;
 draw_set_alpha(.5);
@@ -82,9 +83,9 @@ if peca_atual > 0 {
 		draw_sprite_ext(spr,0,xslot,yslot,global.escala_sprites,global.escala_sprites,0,c_white,alpha);
 		
 		if peca_atual >= limite_pecas {
-			var margquad = 200;
-			var wquad = 100;
-			var hquad = 50;
+			var margquad = 200*escala;
+			var wquad = 200*escala;
+			var hquad = 125*escala;
 			var xquad = gw-margquad-wquad;
 			var yquad = (gh/2)-(hquad/2);
 			c = c_white;

@@ -61,7 +61,11 @@ function sacerdotisaProxima() {
 		var xmax = xshogun, ymax = yshogun + ( lado * ((r_max*tamcell) + (r_max*buff)) );
 		
 		if (y1 >= ymin and y1 <= ymax) {
-			if collision_rectangle(x1,y1,x2,y2,objSacerdotisa,false,false) {return true}
+			if collision_rectangle(x1,y1,x2,y2,objSacerdotisa,false,false) {
+				var inst = instance_nearest(xshogun,yshogun,objParShoguns);
+				inst.direcao_peca = floor(point_direction(inst.x,inst.y,x1,y1)/90);
+				return true;
+			}
 		}
 		
 		i++;
@@ -96,7 +100,11 @@ function youkaiProximo() {
 		var xmax = xshogun + ( lado * ((r_max*tamcell) + (r_max*buff)) ), ymax = yshogun;
 		
 		if (x1 >= xmin and x1 <= xmax) {
-			if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,false) {return true}
+			if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,false) {
+				var inst = instance_nearest(xshogun,yshogun,objParShoguns);
+				inst.direcao_peca = floor(point_direction(inst.x,inst.y,x1,y1)/90);
+				return true;
+			}
 		}
 		
 		i++;
@@ -117,7 +125,11 @@ function youkaiProximo() {
 		var xmax = xshogun, ymax = yshogun + ( lado * ((r_max*tamcell) + (r_max*buff)) );
 		
 		if (y1 >= ymin and y1 <= ymax) {
-			if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,false) {return true}
+			if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,false) {
+				var inst = instance_nearest(xshogun,yshogun,objParShoguns);
+				inst.direcao_peca = floor(point_direction(inst.x,inst.y,x1,y1)/90);
+				return true;
+			}
 		}
 		
 		i++;

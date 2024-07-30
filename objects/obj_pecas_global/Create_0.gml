@@ -27,7 +27,7 @@ ds_grid_add_youkai(
 	0,								//ESTADO ATUAL
 	1,								//STATUS DE VIDA
 	[0,2],							//STATUS DE DANO
-	[sprLampiao,sprChochinObake],	//SPRITE
+	[sprChochinObakeStealth,sprChochinObake],	//SPRITE
 	[2,1],							//LIMITE DE MOVIMENTOS
 	[noone,[atkDistancia,1,2]],		//AÇÕES DISPONÍVEIS
 	[youkaiDisfarce,noone]			//PASSIVA
@@ -41,7 +41,7 @@ ds_grid_add_youkai(
 	0,								//ESTADO ATUAL
 	3,								//STATUS DE VIDA
 	[2,3],							//STATUS DE DANO
-	[sprSinoBronzeado,sprDotaku],	//SPRITE
+	[sprDotakuStealth,sprDotaku],	//SPRITE
 	[1,1],							//LIMITE DE MOVIMENTOS
 	[[atkPerto,1,1],[atkArea,1,3]],	//AÇÕES DISPONÍVEIS
 	[youkaiDisfarce,noone]			//PASSIVA
@@ -55,7 +55,7 @@ ds_grid_add_youkai(
 	0,								//ESTADO ATUAL
 	2,								//STATUS DE VIDA
 	[0,2],							//STATUS DE DANO
-	[sprMiniSombra,sprKasaObake],	//SPRITE
+	[sprKasaObakeStealth,sprKasaObake],	//SPRITE
 	[1,2],							//LIMITE DE MOVIMENTOS
 	[noone,[atkPerto,1,1]],				//AÇÕES DISPONÍVEIS
 	[youkaiDisfarce,noone]			//PASSIVA
@@ -69,7 +69,7 @@ ds_grid_add_youkai(
 	0,								//ESTADO ATUAL
 	4,								//STATUS DE VIDA
 	[0,3],							//STATUS DE DANO
-	[sprTartagira,sprKappa],		//SPRITE
+	[sprKappaStealth,sprKappa],		//SPRITE
 	[1,3],							//LIMITE DE MOVIMENTOS
 	[noone,[atkPerto,1,1]],				//AÇÕES DISPONÍVEIS
 	[youkaiDisfarce,noone]			//PASSIVA
@@ -83,7 +83,7 @@ ds_grid_add_youkai(
 	0,									//ESTADO ATUAL
 	1,									//STATUS DE VIDA
 	[0,3,0],							//STATUS DE DANO
-	[sprGuaxinim,sprGuaxinim,sprTanuki],//SPRITE
+	[sprTanukiStealth,sprTanukiStealth,sprTanuki],//SPRITE
 	[1,0,3],							//LIMITE DE MOVIMENTOS
 	[noone,[atkArmadilha,1,1],noone],	//AÇÕES DISPONÍVEIS
 	[youkaiMetamorfose,noone,noone]		//PASSIVA
@@ -117,7 +117,7 @@ ds_grid_add_shogun(
 	0,									//ESTADO ATUAL
 	4,									//STATUS DE VIDA
 	1,									//STATUS DE DANO
-	sprSoldado,							//SPRITE
+	[sprSoldado,sprSoldadoAtaque],		//SPRITE
 	2,									//LIMITE DE MOVIMENTOS
 	[inimigoAvancar,[atkPertoInimigo,1,1]],	//AÇÕES DISPONÍVEIS
 	noone								//PASSIVA
@@ -131,7 +131,7 @@ ds_grid_add_shogun(
 	0,												//ESTADO ATUAL
 	4,												//STATUS DE VIDA
 	2,												//STATUS DE DANO
-	sprLanceiro,									//SPRITE
+	[sprLanceiro,sprLanceiroAtaque],				//SPRITE
 	1,												//LIMITE DE MOVIMENTOS
 	[inimigoAvancar,[atkDistanciaInimigo,1,2]],		//AÇÕES DISPONÍVEIS
 	noone											//PASSIVA
@@ -145,7 +145,7 @@ ds_grid_add_shogun(
 	0,												//ESTADO ATUAL
 	2,												//STATUS DE VIDA
 	2,												//STATUS DE DANO
-	sprArqueiro,									//SPRITE
+	[sprArqueiro,sprArqueiroAtaque],				//SPRITE
 	2,												//LIMITE DE MOVIMENTOS
 	[inimigoAvancar,[atkDistanciaInimigo,2,2]],		//AÇÕES DISPONÍVEIS
 	noone											//PASSIVA
@@ -159,7 +159,7 @@ ds_grid_add_shogun(
 	0,									//ESTADO ATUAL
 	6,									//STATUS DE VIDA
 	4,									//STATUS DE DANO
-	sprSamurai,							//SPRITE
+	[sprSamurai,sprSamuraiAtaque],		//SPRITE
 	1,									//LIMITE DE MOVIMENTOS
 	[inimigoAvancar,[atkPertoInimigo,1,1]],	//AÇÕES DISPONÍVEIS
 	imunidadeFrontal					//PASSIVA
@@ -173,8 +173,8 @@ ds_grid_add_shogun(
 	0,									//ESTADO ATUAL
 	8,									//STATUS DE VIDA
 	5,									//STATUS DE DANO
-	sprGeneral,							//SPRITE
-	3,									//LIMITE DE MOVIMENTOS
+	[sprGeneral,sprGeneralAtaque],		//SPRITE
+	2,									//LIMITE DE MOVIMENTOS
 	[inimigoAvancar,[atkPertoInimigo,1,1]],	//AÇÕES DISPONÍVEIS
 	noone								//PASSIVA
 );

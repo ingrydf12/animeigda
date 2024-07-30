@@ -2,11 +2,7 @@
 /// Site: https://linktr.ee/luruska
 //
 
-//if instance_exists(obj_controle_turno) {
-//	if !global.primeiro_turno {
-//		visible = true;
-//	}
-//}
+if global.selecao_pecas or (global.derrota or global.vitoria) {exit}
 
 #region VARIÁVEIS LOCAIS
 var ds_g = global.grid_tabuleiro;	//FORMA SIMPLIFICADA PARA SE REFERENCIAR ÀS GRIDS
@@ -15,7 +11,6 @@ var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
 var buff = 6, tamcell = global.tamanho_cell;		//ESPAÇAMENTOS ENTRE AS CÉLULAS
 var xinicial = rw/2-((ds_w/2)*tamcell)-((ds_w/2)*buff), yinicial = rh/2-((ds_h/2)*tamcell)-((ds_h/2)*buff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
 #endregion
-
 
 
 if point_in_rectangle(mouse_x,mouse_y,x,y,x+global.tamanho_cell,y+global.tamanho_cell) {
@@ -39,6 +34,7 @@ if point_in_rectangle(mouse_x,mouse_y,x,y,x+global.tamanho_cell,y+global.tamanho
 
 if vida_atual <= 0 {
 	global.grid_tabuleiro[# xtabuleiro, ytabuleiro] = NADA;
+	effect_create_below(ef_explosion,x+tamcell/2,y+tamcell/2,.4,c_white);
 	instance_destroy()
 }
 
@@ -49,6 +45,18 @@ if reset_state_timer >= reset_state_round {
 
 if !instance_exists(objSacerdotisa) {estado = 1}
 
+if attacking {
+	sprite = array_sprite[1];
+	sprite_index = sprite;
+	
+	if image_index >= image_number-1 {
+		sprite = array_sprite[0];
+		
+		sprite_index = sprite;
+		attacking = false;
+	}
+}
+
 if moving and !moved {
 	x = lerp(x, xdest, .18);
 	y = lerp(y, ydest, .18);
@@ -58,23 +66,24 @@ if moving and !moved {
 		moved = true;
 	}
 	
-	if collision_rectangle(xdest,ydest,xdest+tamcell,ydest+tamcell,objParYoukais,false,false) {
+	if collision_rectangle(x,y,xdest+tamcell,ydest+tamcell,objParYoukais,false,false) {
 		var nearest_youkai = instance_nearest(x,y,objParYoukais);
 		
 		switch nearest_youkai.peca_id {
 			default: //TODAS AS PEÇAS
 				if nearest_youkai.estado == 0 {
+					effect_create_below(ef_explosion,nearest_youkai.x+tamcell/2,nearest_youkai.y+tamcell/2,.4,c_white);
 					instance_destroy(nearest_youkai);
 				}
 				break;
 			case IdPecas.Tanuki:
 				if nearest_youkai.estado == 1 {
 					var dir = floor(point_direction(xdest,ydest,x,y)/90);
-					direcao_peca = dir;
 					xtabuleiro += lengthdir_x(1,dir*90); ytabuleiro += lengthdir_y(1,dir*90);
-					if ds_g[# xtabuleiro, ytabuleiro] != NADA {
+					while (ds_g[# xtabuleiro, ytabuleiro] != NADA) {
 						xtabuleiro += lengthdir_x(1,dir*90); ytabuleiro += lengthdir_y(1,dir*90);
 					}
+					direcao_peca = dir;
 					
 					var x1 = xinicial+(xtabuleiro*tamcell)+(xtabuleiro*buff), y1 = yinicial+(ytabuleiro*tamcell)+(ytabuleiro*buff);
 					

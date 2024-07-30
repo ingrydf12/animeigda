@@ -11,6 +11,7 @@ wcell = global.wcell;			//QUANTIDADE DE CÉLULAS NA LARGURA DO TABULEIRO
 hcell = global.hcell;			//QUANTIDADE DE CÉLULAS NA ALTURA DO TABULEIRO
 global.grid_tabuleiro = ds_grid_create(wcell,hcell);	//GRID DO TABULEIRO
 ds_grid_set_region(global.grid_tabuleiro,0,0,wcell,hcell,NADA);
+raio_sacerdotisa = 1;
 
 var ds_h = ds_grid_height(global.grid_tabuleiro),  ds_w = ds_grid_width(global.grid_tabuleiro);	//ALTURA E LARGURA DA GRID DE FORMA SIMPLIFICADA
 var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
@@ -127,6 +128,7 @@ switch room {
 		global.proximo_mapa = "Mapa 5";
 		xsacerdotisa = 5;
 		ysacerdotisa = 5;
+		raio_sacerdotisa = 2;
 		
 		array_shoguns = [
 			[IdPecas.Samurai,0,1,		objSamurai],
@@ -192,6 +194,13 @@ for (var xx = 0; xx < ds_grid_width(global.grid_tabuleiro); xx++) {
 }
 
 ds_grid_set_region(global.grid_tabuleiro,2,2,wcell-2,hcell-2,NADA);
+
+ds_grid_set_region(global.grid_tabuleiro,
+	xsacerdotisa-raio_sacerdotisa,
+	ysacerdotisa-raio_sacerdotisa,
+	xsacerdotisa+raio_sacerdotisa,
+	ysacerdotisa+raio_sacerdotisa,NADA
+);
 
 global.grid_tabuleiro[# xsacerdotisa,ysacerdotisa] = IdPecas.Sacerdotisa;
 

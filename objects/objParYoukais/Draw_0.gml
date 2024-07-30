@@ -33,10 +33,7 @@ if !no_tabuleiro and !clicado {
 
 if can_attack or can_move {
 	switch tile_mode {
-		default:
-			//NÃO DESENHAR TILES
-			break;
-	
+		
 		case TILE_MOVE:
 		
 			#region MOVER
@@ -307,7 +304,10 @@ if can_attack or can_move {
 	}
 }
 
-draw_self();
+var sc = image_xscale+.5;
+draw_sprite_ext(sprite_index,image_index,x-((tamcell/2)*(sc-image_xscale)),y-((tamcell*.8)*(sc-image_xscale)),sc,sc,0,c_white,1);
+
+//draw_self();
 
 if selecionado {
 	c = c_red;
@@ -318,3 +318,5 @@ if no_tabuleiro {
 	draw_sprite_ext(sprDirecaoPeca,0,x+tamcell/2,y+tamcell/2,image_xscale,image_yscale,direcao_peca*90,c_white,1);
 }
 
+
+//draw_rectangle(bbox_left,bbox_top,bbox_right-1,bbox_bottom-1,false);

@@ -1,0 +1,3 @@
+-Animação de Morte;
+-Sprites novos (atualizados);
+-Ajustar menu de mapa e tropas;

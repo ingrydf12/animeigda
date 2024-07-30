@@ -15,6 +15,8 @@ if position_meeting(mouse_x,mouse_y,self) and global.peca_mouse == -1 {
 				object_set_visible(objParShoguns,true);
 			}
 			
+			global.informacoes_peca = false;
+			
 			if instance_exists(obj_aba_pecas) {instance_destroy(obj_aba_pecas)}
 			var inst_n = instance_number(objParYoukais);
 			if inst_n > 0 {

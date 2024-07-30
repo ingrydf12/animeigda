@@ -25,7 +25,7 @@
   ],
   "name":"sprTurnos",
   "nineSlice":null,
-  "origin":0,
+  "origin":2,
   "parent":{
     "name":"HUD",
     "path":"folders/Sprites/HUD.yy",
@@ -80,7 +80,7 @@
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":0,
+    "xorigin":180,
     "yorigin":0,
   },
   "swatchColours":null,

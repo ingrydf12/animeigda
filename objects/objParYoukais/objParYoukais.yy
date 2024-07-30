@@ -41,6 +41,9 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":null,
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"spr_pecas_colisor",
+    "path":"sprites/spr_pecas_colisor/spr_pecas_colisor.yy",
+  },
   "visible":true,
 }

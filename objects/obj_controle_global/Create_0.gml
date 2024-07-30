@@ -3,16 +3,16 @@
 //
 
 //VARIÁVELS GLOBAIS
-global.view_w = view_get_wport(view_camera[0]);		//LARGURA DA 'GUI' DO PLAYER
-global.view_h = view_get_hport(view_camera[0]);		//ALTURA DA 'GUI' DO PLAYER
+global.view_w = display_get_gui_width();		//LARGURA DA 'GUI' DO PLAYER
+global.view_h = display_get_gui_height();		//ALTURA DA 'GUI' DO PLAYER
 global.pause = false;
 
 //MENU
 enum MenuPage {
 	Main,
 	Settings,
-	Video,
-	Audio,
+	//Video,
+	//Audio,
 	MapLevel,
 	TroopsSelect,
 	Height
@@ -56,10 +56,10 @@ enum IdPecas {
 window_set_cursor(cr_none);	//SUMIR O MOUSE
 global.mouse_check = MOUSE_NEUTRO;
 global.peca_mouse = NADA;
-global.tamanho_cell = 32;		//TAMANHO DE CADA CÉLULA DA GRID
+global.tamanho_cell = 64;		//TAMANHO DE CADA CÉLULA DA GRID
 global.wcell = 12;				//QUANTIDADE DE CÉLULAS NA LARGURA DO TABULEIRO
 global.hcell = 12;				//QUANTIDADE DE CÉLULAS NA ALTURA DO TABULEIRO
-global.escala_sprites = global.tamanho_cell/64;
+global.escala_sprites = global.tamanho_cell/sprite_get_width(spr_teste);
 //global.color_roof = make_color_rgb(0,255,0);
 global.color_roof = c_gray;
 
