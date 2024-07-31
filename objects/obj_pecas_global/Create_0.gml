@@ -11,6 +11,7 @@ enum DadosYoukais {
 	Vida,				//STATUS DE VIDA
 	Dano,				//STATUS DE DANO
 	Sprite,				//SPRITE
+	SpriteAtaque,		//SPRITE SCARY
 	Moves,				//LIMITE DE MOVIMENTOS
 	Habilidade,			//AÇÕES DISPONÍVEIS
 	Passiva,			//PASSIVA
@@ -28,6 +29,7 @@ ds_grid_add_youkai(
 	1,								//STATUS DE VIDA
 	[0,2],							//STATUS DE DANO
 	[sprChochinObakeStealth,sprChochinObake],	//SPRITE
+	sprChochinObakeScary,			//SPRITE SCARY
 	[2,1],							//LIMITE DE MOVIMENTOS
 	[noone,[atkDistancia,1,2]],		//AÇÕES DISPONÍVEIS
 	[youkaiDisfarce,noone]			//PASSIVA
@@ -42,6 +44,7 @@ ds_grid_add_youkai(
 	3,								//STATUS DE VIDA
 	[2,3],							//STATUS DE DANO
 	[sprDotakuStealth,sprDotaku],	//SPRITE
+	sprDotakuScary,					//SPRITE SCARY
 	[1,1],							//LIMITE DE MOVIMENTOS
 	[[atkPerto,1,1],[atkArea,1,3]],	//AÇÕES DISPONÍVEIS
 	[youkaiDisfarce,noone]			//PASSIVA
@@ -56,6 +59,7 @@ ds_grid_add_youkai(
 	2,								//STATUS DE VIDA
 	[0,2],							//STATUS DE DANO
 	[sprKasaObakeStealth,sprKasaObake],	//SPRITE
+	sprKasaObakeScary,				//SPRITE SCARY
 	[1,2],							//LIMITE DE MOVIMENTOS
 	[noone,[atkPerto,1,1]],				//AÇÕES DISPONÍVEIS
 	[youkaiDisfarce,noone]			//PASSIVA
@@ -70,6 +74,7 @@ ds_grid_add_youkai(
 	4,								//STATUS DE VIDA
 	[0,3],							//STATUS DE DANO
 	[sprKappaStealth,sprKappa],		//SPRITE
+	sprKappaScary,					//SPRITE SCARY
 	[1,3],							//LIMITE DE MOVIMENTOS
 	[noone,[atkPerto,1,1]],				//AÇÕES DISPONÍVEIS
 	[youkaiDisfarce,noone]			//PASSIVA
@@ -84,8 +89,9 @@ ds_grid_add_youkai(
 	1,									//STATUS DE VIDA
 	[0,3,0],							//STATUS DE DANO
 	[sprTanukiStealth,sprTanukiStealth,sprTanuki],//SPRITE
+	sprTanukiScary,			//SPRITE SCARY
 	[1,0,3],							//LIMITE DE MOVIMENTOS
-	[noone,[atkArmadilha,1,1],noone],	//AÇÕES DISPONÍVEIS
+	[noone,noone,noone],	//AÇÕES DISPONÍVEIS
 	[youkaiMetamorfose,noone,noone]		//PASSIVA
 );
 #endregion

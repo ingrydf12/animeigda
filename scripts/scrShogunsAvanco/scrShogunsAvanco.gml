@@ -20,6 +20,7 @@ function sacerdotisaProxima() {
 	var buff = 6, tamcell = global.tamanho_cell;
 	var xshogun = argument[2], yshogun = argument[3];
 	var lado;
+	var inst = instance_nearest(xshogun,yshogun,objParShoguns);
 	
 	//EIXO X:
 	var i = 0; repeat((r_max*2)+1) {
@@ -37,7 +38,6 @@ function sacerdotisaProxima() {
 		
 		if (x1 >= xmin and x1 <= xmax) {
 			if collision_rectangle(x1,y1,x2,y2,objSacerdotisa,false,false) {
-				var inst = instance_nearest(xshogun,yshogun,objParShoguns);
 				inst.direcao_peca = floor(point_direction(inst.x,inst.y,x1,y1)/90);
 				return true
 			}
@@ -100,10 +100,24 @@ function youkaiProximo() {
 		var xmax = xshogun + ( lado * ((r_max*tamcell) + (r_max*buff)) ), ymax = yshogun;
 		
 		if (x1 >= xmin and x1 <= xmax) {
-			if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,false) {
+			var youkai = collision_rectangle(x1,y1,x2,y2,objParYoukais,false,false)
+			if youkai != noone {
 				var inst = instance_nearest(xshogun,yshogun,objParShoguns);
 				inst.direcao_peca = floor(point_direction(inst.x,inst.y,x1,y1)/90);
-				return true;
+				
+				switch youkai.peca_id {
+					default:
+						if youkai.estado == 1 {
+							//show_message("Achô");
+							return true;
+						}
+						break;
+					case IdPecas.Tanuki:
+						if youkai.estado == 2 {
+							return true;
+						}
+						break;
+				}
 			}
 		}
 		
@@ -125,10 +139,24 @@ function youkaiProximo() {
 		var xmax = xshogun, ymax = yshogun + ( lado * ((r_max*tamcell) + (r_max*buff)) );
 		
 		if (y1 >= ymin and y1 <= ymax) {
-			if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,false) {
+			var youkai = collision_rectangle(x1,y1,x2,y2,objParYoukais,false,false)
+			if youkai != noone {
 				var inst = instance_nearest(xshogun,yshogun,objParShoguns);
 				inst.direcao_peca = floor(point_direction(inst.x,inst.y,x1,y1)/90);
-				return true;
+				
+				switch youkai.peca_id {
+					default:
+						if youkai.estado == 1 {
+							//show_message("Achô");
+							return true;
+						}
+						break;
+					case IdPecas.Tanuki:
+						if youkai.estado == 2 {
+							return true;
+						}
+						break;
+				}
 			}
 		}
 		

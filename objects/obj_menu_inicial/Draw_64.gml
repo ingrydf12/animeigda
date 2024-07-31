@@ -5,19 +5,18 @@
 //VARIÁVEIS
 var ds_grid = menu_pages[page], ds_h = ds_grid_height(ds_grid);
 var gw = global.view_w, gh = global.view_h;
-var escala = global.escala_sprites;
 
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_font(fnt_opcoes_menu);
-var c = non_option_color, scale = sprite_get_width(menu)/gw;
-var xbuff = 16, ybuff = 56 * escala;
-var xinicial = 96, yinicial = gh/2;
+var c = non_option_color;
+var xbuff = 168*escala, ybuff = 56 * escala;
+var xinicial = 96*escala, yinicial = gh/2;
 
 //FUNDO
 switch page {
 	case MenuPage.Settings:
-		xinicial = 320 * escala; yinicial = (gh/2)-(96 * escala);
+		xinicial = 320 * escala; yinicial = (360*escala)-(96 * escala);
 		break;
 }
 
@@ -34,13 +33,41 @@ switch page {
 				//xoff = xbuff/2;
 				c = input_color;
 			}
-			//draw_text_color(lx_txt+xoff,ly_txt,ds_grid[# 0, i],c,c,c,c,1);
-			draw_text_transformed_color(lx_txt+xoff,ly_txt,ds_grid[# 0, i],scale,scale,0,c,c,c,c,1);
+			
+			draw_text_transformed_color(lx_txt+xoff,ly_txt,ds_grid[# 0, i],escala,escala,0,c,c,c,c,1);
 		}
 		break;
 	case MenuPage.MapLevel:
 		for (var i = 0; i < ds_h; i++) {
-			ly_txt = yinicial + (i*ybuff);
+			
+			switch i {
+				default:
+					lx_txt = 300*escala;
+					ly_txt = yinicial + 180*escala;
+					break;
+				case 0:
+					lx_txt = 300*escala;
+					ly_txt = yinicial - 80*escala;
+					break;
+				case 1:
+					lx_txt = 420*escala;
+					ly_txt = yinicial + 90*escala;
+					break;
+				case 2:
+					lx_txt = 600*escala;
+					ly_txt = yinicial - 30*escala;
+					break;
+				case 3:
+					lx_txt = 720*escala;
+					ly_txt = yinicial + 120*escala;
+					break;
+				case 4:
+					lx_txt = 900*escala;
+					ly_txt = yinicial + 50*escala;
+					break;
+			}
+			
+			
 			c = non_option_color;
 			xoff = 0;
 			
@@ -48,25 +75,25 @@ switch page {
 				//xoff = xbuff/2;
 				c = input_color;
 			}
-			//draw_text_color(lx_txt+xoff,ly_txt,ds_grid[# 0, i],c,c,c,c,1);
-			draw_text_transformed_color(lx_txt+xoff,ly_txt,ds_grid[# 0, i],scale,scale,0,c,c,c,c,1);
+			
+			draw_text_transformed_color(lx_txt+xoff,ly_txt,ds_grid[# 0, i],escala,escala,0,c,c,c,c,1);
 		}
 		break;
 }
 
 //LINHA DO MEIO
-var xlinha = gw/2;
+var xlinha = xinicial + 2*xbuff;
 c = input_color;
 switch page {
 	case MenuPage.Settings:
-		draw_line_width_color(xlinha,yinicial-ybuff,xlinha,ly_txt+ybuff,4,c,c);
+		draw_line_width_color(xlinha,yinicial-ybuff,xlinha,ly_txt+ybuff,4*escala,c,c);
 		break;
 }
 
 //PARTE DIREITA
 draw_set_halign(fa_left);
 
-var rx_txt = xlinha + (3*xbuff), ry_txt;
+var rx_txt = xlinha + xbuff/2, ry_txt;
 for (var i = 0; i < ds_h; i++) {
 	ry_txt = yinicial + (i*ybuff);
 	
@@ -78,30 +105,20 @@ for (var i = 0; i < ds_h; i++) {
 			var dot_pos = (current_value-current_array[0]) / (current_array[1]-current_array[0]);
 			
 			c = non_option_color;
-			draw_line_width_color(rx_txt,ry_txt,rx_txt+len,ry_txt,8,c,c);
+			draw_line_width_color(rx_txt,ry_txt,rx_txt+len,ry_txt,8*escala,c,c);
 			//if (inputting and i == menu_option[page]) {
 			//	c = non_option_color;
 			//	draw_circle_color(rx_txt+(dot_pos*len),ry_txt,16,c,c,false);
 			//}
 			c = input_color;
-			draw_circle_color(rx_txt+(dot_pos*len),ry_txt,12,c,c,false);
-			draw_text_color(rx_txt+(len*1.2),ry_txt,string(floor(dot_pos*100))+"%",c,c,c,c,1);
+			draw_circle_color(rx_txt+(dot_pos*len),ry_txt,12*escala,c,c,false);
+			draw_text_transformed_color(rx_txt+(len*1.2),ry_txt,string(floor(dot_pos*100))+"%",escala,escala,0,c,c,c,c,1);
 			break;
 		case MenuElementType.Toggle:
 			var buff = 64 * escala;
 			var current_value = ds_grid[# 3, i];
 			var current_array = ds_grid[# 4, i];
 			var c1, c2;
-			
-			//if (inputting and i == menu_option[page]) {
-			//	var sc = 1.3;
-			//	c = non_option_color;
-			//	if current_value == 0 {
-			//		draw_text_transformed_color(rx_txt-2,ry_txt,current_array[0],sc,sc,0,c,c,c,c,1);
-			//	} else {
-			//		draw_text_transformed_color(rx_txt+buff-2,ry_txt,current_array[1],sc,sc,0,c,c,c,c,1);
-			//	}
-			//}
 			
 			c = input_color;
 			if current_value = 0 {
@@ -113,8 +130,8 @@ for (var i = 0; i < ds_h; i++) {
 			}
 			
 			draw_set_halign(fa_left);
-			draw_text_color(rx_txt,ry_txt,current_array[0],c1,c1,c1,c1,1);
-			draw_text_color(rx_txt+buff,ry_txt,current_array[1],c2,c2,c2,c2,1);
+			draw_text_transformed_color(rx_txt,ry_txt,current_array[0],escala,escala,0,c1,c1,c1,c1,1);
+			draw_text_transformed_color(rx_txt+buff,ry_txt,current_array[1],escala,escala,0,c2,c2,c2,c2,1);
 			break;
 	}
 }

@@ -2,7 +2,15 @@
 /// Site: https://linktr.ee/luruska
 //
 
-if (global.derrota or global.vitoria) {exit}
+if (global.derrota or global.vitoria or global.pause) {exit}
+
+#region VARIÁVEIS LOCAIS
+var ds_g = global.grid_tabuleiro;	//FORMA SIMPLIFICADA PARA SE REFERENCIAR ÀS GRIDS
+var ds_h = ds_grid_height(ds_g),  ds_w = ds_grid_width(ds_g);	//ALTURA E LARGURA DA GRID DE FORMA SIMPLIFICADA
+var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
+var buff = 6, tamcell = global.tamanho_cell;		//ESPAÇAMENTOS ENTRE AS CÉLULAS
+var xinicial = rw/2-((ds_w/2)*tamcell)-((ds_w/2)*buff), yinicial = rh/2-((ds_h/2)*tamcell)-((ds_h/2)*buff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
+#endregion
 
 //ATUALIZAR DADOS CONFORME O ESTADO ATUAL DA PEÇA
 dano = array_dano[estado];
@@ -16,7 +24,7 @@ if !no_tabuleiro {
 			if !clicado and global.peca_mouse == -1 {
 				clicado = true;
 				
-				if instance_exists(obj_aba_pecas) {array_delete(obj_aba_pecas.pecas_disponiveis,0,1)}
+				if instance_exists(obj_aba_pecas) {obj_aba_pecas.quantia_pecas--}
 			
 				global.peca_mouse = peca_id;
 			}
@@ -87,9 +95,37 @@ if !no_tabuleiro {
 	}
 }
 
+if hit {
+	hit_frames--;
+	
+	if hit_frames <= 0 {
+		hit_frames = 6;
+		hit = false;
+	}
+}
+
 if vida_atual <= 0 {
 	global.grid_tabuleiro[# xtabuleiro, ytabuleiro] = NADA;
-	instance_destroy()
+	//effect_create_below(ef_explosion,x+tamcell/2,y+tamcell/2,.4,c_white);
+	var sc = image_xscale+.5;
+	var xx = x-((tamcell/2)*(sc-image_xscale)), yy = y-((tamcell*.8)*(sc-image_xscale))
+	
+	var inst = instance_create_layer(xx,yy,layer,objPecaMorta);
+	inst.sprite_index = sprite;
+	
+	instance_destroy();
+}
+
+if attacking {
+	sprite = sprite_atk;
+	sprite_index = sprite;
+	
+	if animation_end() {
+		sprite = array_sprites[estado];
+		
+		sprite_index = sprite;
+		attacking = false;
+	}
 }
 
 if armadilha and armadilha_timer > armadilha_timer_limit {

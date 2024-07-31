@@ -19,6 +19,7 @@
   "height":1080,
   "HTile":false,
   "layers":[
+    {"$GMImageLayer":"","%Name":"c246846d-cc8c-41e4-8ed6-d1ef9be0f1b8","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"c246846d-cc8c-41e4-8ed6-d1ef9be0f1b8","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
     {"$GMImageLayer":"","%Name":"5da9ee76-0c49-4bfc-8b6c-5025607f9f1f","blendMode":0,"displayName":"default","isLocked":false,"name":"5da9ee76-0c49-4bfc-8b6c-5025607f9f1f","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"tropas",

@@ -2,7 +2,7 @@
 /// Site: https://linktr.ee/luruska
 //
 
-if global.selecao_pecas or (global.derrota or global.vitoria) {exit}
+if global.selecao_pecas or (global.derrota or global.vitoria) or global.pause {exit}
 
 #region VARIÁVEIS LOCAIS
 var ds_g = global.grid_tabuleiro;	//FORMA SIMPLIFICADA PARA SE REFERENCIAR ÀS GRIDS
@@ -32,10 +32,25 @@ if point_in_rectangle(mouse_x,mouse_y,x,y,x+global.tamanho_cell,y+global.tamanho
 	}
 }
 
+if hit {
+	hit_frames--;
+	
+	if hit_frames <= 0 {
+		hit_frames = 6;
+		hit = false;
+	}
+}
+
 if vida_atual <= 0 {
 	global.grid_tabuleiro[# xtabuleiro, ytabuleiro] = NADA;
-	effect_create_below(ef_explosion,x+tamcell/2,y+tamcell/2,.4,c_white);
-	instance_destroy()
+	//effect_create_below(ef_explosion,x+tamcell/2,y+tamcell/2,.4,c_white);
+	var sc = image_xscale+.5;
+	var xx = x-((tamcell/2)*(sc-image_xscale)), yy = y-((tamcell*.8)*(sc-image_xscale))
+	
+	var inst = instance_create_layer(xx,yy,layer,objPecaMorta);
+	inst.sprite_index = sprite;
+	
+	instance_destroy();
 }
 
 if reset_state_timer >= reset_state_round {
@@ -49,7 +64,7 @@ if attacking {
 	sprite = array_sprite[1];
 	sprite_index = sprite;
 	
-	if image_index >= image_number-1 {
+	if animation_end() {
 		sprite = array_sprite[0];
 		
 		sprite_index = sprite;

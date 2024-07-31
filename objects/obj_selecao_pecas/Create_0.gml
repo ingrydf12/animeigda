@@ -25,20 +25,22 @@ switch room {
 		break;
 }
 
-pecas_disponiveis = [];
+pecas_disponiveis = ds_list_create();
 peca_atual = 0;
 
-tam_slot = global.tamanho_cell;
-wslots = 4;
-hslots = 2;
+escala = global.escala_hud;
+wtam_slot = 212*escala;
+htam_slot = 405*escala;
+wslots = 5;
+hslots = 1;
 total_slots = wslots*hslots;
-buff_slot = 10;
+buff_slot = 2*escala;
 
-margin_tabela = 20;
-wtabela = (wslots*tam_slot)+(margin_tabela*2)+(buff_slot*(wslots-1));
-htabela = (hslots*tam_slot)+(margin_tabela*2)+(buff_slot*(hslots-1));
-xtabela = global.view_w/2 - wtabela/2 - margin_tabela;
-ytabela = global.view_h/2 - htabela/2 - margin_tabela;
+margin_tabela = 20*escala;
+wtabela = ((wslots*wtam_slot)+(margin_tabela*2)+(buff_slot*(wslots-1)))*escala;
+htabela = ((hslots*htam_slot)+(margin_tabela*2)+(buff_slot*(hslots-1)))*escala;
+xtabela = 83*escala;
+ytabela = 178*escala;
 
 xslotinicial = xtabela + margin_tabela;
 yslotinicial = ytabela + margin_tabela;

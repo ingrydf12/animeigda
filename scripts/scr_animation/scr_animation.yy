@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_animation",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_animation",
+  "parent":{
+    "name":"GLOBAIS",
+    "path":"folders/Scripts/GLOBAIS.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

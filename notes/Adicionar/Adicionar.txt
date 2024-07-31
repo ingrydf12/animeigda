@@ -1,3 +1,18 @@
 -Animação de Morte;
 -Sprites novos (atualizados);
 -Ajustar menu de mapa e tropas;
+
+
+
+
+Sobre ataques:
+
+Os Shoguns podem atacar Youkais disfarçados? (Caso os Shoguns tenham sido atacados antes)
+-Não, ignora todos os disfarçados;
+-Samurai sempre ignora;
+
+Os Youkais no modo Scary são ignorados pelos Shoguns? (Mesmo se os Shoguns não tiverem sido atacados)
+-Não, se estiver um Youkai próximo no modo Scary, eles irão atacar tbm;
+
+Sobre o Tanuki, ele pode somente ser atacado durante o modo Scary? (Stealth e Armadilha sendo ignorados por Shoguns)
+-Sim, não possui ataque padrão, somente a armadilha;

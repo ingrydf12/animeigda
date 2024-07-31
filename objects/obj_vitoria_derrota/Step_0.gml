@@ -18,6 +18,6 @@ if (inst_n <= 0) {
 	global.vitoria = true;
 }
 
-if keyboard_check_pressed(vk_backspace) {global.derrota = true}
+//if keyboard_check_pressed(vk_backspace) {global.derrota = true}
 
-if keyboard_check_pressed(vk_tab) {global.vitoria = true}
+//if keyboard_check_pressed(vk_tab) {global.vitoria = true}

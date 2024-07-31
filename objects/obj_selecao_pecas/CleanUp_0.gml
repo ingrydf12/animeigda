@@ -3,3 +3,4 @@
 //
 
 ds_grid_destroy(ds_grid);
+ds_list_destroy(pecas_disponiveis);

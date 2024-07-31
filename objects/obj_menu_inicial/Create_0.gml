@@ -9,6 +9,8 @@ Toggle ->			["NOME", MenuElementType.Toggle, script_to_run, InitialValue, [Value
 Slider ->			["NOME", MenuElementType.Slider, script_to_run, InitialValue, [ValueOne, ValueTwo...]],
 */
 
+audio_play_sound(snd_background_menu,1,true);
+
 global.view_w = view_get_wport(view_camera[0]);		//LARGURA DA 'GUI' DO PLAYER
 global.view_h = view_get_hport(view_camera[0]);		//ALTURA DA 'GUI' DO PLAYER
 
@@ -58,6 +60,7 @@ repeat (arr_leng) {
 	i++;
 }
 
+escala = global.escala_hud;
 inputting = false;
 input_color = make_color_rgb(83,14,16);
 non_option_color = make_color_rgb(94,82,77);

@@ -114,12 +114,9 @@ if inputting {
 	
 	if k_escape {
 		switch page {
-			//case MenuPage.Video:
-			//case MenuPage.Audio:
-			//	page = MenuPage.Settings;
-			//	break;
 			case MenuPage.Settings:
 			case MenuPage.MapLevel:
+				layer_background_sprite(back_id,menu);
 				page = MenuPage.Main;
 				break;
 		}

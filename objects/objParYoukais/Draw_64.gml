@@ -2,7 +2,7 @@
 /// Site: https://linktr.ee/luruska
 //
 
-if global.selecao_pecas or (global.derrota or global.vitoria) or (global.primeiro_turno) {exit}
+if global.selecao_pecas or (global.derrota or global.vitoria) or global.pause {exit}
 
 var escala = global.escala_sprites;
 var gw = display_get_gui_width(), gh = display_get_gui_height();

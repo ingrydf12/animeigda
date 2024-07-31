@@ -17,11 +17,15 @@ function atkPerto(){
 	var dir = floor(point_direction(x,y,inst.x,inst.y)/90);
 	if dir == 4 {dir = 0}
 	
+	attacking = true;
+	image_index = 0;
+	
 	switch inst.shogun_id {
 		default:
 			inst.vida_atual-=dano;
 			inst.estado = 1;
 			inst.reset_state_timer = 0;
+			inst.hit = true;
 			break;
 		case IdPecas.Samurai:
 			var dir_shogun = inst.direcao_peca;
@@ -33,11 +37,10 @@ function atkPerto(){
 				inst.vida_atual-=dano;
 				inst.estado = 1;
 				inst.reset_state_timer = 0;
+				inst.hit = true;
 			}
 			break;
 	}
-	
-	direcao_peca = dir;
 }
 
 function atkDistancia(){
@@ -55,11 +58,15 @@ function atkDistancia(){
 	var dir = floor(point_direction(x,y,inst.x,inst.y)/90);
 	if dir == 4 {dir = 0}
 	
+	attacking = true;
+	image_index = 0;
+	
 	switch inst.shogun_id {
 		default:
 			inst.vida_atual-=dano;
 			inst.estado = 1;
 			inst.reset_state_timer = 0;
+			inst.hit = true;
 			break;
 		case IdPecas.Samurai:
 			var dir_shogun = inst.direcao_peca;
@@ -71,11 +78,12 @@ function atkDistancia(){
 				inst.vida_atual-=dano;
 				inst.estado = 1;
 				inst.reset_state_timer = 0;
+				inst.hit = true;
 			}
 			break;
 	}
 	
-	direcao_peca = dir;
+	//direcao_peca = dir;
 }
 
 function atkArea() {
@@ -90,16 +98,16 @@ function atkArea() {
 	modo_exposicao = TILE_MOVE;
 	tile_mode = TILE_MOVE;
 	
+	attacking = true;
+	image_index = 0;
+	
 	for (var i = 0; i < inst_n; i++) {
 		var inst = ds_list_find_value(inst_list, i);
 		inst.estado = 1;
 		inst.vida_atual-=dano;
 		inst.reset_state_timer = 0;
+		inst.hit = true;
 	}
 	
 	ds_list_destroy(inst_list);
-}
-
-function atkArmadilha() {
-	
 }

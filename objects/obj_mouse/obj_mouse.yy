@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sprNeutro",
+    "path":"sprites/sprNeutro/sprNeutro.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

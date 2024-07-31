@@ -2,12 +2,32 @@
 /// Site: https://linktr.ee/luruska
 //
 function atkPertoInimigo(shogun, alvo){
+	shogun.attacking = true;
+	shogun.image_index = 0;
+	
 	if shogun.estado == 0 {
 		global.sacerdotisa_vida-=shogun.dano;
 		shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,objSacerdotisa.x,objSacerdotisa.y)/90);
 	} else {
-		alvo.vida_atual-=shogun.dano;
-		shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,alvo.x,alvo.y)/90);
+		switch alvo.peca_id {
+			default:
+				if alvo.estado == 1 {
+					shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,alvo.x,alvo.y)/90);
+					
+					alvo.vida_atual-=shogun.dano;
+					alvo.hit = true;				}
+				break;
+			case IdPecas.Tanuki:
+				if alvo.estado == 2 {
+					shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,alvo.x,alvo.y)/90);
+					
+					alvo.vida_atual-=shogun.dano;
+					alvo.hit = true;
+				}
+				break;
+		}
+		
+		
 	}
 }
 
@@ -22,6 +42,8 @@ function atkDistanciaInimigo() {
 	var xshogun = shogun.x, yshogun = shogun.y;
 	var buff = 6, tamcell = global.tamanho_cell;
 	var lado;
+	shogun.attacking = true;
+	shogun.image_index = 0;
 	
 	if shogun.estado == 0 {
 		//EIXO X:
@@ -40,7 +62,7 @@ function atkDistanciaInimigo() {
 		
 			if (x1 >= xmin and x1 <= xmax) {
 				if collision_rectangle(x1,y1,x2,y2,objSacerdotisa,false,false) {
-					shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,x1,y1)/90);
+					shogun.direcao_peca = floor(point_direction(xshogun,yshogun,x1,y1)/90);
 					
 					global.sacerdotisa_vida-=shogun.dano;
 				}
@@ -65,7 +87,7 @@ function atkDistanciaInimigo() {
 		
 			if (y1 >= ymin and y1 <= ymax) {
 				if collision_rectangle(x1,y1,x2,y2,objSacerdotisa,false,false) {
-					shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,x1,y1)/90);
+					shogun.direcao_peca = floor(point_direction(xshogun,yshogun,x1,y1)/90);
 					
 					global.sacerdotisa_vida-=shogun.dano;
 				}
@@ -90,9 +112,27 @@ function atkDistanciaInimigo() {
 		
 			if (x1 >= xmin and x1 <= xmax) {
 				if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,false) {
-					shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,x1,y1)/90);
-					
-					alvo.vida_atual-=shogun.dano;
+					with(alvo) {
+						switch peca_id {
+							default:
+								if estado == 1 {
+									//show_message("Achô");
+									shogun.direcao_peca = floor(point_direction(xshogun,yshogun,x1,y1)/90);
+									
+									vida_atual-=shogun.dano;
+									alvo.hit = true;
+								}
+								break;
+							case IdPecas.Tanuki:
+								if estado == 2 {
+									shogun.direcao_peca = floor(point_direction(xshogun,yshogun,x1,y1)/90);
+									
+									vida_atual-=shogun.dano;
+									alvo.hit = true;
+								}
+								break;
+						}
+					}
 				}
 			}
 			
@@ -115,9 +155,27 @@ function atkDistanciaInimigo() {
 			
 			if (y1 >= ymin and y1 <= ymax) {
 				if collision_rectangle(x1,y1,x2,y2,objParYoukais,false,false) {
-					shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,x1,y1)/90);
-					
-					alvo.vida_atual-=shogun.dano;
+					with(alvo) {
+						switch peca_id {
+							default:
+								if estado == 1 {
+									//show_message("Achô");
+									shogun.direcao_peca = floor(point_direction(xshogun,yshogun,x1,y1)/90);
+									
+									vida_atual-=shogun.dano;
+									alvo.hit = true;
+								}
+								break;
+							case IdPecas.Tanuki:
+								if estado == 2 {
+									shogun.direcao_peca = floor(point_direction(xshogun,yshogun,x1,y1)/90);
+									
+									vida_atual-=shogun.dano;
+									alvo.hit = true;
+								}
+								break;
+						}
+					}
 				}
 			}
 			

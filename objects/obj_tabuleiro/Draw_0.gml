@@ -4,6 +4,8 @@
 
 //draw_text(20,20,global.sacerdotisa_vida)
 
+if global.pause {exit}
+
 //VARIÁVEIS LOCAIS
 var ds_g = global.grid_tabuleiro, ds_youkais = global.grid_pecas_youkais, ds_shoguns = global.grid_pecas_shoguns;	//FORMA SIMPLIFICADA PARA SE REFERENCIAR ÀS GRIDS
 var ds_h = ds_grid_height(ds_g),  ds_w = ds_grid_width(ds_g);	//ALTURA E LARGURA DA GRID DE FORMA SIMPLIFICADA
@@ -353,4 +355,5 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 	
 }
 
-if global.turno == TURNO_JOGADOR {global.mouse_check = mcheck}
+global.mouse_check = mcheck;
+//if global.turno == TURNO_JOGADOR {global.mouse_check = mcheck}

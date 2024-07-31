@@ -1,6 +1,7 @@
 /// Insta: @jlgamedesign
 /// Site: https://linktr.ee/luruska
 //
-function Script8(){
 
-}
+image_alpha-=.04;
+
+if image_alpha <= 0 {instance_destroy()}

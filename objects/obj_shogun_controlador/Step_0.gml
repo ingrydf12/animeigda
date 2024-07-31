@@ -36,40 +36,64 @@ if global.turno == TURNO_INIMIGO {
 			
 			if inst.moved {
 				
-				if (inst.estado == 0 ? sacerdotisaProxima(range_min, range_max, inst.x, inst.y) : youkaiProximo(range_min, range_max, inst.x, inst.y)) {
-					//SE ALGUM DOS 2 ESTIVER DENTRO DO ALCANCE DO GOLPE, ENTÃO O SHOGUN IRÁ ATACAR
+				//DETECTAR PRIMEIRO SE EXISTE UM YOUKAI PRÓXIMO
+				if youkaiProximo(range_min, range_max, inst.x, inst.y) {
+					inst.estado = 1;
+					inst.reset_state_timer = 0;
 					
 					switch atk {
 						case atkPertoInimigo: script_execute(atk,inst, nearest_youkai); break;
 						case atkDistanciaInimigo: script_execute(atk, inst,nearest_youkai,range_min,range_max); break;
 					}
 					
-					inst.attacking = true;
+				//SE NÃO TIVER UM YOUKAIS PRÓXIMO, DETECTAR SE A SACERDOTISA ESTÁ PRÓXIMA
+				} else if sacerdotisaProxima(range_min, range_max, inst.x, inst.y) {
+					inst.estado = 0;
+					inst.reset_state_timer = 0;
+				
+					switch atk {
+						case atkPertoInimigo: script_execute(atk,inst, nearest_youkai); break;
+						case atkDistanciaInimigo: script_execute(atk, inst,nearest_youkai,range_min,range_max); break;
+					}
 				}
 				
 				num_inst++;
-				tries = 0;
-				inst.alvo = false;
-				exit;
+					tries = 0;
+					inst.alvo = false;
+					exit;
 			}
 			
-			//VERIFICAR PRIMEIRO SE EXISTE UM YOUKAI (PRECISA TER SIDO ATACADO ANTES, ESTADO = 1) OU UMA SACERDOTISA POR PERTO (ESTADO = 0)
-			if (inst.estado == 0 ? sacerdotisaProxima(range_min, range_max, inst.x, inst.y) : youkaiProximo(range_min, range_max, inst.x, inst.y)) {
-				//SE ALGUM DOS 2 ESTIVER DENTRO DO ALCANCE DO GOLPE, ENTÃO O SHOGUN IRÁ ATACAR
+			
+			//DETECTAR PRIMEIRO SE EXISTE UM YOUKAI PRÓXIMO
+			if youkaiProximo(range_min, range_max, inst.x, inst.y) {
+				inst.estado = 1;
+				inst.reset_state_timer = 0;
 				
 				switch atk {
 					case atkPertoInimigo: script_execute(atk,inst, nearest_youkai); break;
 					case atkDistanciaInimigo: script_execute(atk, inst,nearest_youkai,range_min,range_max); break;
 				}
 				
-				inst.attacking = true;
+				num_inst++;
+				tries = 0;
+				inst.alvo = false;
+				exit;
+			//SE NÃO TIVER UM YOUKAIS PRÓXIMO, DETECTAR SE A SACERDOTISA ESTÁ PRÓXIMA
+			} else if sacerdotisaProxima(range_min, range_max, inst.x, inst.y) {
+				inst.estado = 0;
+				inst.reset_state_timer = 0;
+				
+				switch atk {
+					case atkPertoInimigo: script_execute(atk,inst, nearest_youkai); break;
+					case atkDistanciaInimigo: script_execute(atk, inst,nearest_youkai,range_min,range_max); break;
+				}
 				
 				num_inst++;
 				tries = 0;
 				inst.alvo = false;
 				exit;
+			//SE NÃO HOUVER NADA PRÓXIMO, ENTÃO SÓ ANDAR
 			} else {
-				
 				#region SHOGUNS ANDAR
 				//SE NÃO TIVER YOUKAI OU SACERDOTISA POR PERTO, ENTÃO ELES IRÃO APENAS ANDAR
 				xtab = inst.xtabuleiro;
@@ -138,7 +162,6 @@ if global.turno == TURNO_INIMIGO {
 				}
 				
 				#endregion
-				
 			}
 			
 			

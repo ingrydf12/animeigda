@@ -2,6 +2,8 @@
 /// Site: https://linktr.ee/luruska
 //
 
+if global.selecao_pecas or (global.derrota or global.vitoria) or global.pause {exit}
+
 var ds_g = global.grid_tabuleiro;
 var ds_h = ds_grid_height(ds_g),  ds_w = ds_grid_width(ds_g);	//ALTURA E LARGURA DA GRID DE FORMA SIMPLIFICADA
 var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
@@ -12,9 +14,17 @@ var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
 var c = c_yellow;
 var move = moves;
 
-
 var sc = image_xscale+.5;
-draw_sprite_ext(sprite_index,image_index,x-((tamcell/2)*(sc-image_xscale)),y-((tamcell*.8)*(sc-image_xscale)),sc,sc,0,c_white,1);
+var xx = x-((tamcell/2)*(sc-image_xscale)), yy = y-((tamcell*.8)*(sc-image_xscale))
+
+if hit {
+	gpu_set_fog(true,c_white,0,0);
+	draw_sprite_ext(sprite_index,image_index,xx,yy,sc,sc,0,c_white,1);
+	gpu_set_fog(false,c_white,0,0);
+} else {
+	draw_sprite_ext(sprite_index,image_index,xx,yy,sc,sc,0,c_white,1);
+}
+
 //draw_self();
 
 if global.selecao_pecas or (global.derrota or global.vitoria) {exit}
@@ -24,4 +34,15 @@ if informacoes {
 	draw_rectangle_color(x,y,x+tamcell,y+tamcell,c,c,c,c,true);
 }
 
-draw_sprite_ext(sprDirecaoPeca,0,x+tamcell/2,y+tamcell/2,image_xscale,image_yscale,direcao_peca*90,c_white,1);
+switch direcao_peca {
+	default:
+		draw_sprite_ext(sprDirecaoPeca,0,x+tamcell/2,y+(tamcell/2)+12,image_xscale,image_yscale,direcao_peca*90,c_white,1);
+		break;
+	case 2:
+		draw_sprite_ext(sprDirecaoPeca,0,x+tamcell/2,y+(tamcell/2)+12,image_xscale,-(image_yscale),direcao_peca*90,c_white,1);
+		break;
+	case 1:
+	case 3:
+		draw_sprite_ext(sprDirecaoPeca,0,x+(tamcell/2)+14,y+tamcell/2,image_xscale,image_yscale,direcao_peca*90,c_white,1);
+		break;
+}

@@ -2,7 +2,7 @@
 /// Site: https://linktr.ee/luruska
 //
 
-var scale = room_width/display_get_gui_width();
+escala = global.escala_hud;
 
-image_xscale = scale;
-image_yscale = scale;
+image_xscale = escala;
+image_yscale = escala;

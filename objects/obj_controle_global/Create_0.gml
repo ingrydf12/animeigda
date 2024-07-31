@@ -3,9 +3,10 @@
 //
 
 //VARIÁVELS GLOBAIS
-global.view_w = display_get_gui_width();		//LARGURA DA 'GUI' DO PLAYER
-global.view_h = display_get_gui_height();		//ALTURA DA 'GUI' DO PLAYER
+global.view_w = view_get_wport(view_camera[0]);		//LARGURA DA 'GUI' DO PLAYER
+global.view_h = view_get_hport(view_camera[0]);		//ALTURA DA 'GUI' DO PLAYER
 global.pause = false;
+global.escala_hud = global.view_w/1280;
 
 //MENU
 enum MenuPage {
@@ -41,8 +42,8 @@ enum IdPecas {
 #macro MOUSE_SWITCH "SWITCH"
 #macro MOUSE_ATAQUE "ATAQUE"
 #macro MOUSE_INTERACT "INTERACT"
-#macro TURNO_JOGADOR "player"
-#macro TURNO_INIMIGO "enemy"
+#macro TURNO_JOGADOR "Jogador"
+#macro TURNO_INIMIGO "Inimigo"
 
 #macro REGRA_YOUKAIS_SPAWNADOS "tem bixo aqui"
 #macro REGRA_MAPA_PERSONAL "eu que essa bagaça de mapa"

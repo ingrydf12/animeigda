@@ -33,8 +33,8 @@ function room_transfer() {
 	room_goto(ds_grid[# 3, menu_option[page]]);
 }
 
-function iniciate_game() {
-	
+function resume_game() {
+	global.pause = false;
 }
 
 function exit_game() {

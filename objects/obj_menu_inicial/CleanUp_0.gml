@@ -7,3 +7,4 @@ repeat (arr_leng) {
 	ds_grid_destroy(menu_pages[i]);
 	i++;
 }
+audio_stop_sound(snd_background_menu);

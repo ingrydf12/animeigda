@@ -2,7 +2,7 @@
 /// Site: https://linktr.ee/luruska
 //
 
-if global.selecao_pecas or (global.derrota or global.vitoria) {exit}
+if global.selecao_pecas or (global.derrota or global.vitoria) or global.pause {exit}
 
 var ds_g = global.grid_tabuleiro;
 var ds_h = ds_grid_height(ds_g),  ds_w = ds_grid_width(ds_g);	//ALTURA E LARGURA DA GRID DE FORMA SIMPLIFICADA
@@ -140,6 +140,7 @@ if can_attack or can_move {
 										if mouse_check_button_pressed(mb_left) {
 											var arr = array_ataques[estado];
 											var atk = arr[0];
+											direcao_peca = point_direction(x,y,x1,y1)/90;
 											
 											script_execute(atk, x1, y1);
 										}
@@ -170,6 +171,7 @@ if can_attack or can_move {
 										if mouse_check_button_pressed(mb_left) {
 											var arr = array_ataques[estado];
 											var atk = arr[0];
+											direcao_peca = point_direction(x,y,x1,y1)/90;
 											
 											script_execute(atk, x1, y1);
 										}
@@ -304,9 +306,19 @@ if can_attack or can_move {
 	}
 }
 
-var sc = image_xscale+.5;
-draw_sprite_ext(sprite_index,image_index,x-((tamcell/2)*(sc-image_xscale)),y-((tamcell*.8)*(sc-image_xscale)),sc,sc,0,c_white,1);
+var sc = image_xscale+.5*global.escala_sprites;
+var xx = x-((tamcell/2)*(sc-image_xscale)), yy = y-((tamcell*.8)*(sc-image_xscale));
 
+if hit {
+	gpu_set_fog(true,c_white,0,0);
+	draw_sprite_ext(sprite_index,image_index,xx,yy,sc,sc,0,c_white,1);
+	gpu_set_fog(false,c_white,0,0);
+} else {
+	draw_sprite_ext(sprite_index,image_index,xx,yy,sc,sc,0,c_white,1);
+}
+
+//draw_set_color(c_red)
+//draw_rectangle(xx,yy,xx+(tamcell*sc),yy+(tamcell*sc),true);
 //draw_self();
 
 if selecionado {
@@ -315,7 +327,20 @@ if selecionado {
 }
 
 if no_tabuleiro {
-	draw_sprite_ext(sprDirecaoPeca,0,x+tamcell/2,y+tamcell/2,image_xscale,image_yscale,direcao_peca*90,c_white,1);
+	//draw_sprite_ext(sprDirecaoPeca,0,x+tamcell/2,y+tamcell/2,image_xscale-.4,image_yscale-.4,direcao_peca*90,c_white,1);
+	//sc = image_xscale-.4;
+	switch direcao_peca {
+		default:
+			draw_sprite_ext(sprDirecaoPeca,0,x+tamcell/2,y+(tamcell/2)-12,image_xscale,image_yscale,direcao_peca*90,c_white,1);
+			break;
+		case 2:
+			draw_sprite_ext(sprDirecaoPeca,0,x+tamcell/2,y+(tamcell/2)-12,image_xscale,-(image_yscale),direcao_peca*90,c_white,1);
+			break;
+		case 1:
+		case 3:
+			draw_sprite_ext(sprDirecaoPeca,0,x+(tamcell/2)-14,y+tamcell/2,image_xscale,image_yscale,direcao_peca*90,c_white,1);
+			break;
+	}
 }
 
 
