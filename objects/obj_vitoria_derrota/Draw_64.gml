@@ -3,7 +3,7 @@
 //
 var mx = device_mouse_x_to_gui(0), my = device_mouse_y_to_gui(0);
 var gh = display_get_gui_height(), gw =display_get_gui_width();
-var c = c_white, scale = 1;
+var c = c_white, scale = global.escala_hud;
 var ybuff = 64;
 draw_set_font(fnt_hud_menu);
 draw_set_halign(fa_center);

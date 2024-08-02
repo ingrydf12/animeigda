@@ -25,6 +25,7 @@
     {"name":"Sons","order":3,"path":"folders/Sons.yy",},
     {"name":"Sprites","order":1,"path":"folders/Sprites.yy",},
     {"name":"AMBIENTACAO","order":3,"path":"folders/Sprites/AMBIENTACAO.yy",},
+    {"name":"FUNDO","order":9,"path":"folders/Sprites/FUNDO.yy",},
     {"name":"HUD","order":6,"path":"folders/Sprites/HUD.yy",},
     {"name":"MOUSE","order":4,"path":"folders/Sprites/MOUSE.yy",},
     {"name":"SACERDOTISA","order":5,"path":"folders/Sprites/SACERDOTISA.yy",},
@@ -32,6 +33,7 @@
     {"name":"YOUKAIS","order":2,"path":"folders/Sprites/YOUKAIS.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"fnt_ingame","order":4,"path":"fonts/fnt_ingame/fnt_ingame.yy",},
     {"name":"fnt_opcoes_menu","order":3,"path":"fonts/fnt_opcoes_menu/fnt_opcoes_menu.yy",},
     {"name":"fnt_subtitulo_menu","order":2,"path":"fonts/fnt_subtitulo_menu/fnt_subtitulo_menu.yy",},
     {"name":"fnt_titulo_menu","order":1,"path":"fonts/fnt_titulo_menu/fnt_titulo_menu.yy",},
@@ -73,6 +75,7 @@
     {"name":"configuracoes","order":3,"path":"sprites/configuracoes/configuracoes.yy",},
     {"name":"mapa","order":2,"path":"sprites/mapa/mapa.yy",},
     {"name":"menu","order":1,"path":"sprites/menu/menu.yy",},
+    {"name":"spr_inv","order":5,"path":"sprites/spr_inv/spr_inv.yy",},
     {"name":"spr_pecas_colisor","order":7,"path":"sprites/spr_pecas_colisor/spr_pecas_colisor.yy",},
     {"name":"sprAgua","order":2,"path":"sprites/sprAgua/sprAgua.yy",},
     {"name":"sprArqueiro","order":2,"path":"sprites/sprArqueiro/sprArqueiro.yy",},

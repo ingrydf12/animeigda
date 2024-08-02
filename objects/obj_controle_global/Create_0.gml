@@ -62,7 +62,7 @@ global.wcell = 12;				//QUANTIDADE DE CÉLULAS NA LARGURA DO TABULEIRO
 global.hcell = 12;				//QUANTIDADE DE CÉLULAS NA ALTURA DO TABULEIRO
 global.escala_sprites = global.tamanho_cell/sprite_get_width(spr_teste);
 //global.color_roof = make_color_rgb(0,255,0);
-global.color_roof = c_gray;
+global.color_roof = make_color_rgb(50,50,50);
 
 global.turno = TURNO_JOGADOR;
 global.sacerdotisa_vida = 10;

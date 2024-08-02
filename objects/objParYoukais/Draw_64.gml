@@ -4,48 +4,49 @@
 
 if global.selecao_pecas or (global.derrota or global.vitoria) or global.pause {exit}
 
-var escala = global.escala_sprites;
-var gw = display_get_gui_width(), gh = display_get_gui_height();
+//var escala = global.escala_sprites;
+var gw = global.view_w, gh = global.view_h;
 var mx = device_mouse_x_to_gui(0), my = device_mouse_y_to_gui(0);
 var margin = 50*escala, str_h = string_height("I")*escala;
 var c = c_gray, alpha = 1;
-draw_set_font(fnt_opcoes_menu);
+draw_set_font(fnt_ingame);
 
 if global.informacoes_peca {
 	if global.informacoes_peca_inst == self {
-		var wquad = 150*escala, hquad = 200*escala;
+		var wquad = 250*escala, hquad = 200*escala;
 		var xquad = margin, yquad = gh-margin-hquad;
 		
 		draw_rectangle_color(xquad,yquad,xquad+wquad,yquad+hquad,c,c,c,c,false);
 		
 		var buff_quad = 8*escala;
 		var xinfo = xquad+buff_quad, yinfo = yquad+buff_quad;
-		var winfo = 134*escala, hinfo = 184*escala;
+		var winfo = wquad-(buff_quad*2), hinfo = 184*escala;
 		c = c_orange;
 		draw_rectangle_color(xinfo,yinfo,xinfo+winfo,yinfo+hinfo,c,c,c,c,false);
 		
 		var buff_dados = 4*escala;
 		
 		//NOME
+		c = c_white;
 		var xnome = xinfo+(winfo/2), ynome = yinfo+buff_dados;
 		draw_set_halign(fa_middle);
-		draw_text(xnome,ynome,nome);
+		draw_text_transformed_color(xnome,ynome,nome,escala,escala,0,c,c,c,c,1);
 		
 		
 		//VIDA
 		var xvida = xnome, yvida = ynome+buff_quad+str_h;
 		var str_hp = "HP: "+string(vida_atual)+"/"+string(vida_max);
-		draw_text(xvida,yvida,str_hp);
+		draw_text_transformed_color(xvida,yvida,str_hp,escala,escala,0,c,c,c,c,1);
 		
 		//DANO
 		var xdano = xvida, ydano = yvida+buff_dados+str_h;
 		var str_dano = "Dano: " + string(dano);
 		
-		draw_text(xdano,ydano,str_dano);
+		draw_text_transformed_color(xdano,ydano,str_dano,escala,escala,0,c,c,c,c,1);
 		
 		//PASSIVA
 		var xpassiva = xinfo+buff_dados, ypassiva = ydano+buff_quad+str_h;
-		var wpassiva = 126*escala, hpassiva = 30*escala;
+		var wpassiva = winfo-(buff_dados*2), hpassiva = 30*escala;
 		var str_passiva = "DESATIVAR: DISFARCE";
 		
 		alpha = 1; c = c_green; var sc = .8;
@@ -68,6 +69,7 @@ if global.informacoes_peca {
 							//SE ESTIVER NO TURNO DO JOGADOR E O MOUSE TIVER SIDO PRESSIONADO, ENTÃO MUDAR O ESTADO DA PEÇA
 							//E CONSEQUENTEMENTE O MODO, DE DISFARCE PARA 'SCARY'
 							estado = 1;
+							disfarce_round_timer = 0;
 							
 							//MUDAR O CAMPO VISUAL (TILES DE MOVIMENTO) DA PEÇA PARA O MODO DE MOVIMENTAÇÃO
 							can_attack = false;
@@ -81,7 +83,7 @@ if global.informacoes_peca {
 					str_passiva = "COOLDOWN..."
 					
 					//VERIFICAR SE JÁ PODE ALTERNAR PARA O MODO DE DISFARCE NOVAMENTE
-					if disfarce_round_timer > disfarce_rounds {
+					if disfarce_round_timer >= disfarce_rounds {
 						c = c_green;
 						str_passiva = "ATIVAR: DISFARCE"
 						
@@ -183,7 +185,8 @@ if global.informacoes_peca {
 		draw_rectangle_color(xpassiva,ypassiva,xpassiva+wpassiva,ypassiva+hpassiva,c,c,c,c,false);
 		draw_set_alpha(1);
 		draw_set_valign(fa_middle);
-		draw_text_transformed(xpassiva+(wpassiva/2),ypassiva+(hpassiva/2),str_passiva,sc,sc,0);
+		c = c_white;
+		draw_text_ext_transformed_color(xpassiva+(wpassiva/2),ypassiva+(hpassiva/2),str_passiva,12,wpassiva,escala,escala,0,c,c,c,c,1);
 		
 		//ATAQUE
 		var xataque = xpassiva, yataque = ypassiva+buff_quad+hpassiva;
@@ -231,6 +234,11 @@ if global.informacoes_peca {
 					//NÃO TEM A POSSIBILIDADE DE ATAQUE
 					c = c_dkgray
 					str_atk = "SEM ATAQUES";
+					
+					if point_in_rectangle(mx,my,xataque,yataque,xataque+wataque,yataque+hataque) {
+						//MUDAR O ALPHA
+						alpha = .7;
+					}
 				}
 				
 				
@@ -238,30 +246,22 @@ if global.informacoes_peca {
 				break;
 			
 			case IdPecas.Tanuki:	//ÚNICA PEÇA ESPECIAL, POSSUI 3 ESTADOS (DISFARCE, ARMADILHA, SCARY)
+				//NÃO TEM A POSSIBILIDADE DE ATAQUE
+				c = c_dkgray
+				str_atk = "SEM ATAQUES";
 				
+				if point_in_rectangle(mx,my,xataque,yataque,xataque+wataque,yataque+hataque) {
+					//MUDAR O ALPHA
+					alpha = .7;
+				}
 				break;
 		}
-		
-		//if point_in_rectangle(mx,my,xataque,yataque,xataque+wataque,yataque+hataque) {
-		//	alpha = .7;
-			
-		//	if mouse_check_button_pressed(mb_left) and global.turno == TURNO_JOGADOR and array_ataques[estado] != noone and !attacked {
-		//		can_attack = !can_attack;
-				
-		//		if can_attack {
-		//			modo_exposicao = TILE_ATTACK;
-		//			tile_mode = modo_exposicao;
-		//		} else {
-		//			modo_exposicao = TILE_MOVE;
-		//			tile_mode = noone;
-		//		}
-		//	}
-		//}
 		
 		draw_set_alpha(alpha);
 		draw_rectangle_color(xataque,yataque,xataque+wataque,yataque+hataque,c,c,c,c,false);
 		draw_set_alpha(1);
-		draw_text_transformed(xataque+(wataque/2),yataque+(hataque/2),str_atk,sc,sc,0);
+		c = c_white;
+		draw_text_ext_transformed_color(xataque+(wataque/2),yataque+(hataque/2),str_atk,12,wataque,escala,escala,0,c,c,c,c,1);
 	}
 }
 

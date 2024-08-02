@@ -3,6 +3,7 @@
 //
 randomize();
 
+escala = global.escala_hud;
 tamcell = global.tamanho_cell;
 wcell = 1;		//QUANTIDADE DE CÉLULAS NA LARGURA DO SELETOR
 hcell = ds_list_size(pecas_disponiveis);		//QUANTIDADE DE CÉLULAS NA ALTURA DO SELETOR
@@ -19,70 +20,78 @@ for (var xx = 0; xx < ds_grid_width(ds_seletor); xx++) {
 	}
 }
 
-var ds_h = ds_grid_height(ds_seletor),  ds_w = ds_grid_width(ds_seletor);	//ALTURA E LARGURA DA GRID DE FORMA SIMPLIFICADA
-var ds_tab_h = ds_grid_height(global.grid_tabuleiro), ds_tab_w = ds_grid_width(global.grid_tabuleiro);
-var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
-var buff = 6;		//ESPAÇAMENTOS ENTRE AS CÉLULAS
-var xinicial = rw/2-(((ds_tab_w/2)+wcell)*tamcell)-((ds_tab_w+wcell)*buff), yinicial = rh/2-((ds_h/2)*tamcell)-((ds_h/2)*buff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
+rh = room_height; rw = room_width;
+buff = tamcell/4; margin = 64;
+xinv = margin; yinv = margin;
+winv = 300; hinv = rh-(margin*2);
+xslot_inicial = xinv + (winv/2) - margin; yslot_inicial = (yinv+hinv/2) - (((hcell/2)+1)*tamcell) + (((hcell/2)+1)*buff);
 
 for (var xx = 0; xx < ds_grid_width(ds_seletor); xx++) {
 	for (var yy = 0; yy < ds_grid_height(ds_seletor); yy++) {
-		switch ds_seletor[# xx,yy] {
-			case IdPecas.ChochinObake:
-				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
-				var x2 = x1+tamcell, y2 = y1+tamcell;
+		var x1 = xslot_inicial+(xx*tamcell)+(xx*buff), y1 = yslot_inicial+(yy*tamcell)+(yy*buff);
+		
+		var inst = instance_create_layer(x1,y1,"Pecas",objParYoukais,{
+			peca_id : ds_seletor[# xx,yy]
+		});
+		
+		inst.xtabuleiro = xx;
+		inst.ytabuleiro = yy;
+		//switch ds_seletor[# xx,yy] {
+		//	case IdPecas.ChochinObake:
+		//		//var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+		//		//var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				var inst = instance_create_layer(x1,y1,"Pecas",objChochinObake,{
-					peca_id : IdPecas.ChochinObake
-				});
+		//		var inst = instance_create_layer(x1,y1,"Pecas",objChochinObake,{
+		//			peca_id : IdPecas.ChochinObake
+		//		});
 				
-				inst.xtabuleiro = xx;
-				inst.ytabuleiro = yy;
-				break;
-			case IdPecas.Dotaku:
-				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
-				var x2 = x1+tamcell, y2 = y1+tamcell;
+		//		inst.xtabuleiro = xx;
+		//		inst.ytabuleiro = yy;
+		//		break;
+		//	case IdPecas.Dotaku:
+		//		//var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+		//		//var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				var inst = instance_create_layer(x1,y1,"Pecas",objDotaku,{
-					peca_id : IdPecas.Dotaku
-				});
+		//		var inst = instance_create_layer(x1,y1,"Pecas",objDotaku,{
+		//			peca_id : IdPecas.Dotaku
+		//		});
 				
-				inst.xtabuleiro = xx;
-				inst.ytabuleiro = yy;
-				break;
-			case IdPecas.KasaObake:
-				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
-				var x2 = x1+tamcell, y2 = y1+tamcell;
+		//		inst.xtabuleiro = xx;
+		//		inst.ytabuleiro = yy;
+		//		break;
+		//	case IdPecas.KasaObake:
+		//		//var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+		//		//var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				var inst = instance_create_layer(x1,y1,"Pecas",objKasaObake,{
-					peca_id : IdPecas.KasaObake
-				});
+		//		var inst = instance_create_layer(x1,y1,"Pecas",objKasaObake,{
+		//			peca_id : IdPecas.KasaObake
+		//		});
 				
-				inst.xtabuleiro = xx;
-				inst.ytabuleiro = yy;
-				break;
-			case IdPecas.Kappa:
-				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
-				var x2 = x1+tamcell, y2 = y1+tamcell;
+		//		inst.xtabuleiro = xx;
+		//		inst.ytabuleiro = yy;
+		//		break;
+		//	case IdPecas.Kappa:
+		//		//var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+		//		//var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				var inst = instance_create_layer(x1,y1,"Pecas",objKappa,{
-					peca_id : IdPecas.Kappa
-				});
+		//		var inst = instance_create_layer(x1,y1,"Pecas",objKappa,{
+		//			peca_id : IdPecas.Kappa
+		//		});
 				
-				inst.xtabuleiro = xx;
-				inst.ytabuleiro = yy;
-				break;
-			case IdPecas.Tanuki:
-				var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
-				var x2 = x1+tamcell, y2 = y1+tamcell;
+		//		inst.xtabuleiro = xx;
+		//		inst.ytabuleiro = yy;
+		//		break;
+		//	case IdPecas.Tanuki:
+		//		//var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
+		//		//var x2 = x1+tamcell, y2 = y1+tamcell;
 				
-				var inst = instance_create_layer(x1,y1,"Pecas",objTanuki,{
-					peca_id : IdPecas.Tanuki
-				});
+		//		var inst = instance_create_layer(x1,y1,"Pecas",objTanuki,{
+		//			peca_id : IdPecas.Tanuki
+		//		});
 				
-				inst.xtabuleiro = xx;
-				inst.ytabuleiro = yy;
-				break;
-		}
+		//		inst.xtabuleiro = xx;
+		//		inst.ytabuleiro = yy;
+		//		break;
+		//}
 	}
 }

@@ -14,15 +14,22 @@ var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
 var c = c_yellow;
 var move = moves;
 
-var sc = image_xscale+.5;
-var xx = x-((tamcell/2)*(sc-image_xscale)), yy = y-((tamcell*.8)*(sc-image_xscale))
+var xsc = image_xscale+.5, ysc = image_xscale+.5;
+var xx = x-((tamcell/2)*(xsc-image_xscale)), yy = y-((tamcell*.8)*(ysc-image_xscale))
+
+switch direcao_peca {
+	case 2:
+		xx = x+((tamcell/2)*(xsc+image_xscale));
+		xsc = -xsc;
+		break;
+}
 
 if hit {
 	gpu_set_fog(true,c_white,0,0);
-	draw_sprite_ext(sprite_index,image_index,xx,yy,sc,sc,0,c_white,1);
+	draw_sprite_ext(sprite_index,image_index,xx,yy,xsc,ysc,0,c_white,1);
 	gpu_set_fog(false,c_white,0,0);
 } else {
-	draw_sprite_ext(sprite_index,image_index,xx,yy,sc,sc,0,c_white,1);
+	draw_sprite_ext(sprite_index,image_index,xx,yy,xsc,ysc,0,c_white,1);
 }
 
 //draw_self();

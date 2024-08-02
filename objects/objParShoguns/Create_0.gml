@@ -25,6 +25,7 @@ image_yscale = global.escala_sprites;
 //----------------------------
 
 //VARIÁVEIS
+escala = global.escala_hud;
 alvo = false;
 informacoes = false;
 clicado = false;

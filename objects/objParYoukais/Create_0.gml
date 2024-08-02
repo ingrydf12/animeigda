@@ -26,6 +26,7 @@ image_yscale = global.escala_sprites;
 //----------------------------
 
 //VARIÁVEIS
+escala = global.escala_hud;
 modo_exposicao = TILE_MOVE;
 tile_mode = noone;		//VARIÁVEL RESPONS[AVEL POR DIZER QUAIS CÉLULAS DEVEM SER DESENHADAS
 clicado = false;		//PODER MOVER DURANTE AS POSIÇÕES DE PEÇAS

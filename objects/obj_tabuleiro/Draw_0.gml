@@ -13,7 +13,7 @@ var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
 var buff = 6;		//ESPAÇAMENTOS ENTRE AS CÉLULAS
 var xinicial = rw/2-((ds_w/2)*tamcell)-((ds_w/2)*buff), yinicial = rh/2-((ds_h/2)*tamcell)-((ds_h/2)*buff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
 //var xinicial = rw/2-(((ds_w/2)-1)*tamcell)-(((ds_w/2)-1)*xbuff), yinicial = rh/2-(((ds_h/2)-1)*tamcell)-(((ds_h/2)-1)*ybuff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
-var color = global.color_roof, c = color, alpha = 1, escala = global.escala_sprites;
+var color = global.color_roof, c = color, max_alp = .3, min_alp = .5, alpha = max_alp, escala = global.escala_sprites;
 var mcheck = MOUSE_NEUTRO;
 
 if instance_exists(obj_aba_pecas) or global.primeiro_turno {
@@ -30,10 +30,10 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
 					c = color;
-					draw_set_alpha(1);
+					alpha = max_alp;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
-						draw_set_alpha(.7);
+						alpha = min_alp;
 						
 						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
 						
@@ -67,6 +67,7 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 						}
 					}
 					
+					draw_set_alpha(alpha);
 					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
 					draw_set_alpha(1);
 					break;
@@ -77,15 +78,15 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
 					c = color;
-					alpha = 1;
+					alpha = max_alp;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-						alpha = .7;
+						alpha = min_alp;
 						
 						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
 					}
 					
-					draw_set_alpha(1);
+					//draw_set_alpha(1);
 					draw_set_alpha(alpha);
 					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
 					//draw_sprite_ext(sprArvore,0,x1,y1,escala,escala,0,c_white,1);
@@ -95,10 +96,10 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
 					c = color;
-					alpha = 1;
+					alpha = max_alp;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-						alpha = .7
+						alpha = min_alp;
 						
 						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
 					}
@@ -112,10 +113,10 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
 					c = color;
-					alpha = 1;
+					alpha = max_alp;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-						alpha = .7
+						alpha = min_alp;
 						
 						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
 					}
@@ -132,10 +133,10 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
 					c = color;
-					alpha = 1;
+					alpha = max_alp;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-						alpha = .7;
+						alpha = min_alp;
 						
 						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
 					}
@@ -154,11 +155,11 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 				case IdPecas.Tanuki:
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
-					alpha = 1;
+					alpha = max_alp;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
 						mcheck = MOUSE_BLOQUEADO;
-						alpha = .8;
+						alpha = min_alp;
 						
 					}
 					
@@ -177,11 +178,11 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 				case IdPecas.Hatamoto:
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
-					alpha = 1;
+					alpha = max_alp;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
 						mcheck = MOUSE_BLOQUEADO;
-						alpha = .8;
+						alpha = min_alp;
 					}
 					
 					c = color;
@@ -208,10 +209,10 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
 					c = color;
-					draw_set_alpha(1);
+					alpha = max_alp;
 					
-					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2)  {
-						draw_set_alpha(.7);
+					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+						alpha = min_alp;
 					}
 					
 					if global.peca_mouse != -1 {
@@ -222,6 +223,7 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 						}
 					}
 					
+					draw_set_alpha(alpha);
 					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
 					draw_set_alpha(1);
 					break;
@@ -232,15 +234,14 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
 					c = color;
-					alpha = 1;
+					alpha = max_alp;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-						alpha = .7;
+						alpha = min_alp;
 						
 						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
 					}
 					
-					draw_set_alpha(1);
 					draw_set_alpha(alpha);
 					draw_rectangle_color(x1,y1,x2,y2, c,c,c,c,false);
 					//draw_sprite_ext(sprArvore,0,x1,y1,escala,escala,0,c_white,1);
@@ -250,10 +251,10 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
 					c = color;
-					alpha = 1;
+					alpha = max_alp;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-						alpha = .7
+						alpha = min_alp;
 						
 						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
 					}
@@ -267,10 +268,10 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
 					c = color;
-					alpha = 1;
+					alpha = max_alp;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-						alpha = .7
+						alpha = min_alp;
 						
 						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
 					}
@@ -287,10 +288,10 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
 					c = color;
-					alpha = 1;
+					alpha = max_alp;
 					
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-						alpha = .7;
+						alpha = min_alp;
 					}
 					
 					draw_set_alpha(alpha);
@@ -307,11 +308,11 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 				case IdPecas.Tanuki:
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
-					alpha = 1;
+					alpha = max_alp;
 					
-					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
+					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+						alpha = min_alp;
 						mcheck = MOUSE_INTERACT;
-						alpha = .8;
 					}
 					
 					c = color;
@@ -330,12 +331,11 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 				case IdPecas.Hatamoto:
 					var x1 = xinicial+(xx*tamcell)+(xx*buff), y1 = yinicial+(yy*tamcell)+(yy*buff);
 					var x2 = x1+tamcell, y2 = y1+tamcell;
-					alpha = 1;
-					global.peca_mouse = NADA;
+					alpha = max_alp;
 					
-					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
+					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
+						alpha = min_alp;
 						mcheck = MOUSE_INTERACT;
-						alpha = .8;
 					}
 					
 					c = color;

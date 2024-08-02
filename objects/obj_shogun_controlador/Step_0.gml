@@ -58,9 +58,9 @@ if global.turno == TURNO_INIMIGO {
 				}
 				
 				num_inst++;
-					tries = 0;
-					inst.alvo = false;
-					exit;
+				tries = 0;
+				inst.alvo = false;
+				exit;
 			}
 			
 			
@@ -169,6 +169,15 @@ if global.turno == TURNO_INIMIGO {
 			num_inst = 0;
 			timer_action = 0;
 			tries = 0;
+			
+			var inst_n = instance_number(objParYoukais);
+			if inst_n > 0 {
+				for (var i = 0; i < inst_n; i++) {
+					var inst = instance_find(objParYoukais,i);
+					inst.armadilha_timer++;
+					inst.disfarce_round_timer++;
+				}
+			}
 			
 			global.turno = TURNO_JOGADOR;
 		}

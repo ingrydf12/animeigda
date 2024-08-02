@@ -55,7 +55,8 @@ var i = 0; repeat(array_length(pecas_youkais)) {
 
 if limite_pecas <= 0 {
 	instance_create_layer(x,y,"AbaPecas",obj_aba_pecas,{
-		pecas_disponiveis: other.pecas_disponiveis
+		pecas_disponiveis: other.pecas_disponiveis,
+		pecas_youkais: other.pecas_youkais
 	});
 					
 	global.selecao_pecas = false;

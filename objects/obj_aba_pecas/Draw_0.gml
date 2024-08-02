@@ -2,12 +2,17 @@
 /// Site: https://linktr.ee/luruska
 //
 
-if quantia_pecas <= 0 and global.peca_mouse == -1 and !instance_exists(obj_controle_turno) {
-	instance_create_layer(room_width-32,room_height/2,"Tabuleiro",obj_controle_turno);
-	
-	instance_destroy();
-}
+var ds_youkais = global.grid_pecas_youkais, ds_shoguns = global.grid_pecas_shoguns;	//FORMA SIMPLIFICADA PARA SE REFERENCIAR ÀS GRIDS
+var ds_h = hcell,  ds_w = wcell;	//ALTURA E LARGURA DA GRID DE FORMA SIMPLIFICADA
+//var gh = room_height, gw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
+//var buff = 6, margin = 64;
+//var xinv = margin, yinv = margin;
+//var winv = 200*escala, hinv = gh-(margin*2);
+//var xslot_inicial = xinv + margin, yslot_inicial = (yinv+hinv/2) - ((ds_h/2)*tamcell) + ((ds_h/2)*buff);
+var c = c_dkgray, alpha = 1;
 
+//FUNDO INVENTÁRIO DAS PEÇAS
+//draw_rectangle(xinv,yinv,xinv+winv,yinv+hinv,false);
 
 /*
 //VARIÁVEIS LOCAIS

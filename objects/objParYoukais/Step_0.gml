@@ -128,7 +128,7 @@ if attacking {
 	}
 }
 
-if armadilha and armadilha_timer > armadilha_timer_limit {
+if armadilha and armadilha_timer >= armadilha_timer_limit {
 	estado = 2;
 	armadilha = false;
 	armadilha_timer = 0;

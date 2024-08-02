@@ -165,7 +165,8 @@ if peca_atual >= limite_pecas {
 		
 		if mouse_check_button_pressed(mb_left) {
 			instance_create_layer(x,y,"AbaPecas",obj_aba_pecas,{
-				pecas_disponiveis: other.pecas_disponiveis
+				pecas_disponiveis: other.pecas_disponiveis,
+				pecas_youkais: other.pecas_youkais
 			})
 			
 			global.selecao_pecas = false;
