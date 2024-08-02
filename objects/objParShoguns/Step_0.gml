@@ -15,6 +15,8 @@ var xinicial = rw/2-((ds_w/2)*tamcell)-((ds_w/2)*buff), yinicial = rh/2-((ds_h/2
 
 if point_in_rectangle(mouse_x,mouse_y,x,y,x+global.tamanho_cell,y+global.tamanho_cell) {
 	if mouse_check_button_pressed(mb_right) {
+		audio_play_sound(snd_anime_sfx_ui_clicknormal,2,false,1*global.sfx_volume);
+		
 		if informacoes {
 			informacoes = false;
 		} else {

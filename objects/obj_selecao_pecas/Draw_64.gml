@@ -98,7 +98,8 @@ for (var i = 0; i < total_slots; i++) {
 		c = c_white;
 		draw_set_valign(fa_top);
 		draw_set_halign(fa_center);
-		draw_text_transformed_color(xnum_y,ynum_y,string(n),escala,escala,0,c,c,c,c,1);
+		draw_sprite_ext(sprNumeracao,n,xnum_y,ynum_y,escala,escala,0,c_white,1);
+		//draw_text_transformed_color(xnum_y,ynum_y,string(n),escala,escala,0,c,c,c,c,1);
 		draw_set_valign(-1);
 		draw_set_halign(-1);
 		
@@ -114,6 +115,7 @@ for (var i = 0; i < total_slots; i++) {
 					var peca_slot_id = ds_grid[# 0, i];
 					
 					if mouse_check_button_pressed(mb_left) and id_peca == peca_slot_id and last_peca_atual == peca_atual {
+						audio_play_sound(snd_anime_sfx_ui_hover,2,false);
 						//array_delete(pecas_disponiveis,j,1);
 						//array_sort(pecas_disponiveis, true);
 						ds_list_delete(pecas_disponiveis,j);
@@ -131,6 +133,7 @@ for (var i = 0; i < total_slots; i++) {
 		
 		if point_in_rectangle(mx,my,xslot+wtam_slot-margin_tabela-wseta,yseta,xslot+wtam_slot-margin_tabela,yseta+hseta) {
 			if mouse_check_button_pressed(mb_left) and i < array_length(pecas_youkais) and last_peca_atual == peca_atual and ds_list_size(pecas_disponiveis) < limite_pecas {
+				audio_play_sound(snd_anime_sfx_ui_hover,2,false);
 				//array_push(pecas_disponiveis,ds_grid[# 0,i]);
 				//array_sort(pecas_disponiveis, true);
 			
@@ -164,6 +167,8 @@ if peca_atual >= limite_pecas {
 		c = c_dkgray;
 		
 		if mouse_check_button_pressed(mb_left) {
+			audio_play_sound(snd_anime_sfx_ui_clicknormal,2,false);
+			
 			instance_create_layer(x,y,"AbaPecas",obj_aba_pecas,{
 				pecas_disponiveis: other.pecas_disponiveis,
 				pecas_youkais: other.pecas_youkais

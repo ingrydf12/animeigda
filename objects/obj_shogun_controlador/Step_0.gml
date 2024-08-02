@@ -159,6 +159,18 @@ if global.turno == TURNO_INIMIGO {
 					inst.ydest = y1;
 					//inst.direcao_peca = floor(point_direction(inst.x,inst.y,x1,y1)/90);
 					tries = 0;
+					var snd_corrida;
+					
+					switch inst.peca_id {
+						default:
+							snd_corrida = snd_anime_sfx_corrida_unidadeleve;
+							break;
+						case IdPecas.Hatamoto:
+							snd_corrida = snd_anime_sfx_corrida_unidademedia;
+							break;
+					}
+					
+					audio_play_sound(snd_corrida,4,false,1*global.sfx_volume);
 				}
 				
 				#endregion

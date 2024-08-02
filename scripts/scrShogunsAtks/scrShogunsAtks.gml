@@ -4,10 +4,15 @@
 function atkPertoInimigo(shogun, alvo){
 	shogun.attacking = true;
 	shogun.image_index = 0;
+	var snd_atk = choose(snd_anime_sfx_dano_youkai1,snd_anime_sfx_dano_youkai2,snd_anime_sfx_dano_youkai3);
 	
 	if shogun.estado == 0 {
+		snd_atk = choose(snd_anime_sfx_dano_humano1,snd_anime_sfx_dano_humano2,snd_anime_sfx_dano_humano3,snd_anime_sfx_dano_humano4);
+		
 		global.sacerdotisa_vida-=shogun.dano;
 		shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,objSacerdotisa.x,objSacerdotisa.y)/90);
+		
+		audio_play_sound(snd_atk,6,false,1*global.sfx_volume);
 	} else {
 		switch alvo.peca_id {
 			default:
@@ -15,7 +20,10 @@ function atkPertoInimigo(shogun, alvo){
 					shogun.direcao_peca = floor(point_direction(shogun.x,shogun.y,alvo.x,alvo.y)/90);
 					
 					alvo.vida_atual-=shogun.dano;
-					alvo.hit = true;				}
+					alvo.hit = true;
+					
+					audio_play_sound(snd_atk,6,false,1*global.sfx_volume);
+				}
 				break;
 			case IdPecas.Tanuki:
 				if alvo.estado == 2 {
@@ -23,6 +31,8 @@ function atkPertoInimigo(shogun, alvo){
 					
 					alvo.vida_atual-=shogun.dano;
 					alvo.hit = true;
+					
+					audio_play_sound(snd_atk,6,false,1*global.sfx_volume);
 				}
 				break;
 		}
@@ -44,8 +54,10 @@ function atkDistanciaInimigo() {
 	var lado;
 	shogun.attacking = true;
 	shogun.image_index = 0;
+	var snd_atk = choose(snd_anime_sfx_dano_youkai1,snd_anime_sfx_dano_youkai2,snd_anime_sfx_dano_youkai3);
 	
 	if shogun.estado == 0 {
+		snd_atk = choose(snd_anime_sfx_dano_humano1,snd_anime_sfx_dano_humano2,snd_anime_sfx_dano_humano3,snd_anime_sfx_dano_humano4);
 		//EIXO X:
 		var i = 0; repeat((d_max*2)+1) {
 			var x1 = xshogun - ((d_max*tamcell) + (d_max*buff)) + ((i*tamcell) + (i*buff)), y1 = yshogun;
@@ -65,6 +77,8 @@ function atkDistanciaInimigo() {
 					shogun.direcao_peca = floor(point_direction(xshogun,yshogun,x1,y1)/90);
 					
 					global.sacerdotisa_vida-=shogun.dano;
+					
+					audio_play_sound(snd_atk,6,false,1*global.sfx_volume);
 				}
 			}
 		
@@ -90,6 +104,8 @@ function atkDistanciaInimigo() {
 					shogun.direcao_peca = floor(point_direction(xshogun,yshogun,x1,y1)/90);
 					
 					global.sacerdotisa_vida-=shogun.dano;
+					
+					audio_play_sound(snd_atk,6,false,1*global.sfx_volume);
 				}
 			}
 		
@@ -121,6 +137,8 @@ function atkDistanciaInimigo() {
 									
 									vida_atual-=shogun.dano;
 									alvo.hit = true;
+									
+									audio_play_sound(snd_atk,6,false,1*global.sfx_volume);
 								}
 								break;
 							case IdPecas.Tanuki:
@@ -129,6 +147,8 @@ function atkDistanciaInimigo() {
 									
 									vida_atual-=shogun.dano;
 									alvo.hit = true;
+									
+									audio_play_sound(snd_atk,6,false,1*global.sfx_volume);
 								}
 								break;
 						}
@@ -164,6 +184,8 @@ function atkDistanciaInimigo() {
 									
 									vida_atual-=shogun.dano;
 									alvo.hit = true;
+									
+									audio_play_sound(snd_atk,6,false,1*global.sfx_volume);
 								}
 								break;
 							case IdPecas.Tanuki:
@@ -172,6 +194,8 @@ function atkDistanciaInimigo() {
 									
 									vida_atual-=shogun.dano;
 									alvo.hit = true;
+									
+									audio_play_sound(snd_atk,6,false,1*global.sfx_volume);
 								}
 								break;
 						}

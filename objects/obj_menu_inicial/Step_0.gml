@@ -32,6 +32,8 @@ if inputting {
 				if current_value > 1 {current_value = 0};
 				
 				if current_value != ds_grid[# 3, menu_option[page]] {
+					audio_play_sound(snd_anime_sfx_ui_hover,2,false,1*global.sfx_volume);
+					
 					script_execute(ds_grid[# 2, menu_option[page]], current_value);
 				}
 				
@@ -39,16 +41,26 @@ if inputting {
 				break;
 				
 			case MenuElementType.Slider:
-				ds_grid[# 3, menu_option[page]]+=(input*.2);
-				ds_grid[# 3, menu_option[page]] = clamp(ds_grid[# 3, menu_option[page]],0,1);
+				current_value = ds_grid[# 3, menu_option[page]];
 				
-				script_execute(ds_grid[# 2, menu_option[page]], ds_grid[# 3, menu_option[page]]);
+				current_value+=(input*.2);
+				current_value = clamp(current_value,0,1);
+				
+				if ds_grid[# 3, menu_option[page]] != current_value {
+					audio_play_sound(snd_anime_sfx_ui_hover,2,false,1*global.sfx_volume);
+					
+					script_execute(ds_grid[# 2, menu_option[page]], current_value);
+				}
+				
+				ds_grid[# 3, menu_option[page]] = current_value;
 				break;
 		}
 	}
 	
 	if k_escape or k_enter {
 		inputting = !inputting;
+		
+		audio_play_sound(snd_anime_sfx_ui_clicknormal,2,false,1*global.sfx_volume);
 	}
 	
 } else {
@@ -56,12 +68,16 @@ if inputting {
 	if input != 0 {
 		menu_option[page]+=input;
 		
+		audio_play_sound(snd_anime_sfx_ui_hover,2,false,1*global.sfx_volume);
+		
 		if menu_option[page] >= ds_h {menu_option[page] = 0}
 		if menu_option[page] < 0 {menu_option[page] = ds_h-1}
 	}
 	
 	if k_enter {
 		if page != MenuPage.MapLevel {
+			audio_play_sound(snd_anime_sfx_ui_clicknormal,2,false,1*global.sfx_volume);
+			
 			switch (ds_grid[# 1, menu_option[page]]) {
 				case MenuElementType.ScriptRunner: script_execute(ds_grid[# 2, menu_option[page]]); break;
 				case MenuElementType.PageTransfer:
@@ -84,15 +100,21 @@ if inputting {
 						ini_close();
 						
 						if save {
+							audio_play_sound(snd_anime_sfx_ui_click_startgame,2,false,1*global.sfx_volume);
+							
 							script_execute(ds_grid[# 2, menu_option[page]]);
 						}
 					} else {
 						if menu_option[page] == 0 {
+							audio_play_sound(snd_anime_sfx_ui_click_startgame,2,false,1*global.sfx_volume);
+							
 							script_execute(ds_grid[# 2, menu_option[page]]);
 						}
 					}
 					break;
 				case MenuElementType.PageTransfer:
+					audio_play_sound(snd_anime_sfx_ui_clicknormal,2,false,1*global.sfx_volume);
+					
 					page = ds_grid[# 2, menu_option[page]];
 					menu_option[page] = 0;
 					break;
@@ -116,6 +138,8 @@ if inputting {
 		switch page {
 			case MenuPage.Settings:
 			case MenuPage.MapLevel:
+				audio_play_sound(snd_anime_sfx_ui_clicknormal,2,false,1*global.sfx_volume);
+				
 				layer_background_sprite(back_id,menu);
 				page = MenuPage.Main;
 				break;

@@ -15,7 +15,7 @@ dano =				global.grid_pecas_shoguns[# DadosShoguns.Dano, peca_id];
 moves =				global.grid_pecas_shoguns[# DadosShoguns.Moves, peca_id];
 array_acoes =		global.grid_pecas_shoguns[# DadosShoguns.Acao, peca_id];
 array_passivas =	global.grid_pecas_shoguns[# DadosShoguns.Passiva, peca_id];
-array_sprite =			global.grid_pecas_shoguns[# DadosShoguns.Sprite, peca_id];
+array_sprite =		global.grid_pecas_shoguns[# DadosShoguns.Sprite, peca_id];
 sprite = array_sprite[0];
 
 sprite_index = sprite;

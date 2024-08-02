@@ -22,6 +22,8 @@ if !no_tabuleiro {
 	
 		if mouse_check_button_pressed(mb_left) {
 			if !clicado and global.peca_mouse == -1 {
+				audio_play_sound(snd_anime_sfx_ui_hover,2,false);
+				
 				clicado = true;
 				
 				if instance_exists(obj_aba_pecas) {obj_aba_pecas.quantia_pecas--}
@@ -41,6 +43,8 @@ if !no_tabuleiro {
 	
 	if point_in_rectangle(mouse_x,mouse_y,x,y,x+global.tamanho_cell,y+global.tamanho_cell) {
 		if mouse_check_button_pressed(mb_right) {
+			audio_play_sound(snd_anime_sfx_ui_clicknormal,2,false,1*global.sfx_volume);
+			
 			var inst_n = instance_number(objParYoukais);
 			if inst_n > 0 {
 				for (var i = 0; i < inst_n; i++) {

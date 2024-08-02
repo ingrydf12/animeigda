@@ -42,7 +42,23 @@ function exit_game() {
 }
 
 function change_volume() {
+	var type = menu_option[page];
 	
+	switch type {
+		case 1:
+			global.master_volume = argument[0];
+			audio_master_gain(global.master_volume);
+			break;
+		case 2: global.sfx_volume = argument[0]; break;
+		case 3:
+			global.music_volume = argument[0];
+			if room == rm_menu {
+				audio_sound_gain(snd_background_menu,global.music_volume,5);
+			} else {
+				audio_sound_gain(snd_background_gameplay,global.music_volume,5);
+			}
+			break;
+	}
 }
 
 function change_window_mode() {

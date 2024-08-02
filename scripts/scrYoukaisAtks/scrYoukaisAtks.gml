@@ -26,6 +26,8 @@ function atkPerto(){
 			inst.estado = 1;
 			inst.reset_state_timer = 0;
 			inst.hit = true;
+			
+			audio_play_sound(snd_anime_sfx_ataque_yokai,6,false,1*global.sfx_volume);
 			break;
 		case IdPecas.Samurai:
 			var dir_shogun = inst.direcao_peca;
@@ -38,6 +40,8 @@ function atkPerto(){
 				inst.estado = 1;
 				inst.reset_state_timer = 0;
 				inst.hit = true;
+				
+				audio_play_sound(snd_anime_sfx_ataque_yokai,6,false,1*global.sfx_volume);
 			}
 			break;
 	}
@@ -67,6 +71,8 @@ function atkDistancia(){
 			inst.estado = 1;
 			inst.reset_state_timer = 0;
 			inst.hit = true;
+			
+			audio_play_sound(snd_anime_sfx_ataque_yokai,6,false,1*global.sfx_volume);
 			break;
 		case IdPecas.Samurai:
 			var dir_shogun = inst.direcao_peca;
@@ -79,6 +85,8 @@ function atkDistancia(){
 				inst.estado = 1;
 				inst.reset_state_timer = 0;
 				inst.hit = true;
+				
+				audio_play_sound(snd_anime_sfx_ataque_yokai,6,false,1*global.sfx_volume);
 			}
 			break;
 	}
@@ -108,6 +116,8 @@ function atkArea() {
 		inst.reset_state_timer = 0;
 		inst.hit = true;
 	}
+	
+	audio_play_sound(snd_anime_sfx_ataque_yokai,6,false,1*global.sfx_volume);
 	
 	ds_list_destroy(inst_list);
 }

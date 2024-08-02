@@ -65,6 +65,8 @@ if can_attack or can_move {
 								
 								x = x1;
 								y = y1;
+								
+								audio_play_sound(snd_anime_sfx_corrida_yokai,4,false,1*global.sfx_volume);
 							}
 						}
 					}
@@ -101,6 +103,8 @@ if can_attack or can_move {
 								
 								x = x1;
 								y = y1;
+								
+								audio_play_sound(snd_anime_sfx_corrida_yokai,4,false,1*global.sfx_volume);
 							}
 						}
 					}
@@ -329,8 +333,10 @@ if hit {
 //draw_self();
 
 if selecionado {
-	c = c_red;
-	draw_rectangle_color(x,y,x+tamcell,y+tamcell,c,c,c,c,true);
+	c = c_white;
+	draw_set_alpha(.4);
+	draw_rectangle_color(x,y,x+tamcell,y+tamcell,c,c,c,c,false);
+	draw_set_alpha(1);
 }
 
 if no_tabuleiro {

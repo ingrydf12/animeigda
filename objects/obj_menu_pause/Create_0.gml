@@ -10,9 +10,9 @@ ds_menu_main = create_menu_page(
 
 ds_menu_settings = create_menu_page(
 	["TELA CHEIA", MenuElementType.Toggle, change_window_mode,	0, ["OFF", "ON"]],
-	["GERAL", MenuElementType.Slider, change_volume,			1, [0,1]],
-	["EFEITOS", MenuElementType.Slider, change_volume,			1, [0,1]],
-	["MÚSICA", MenuElementType.Slider, change_volume,			1, [0,1]],
+	["GERAL", MenuElementType.Slider, change_volume,			global.master_volume, [0,1]],
+	["EFEITOS", MenuElementType.Slider, change_volume,			global.sfx_volume, [0,1]],
+	["MÚSICA", MenuElementType.Slider, change_volume,			global.music_volume, [0,1]],
 	["VOLTAR", MenuElementType.PageTransfer, MenuPage.Main]
 );
 

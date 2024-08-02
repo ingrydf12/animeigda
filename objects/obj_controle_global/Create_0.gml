@@ -7,11 +7,17 @@ global.view_w = view_get_wport(view_camera[0]);		//LARGURA DA 'GUI' DO PLAYER
 global.view_h = view_get_hport(view_camera[0]);		//ALTURA DA 'GUI' DO PLAYER
 global.pause = false;
 global.escala_hud = global.view_w/1280;
+global.master_volume = 1;
+global.sfx_volume = 1;
+global.music_volume = 1;
+
+audio_master_gain(global.master_volume);
 
 //MENU
 enum MenuPage {
 	Main,
 	Settings,
+	Credits,
 	//Video,
 	//Audio,
 	MapLevel,
@@ -23,7 +29,8 @@ enum MenuElementType {
 	ScriptRunner,
 	PageTransfer,
 	Toggle,
-	Slider
+	Slider,
+	Shift
 }
 
 //PEÇAS

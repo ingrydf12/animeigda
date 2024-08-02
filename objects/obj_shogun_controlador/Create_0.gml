@@ -2,7 +2,7 @@
 /// Site: https://linktr.ee/luruska
 //
 randomize();
-#macro TIMEOUT game_get_speed(gamespeed_fps) * .9
+#macro TIMEOUT game_get_speed(gamespeed_fps) * 1.7
 
 timer_action = 0;
 num_inst = 0;

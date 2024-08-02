@@ -12,8 +12,8 @@
   "duration":102.384,
   "name":"snd_background_menu",
   "parent":{
-    "name":"Sons",
-    "path":"folders/Sons.yy",
+    "name":"MUSIC",
+    "path":"folders/Sons/MUSIC.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
