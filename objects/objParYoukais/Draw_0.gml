@@ -11,7 +11,8 @@ var buff = 6;		//ESPAÇAMENTOS ENTRE AS CÉLULAS
 var tamcell = global.tamanho_cell;
 var xinicial = rw/2-((ds_w/2)*tamcell)-((ds_w/2)*buff), yinicial = rh/2-((ds_h/2)*tamcell)-((ds_h/2)*buff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
 var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
-var c = c_yellow, alpha = 1;
+var move_color = make_color_rgb(187,192,235), atk_color = make_color_rgb(187,182,115), block_color = make_color_rgb(200,90,90);
+var c = move_color, alpha = 1;
 var move = array_moves[estado];
 
 #region QUANDO A PEÇA AINDA ESTIVER NA ABA DAS PEÇAS
@@ -43,17 +44,17 @@ if can_attack or can_move {
 			for (var xx = 0; xx < ((move*2)+1); xx++) {
 				var x1 = x - ((move*tamcell) + (move*buff)) + ((xx*tamcell) + (xx*buff)), y1 = y;
 				var x2 = x1 + tamcell, y2 = y1 + tamcell;
-				c = c_yellow;
+				c = move_color; alpha = .8;
 				if moved {c = make_color_rgb(180,90,100)}
 			
 				var colid = collision_rectangle(x1,y1,x2,y2,objParPecas,false,true);
-				if colid {c = c_red}
+				if colid {c = block_color}
 			
 				if (x1 >= xinicial and x1 < (xinicial+(ds_w*tamcell)+(ds_w*buff)) and x1 != x) {
 					
 					if global.turno == TURNO_JOGADOR and !moved and !global.primeiro_turno {
 						if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-							c = c_orange;
+							alpha = .5;
 							
 							if mouse_check_button_pressed(mb_left) and !colid {
 								moved = true;
@@ -66,12 +67,12 @@ if can_attack or can_move {
 								x = x1;
 								y = y1;
 								
-								audio_play_sound(snd_anime_sfx_corrida_yokai,4,false,1*global.sfx_volume);
+								audio_play_sound(snd_anime_sfx_corrida_youkai,4,false,1*global.sfx_volume);
 							}
 						}
 					}
 					
-					draw_set_alpha(.3);
+					draw_set_alpha(alpha);
 					draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
 					draw_set_alpha(1);
 				}
@@ -81,17 +82,17 @@ if can_attack or can_move {
 			for (var yy = 0; yy < ((move*2)+1); yy++) {
 				var x1 = x, y1 = y - ((move*tamcell) + (move*buff)) + ((yy*tamcell) + (yy*buff));
 				var x2 = x1 + tamcell, y2 = y1 + tamcell;
-				c = c_yellow;
+				c = move_color; alpha = .8;
 				if moved {c = make_color_rgb(180,90,100)}
 				
 				var colid = collision_rectangle(x1,y1,x2,y2,objParPecas,false,true);
-				if colid {c = c_red}
+				if colid {c = block_color}
 			
 				if (y1 >= yinicial and y1 < (yinicial+(ds_h*tamcell)+(ds_h*buff)) and y1 != y) {
 					
 					if global.turno == TURNO_JOGADOR and !moved and !global.primeiro_turno {
 						if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-							c = c_orange;
+							alpha = .5;
 							
 							if mouse_check_button_pressed(mb_left) and !colid {
 								moved = true;
@@ -104,12 +105,12 @@ if can_attack or can_move {
 								x = x1;
 								y = y1;
 								
-								audio_play_sound(snd_anime_sfx_corrida_yokai,4,false,1*global.sfx_volume);
+								audio_play_sound(snd_anime_sfx_corrida_youkai,4,false,1*global.sfx_volume);
 							}
 						}
 					}
 					
-					draw_set_alpha(.3);
+					draw_set_alpha(alpha);
 					draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
 					draw_set_alpha(1);
 				}
@@ -130,14 +131,13 @@ if can_attack or can_move {
 					for (var xx = 0; xx < ((range_max*2)+1); xx++) {
 						var x1 = x - ((range_max*tamcell) + (range_max*buff)) + ((xx*tamcell) + (xx*buff)), y1 = y;
 						var x2 = x1 + tamcell, y2 = y1 + tamcell;
-						c = c_purple;
-						if attacked {c = make_color_rgb(150,50,80)}
+						c = atk_color; alpha = .6;
 						
 						if (x1 >= xinicial and x1 < (xinicial+(ds_w*tamcell)+(ds_w*buff)) and x1 != x) {
 							
 							if global.turno == TURNO_JOGADOR and !attacked and !global.primeiro_turno {
 								if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-									c = make_color_rgb(200,0,200);
+									alpha = .34;
 									var xinim = xtabuleiro + (xx-range_max), yinim = ytabuleiro;
 									
 									if (ds_g[# xinim, yinim] > IdPecas.AlturaPlayers and ds_g[# xinim, yinim] < IdPecas.AlturaInimigos) {
@@ -152,7 +152,7 @@ if can_attack or can_move {
 								}
 							}
 							
-							draw_set_alpha(.3);
+							draw_set_alpha(alpha);
 							draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
 							draw_set_alpha(1);
 						}
@@ -162,13 +162,12 @@ if can_attack or can_move {
 					for (var yy = 0; yy < ((range_max*2)+1); yy++) {
 						var x1 = x, y1 = y - ((range_max*tamcell) + (range_max*buff)) + ((yy*tamcell) + (yy*buff));
 						var x2 = x1 + tamcell, y2 = y1 + tamcell;
-						c = c_purple;
-						if attacked {c = make_color_rgb(150,50,80)}
+						c = atk_color; alpha = .6;
 						
 						if (y1 >= yinicial and y1 < (yinicial+(ds_h*tamcell)+(ds_h*buff)) and y1 != y) {
 							if global.turno == TURNO_JOGADOR and !attacked and !global.primeiro_turno {
 								if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-									c = make_color_rgb(200,0,200);
+									alpha = .34;
 									var xinim = xtabuleiro, yinim = ytabuleiro + (yy-range_max);
 									
 									if (ds_g[# xinim, yinim] > IdPecas.AlturaPlayers and ds_g[# xinim, yinim] < IdPecas.AlturaInimigos) {
@@ -183,7 +182,7 @@ if can_attack or can_move {
 								}
 							}
 							
-							draw_set_alpha(.3);
+							draw_set_alpha(alpha);
 							draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
 							draw_set_alpha(1);
 						}
@@ -200,8 +199,7 @@ if can_attack or can_move {
 								var x1 = x - ((range_min*tamcell) + (range_min*buff)) + ((xx*tamcell) + (xx*buff));
 								var y1 = y - ((range_min*tamcell) + (range_min*buff)) + ((yy*tamcell) + (yy*buff));
 								var x2 = x1 + tamcell, y2 = y1 + tamcell;
-								c = c_purple;
-								if attacked {c = make_color_rgb(150,50,80)}
+								c = atk_color; alpha = .6;
 								
 								if (x1 != x or y1 != y) {
 									if (x1 >= xinicial and x1 < (xinicial+(ds_w*tamcell)+(ds_w*buff))) {
@@ -209,15 +207,13 @@ if can_attack or can_move {
 											
 											if global.turno == TURNO_JOGADOR and !attacked and !global.primeiro_turno {
 												if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-													c = make_color_rgb(200,0,200);
+													alpha = .34;
 													
 													//LOCALIZAR TODOS OS INIMIGOS NA ÁREA DE ATAQUE
 													var x1col = x - ((range_min*tamcell) + (range_min*buff)), y1col = y - ((range_min*tamcell) + (range_min*buff));
 													var x2col = x + tamcell + ((range_min*tamcell) + (range_min*buff)), y2col = y + tamcell + ((range_min*tamcell) + (range_min*buff));
 													var inst_list = ds_list_create();
 													
-													c = c_red;
-													draw_rectangle_color(x1col,y1col,x2col,y2col,c,c,c,c,true);
 													var inst_n = collision_rectangle_list(x1col,y1col,x2col,y2col, objParShoguns, false, true,inst_list,false);
 													
 													if inst_n > 0 {
@@ -230,7 +226,7 @@ if can_attack or can_move {
 												}
 											}
 											
-											draw_set_alpha(.3);
+											draw_set_alpha(alpha);
 											draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
 											draw_set_alpha(1);
 										}
@@ -245,14 +241,13 @@ if can_attack or can_move {
 						for (var xx = 0; xx < ((range_max*2)+1); xx++) {
 							var x1 = x - ((range_max*tamcell) + (range_max*buff)) + ((xx*tamcell) + (xx*buff)), y1 = y;
 							var x2 = x1 + tamcell, y2 = y1 + tamcell;
-							c = c_purple;
-							if attacked {c = make_color_rgb(150,50,80)}
+							c = atk_color; alpha = .6;
 							
 							if (x1 >= xinicial and x1 < (xinicial+(ds_w*tamcell)+(ds_w*buff)) and x1 != x) {
 								
 								if global.turno == TURNO_JOGADOR and !attacked and !global.primeiro_turno {
 									if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-										c = make_color_rgb(200,0,200);
+										alpha = .34;
 										var xinim = xtabuleiro + (xx-range_max), yinim = ytabuleiro;
 										
 										if (ds_g[# xinim, yinim] > IdPecas.AlturaPlayers and ds_g[# xinim, yinim] < IdPecas.AlturaInimigos) {
@@ -266,7 +261,7 @@ if can_attack or can_move {
 									}
 								}
 								
-								draw_set_alpha(.3);
+								draw_set_alpha(alpha);
 								draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
 								draw_set_alpha(1);
 							}
@@ -276,13 +271,12 @@ if can_attack or can_move {
 						for (var yy = 0; yy < ((range_max*2)+1); yy++) {
 							var x1 = x, y1 = y - ((range_max*tamcell) + (range_max*buff)) + ((yy*tamcell) + (yy*buff));
 							var x2 = x1 + tamcell, y2 = y1 + tamcell;
-							c = c_purple;
-							if attacked {c = make_color_rgb(150,50,80)}
+							c = atk_color; alpha = .6;
 							
 							if (y1 >= yinicial and y1 < (yinicial+(ds_h*tamcell)+(ds_h*buff)) and y1 != y) {
 								if global.turno == TURNO_JOGADOR and !attacked and !global.primeiro_turno {
 									if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) {
-										c = make_color_rgb(200,0,200);
+										alpha = .34;
 										var xinim = xtabuleiro, yinim = ytabuleiro + (yy-range_max);
 										
 										if (ds_g[# xinim, yinim] > IdPecas.AlturaPlayers and ds_g[# xinim, yinim] < IdPecas.AlturaInimigos) {
@@ -296,7 +290,7 @@ if can_attack or can_move {
 									}
 								}
 								
-								draw_set_alpha(.3);
+								draw_set_alpha(alpha);
 								draw_rectangle_color(x1,y1,x2,y2,c,c,c,c,false);
 								draw_set_alpha(1);
 							}
@@ -333,9 +327,10 @@ if hit {
 //draw_self();
 
 if selecionado {
-	c = c_white;
-	draw_set_alpha(.4);
-	draw_rectangle_color(x,y,x+tamcell,y+tamcell,c,c,c,c,false);
+	c = c_red;
+	draw_set_alpha(.6);
+	draw_rectangle_color(x,y,x+tamcell,y+tamcell,c,c,c,c,true);
+	draw_rectangle_color(x+1,y+1,x+tamcell-1,y+tamcell-1,c,c,c,c,true);
 	draw_set_alpha(1);
 }
 

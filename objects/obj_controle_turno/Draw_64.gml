@@ -2,6 +2,9 @@
 /// Site: https://linktr.ee/luruska
 //
 
+draw_sprite_stretched(sprInvFechadoTropasIngame,0,0,0,global.view_w,global.view_h);
+//draw_sprite_stretched(sprAvisoTurno,0,0,0,global.view_w,global.view_h);
+
 var c = c_white;
 
 draw_set_font(fnt_opcoes_menu);

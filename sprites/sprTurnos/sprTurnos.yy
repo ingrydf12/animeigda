@@ -20,15 +20,15 @@
   "height":90,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"778899fc-7920-44ad-ad43-12e7a9f5f7bc","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"778899fc-7920-44ad-ad43-12e7a9f5f7bc","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"c4474986-bff0-475c-8a8a-ca9c30a89fa6","blendMode":0,"displayName":"Layer 2","isLocked":false,"name":"c4474986-bff0-475c-8a8a-ca9c30a89fa6","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
     {"$GMImageLayer":"","%Name":"b406a8ac-163c-4ec4-b185-cf42d26dfa81","blendMode":0,"displayName":"default","isLocked":false,"name":"b406a8ac-163c-4ec4-b185-cf42d26dfa81","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"sprTurnos",
   "nineSlice":null,
   "origin":2,
   "parent":{
-    "name":"HUD",
-    "path":"folders/Sprites/HUD.yy",
+    "name":"INGAME",
+    "path":"folders/Sprites/HUD/INGAME.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

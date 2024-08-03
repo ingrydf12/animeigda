@@ -3,4 +3,4 @@
 //
 
 
-draw_text(20,20,view_get_wport(view_camera[0]))
+//draw_text(20,20,view_get_wport(view_camera[0]))

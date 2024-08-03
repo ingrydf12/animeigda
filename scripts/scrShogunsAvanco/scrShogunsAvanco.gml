@@ -109,12 +109,12 @@ function youkaiProximo() {
 					default:
 						if youkai.estado == 1 {
 							//show_message("Achô");
-							return true;
+							return youkai;
 						}
 						break;
 					case IdPecas.Tanuki:
 						if youkai.estado == 2 {
-							return true;
+							return youkai;
 						}
 						break;
 				}
@@ -148,12 +148,12 @@ function youkaiProximo() {
 					default:
 						if youkai.estado == 1 {
 							//show_message("Achô");
-							return true;
+							return youkai;
 						}
 						break;
 					case IdPecas.Tanuki:
 						if youkai.estado == 2 {
-							return true;
+							return youkai;
 						}
 						break;
 				}
@@ -163,5 +163,5 @@ function youkaiProximo() {
 		i++;
 	}
 	
-	return false;
+	return noone;
 }

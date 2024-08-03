@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":2.0,
+  "duration":0.666667,
   "name":"snd_anime_sfx_corrida_unidademedia",
   "parent":{
     "name":"SHOGUN",

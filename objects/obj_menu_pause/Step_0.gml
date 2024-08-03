@@ -103,10 +103,10 @@ if inputting {
 		
 		switch page {
 			default:
-				back_id = menu
+				back_id = sprMenuInicial
 				break;
 			case MenuPage.Settings:
-				back_id = configuracoes;
+				back_id = sprMenuConfiguracoes;
 				break;
 		}
 	}
@@ -116,7 +116,7 @@ if inputting {
 			case MenuPage.Settings:
 				audio_play_sound(snd_anime_sfx_ui_clicknormal,2,false,1*global.sfx_volume);
 				
-				back_id = menu
+				back_id = sprMenuInicial
 				page = MenuPage.Main;
 				break;
 		}

@@ -20,7 +20,8 @@ draw_sprite_stretched(back_id,0,0,0,gw,gh);
 
 switch page {
 	case MenuPage.Settings:
-		xinicial = 320 * escala; yinicial = (360*escala)-(96 * escala);
+		xinicial = 400 * escala; yinicial = (360*escala)-(72*escala);
+		draw_sprite_stretched(sprMenuPergaminho,0,0,0,gw,gh);
 		break;
 }
 

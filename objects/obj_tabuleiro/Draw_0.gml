@@ -11,7 +11,7 @@ var ds_g = global.grid_tabuleiro, ds_youkais = global.grid_pecas_youkais, ds_sho
 var ds_h = ds_grid_height(ds_g),  ds_w = ds_grid_width(ds_g);	//ALTURA E LARGURA DA GRID DE FORMA SIMPLIFICADA
 var rh = room_height, rw = room_width;		//LARGURA E ALTURA DA SALA ATUAL
 var buff = 6;		//ESPAÇAMENTOS ENTRE AS CÉLULAS
-var xinicial = rw/2-((ds_w/2)*tamcell)-((ds_w/2)*buff), yinicial = rh/2-((ds_h/2)*tamcell)-((ds_h/2)*buff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
+var xinicial = (rw/2-((ds_w/2)*tamcell)-((ds_w/2)*buff)), yinicial = rh/2-((ds_h/2)*tamcell)-((ds_h/2)*buff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
 //var xinicial = rw/2-(((ds_w/2)-1)*tamcell)-(((ds_w/2)-1)*xbuff), yinicial = rh/2-(((ds_h/2)-1)*tamcell)-(((ds_h/2)-1)*ybuff);	//PONTO INICIAL ('X' E 'Y') DO TABULEIRO
 var color = global.color_roof, c = color, max_alp = .3, min_alp = .5, alpha = max_alp, escala = global.escala_sprites;
 var mcheck = MOUSE_NEUTRO;
@@ -35,14 +35,11 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 					if point_in_rectangle(mouse_x,mouse_y,x1,y1,x2,y2) and !global.selecao_pecas {
 						alpha = min_alp;
 						
-						if global.peca_mouse != -1 {mcheck = MOUSE_BLOQUEADO}
-						
 						if (xx >= xsacerdotisa-raio_sacerdotisa and yy >= ysacerdotisa-raio_sacerdotisa) {
 							if (xx <= xsacerdotisa+raio_sacerdotisa and yy <= ysacerdotisa+raio_sacerdotisa) {
-								if global.peca_mouse != -1 {mcheck = MOUSE_CHECKADO}
 							
 								if mouse_check_button_pressed(mb_left) {
-									if global.peca_mouse != -1 {
+									if global.peca_mouse != NADA {
 										var inst = instance_nearest(mouse_x-global.tamanho_cell/2,mouse_y-global.tamanho_cell/2,objParYoukais);
 										inst.clicado = false;
 										inst.no_tabuleiro = true;
@@ -52,7 +49,7 @@ if instance_exists(obj_aba_pecas) or global.primeiro_turno {
 										inst.ytabuleiro = yy;
 										
 										ds_g[# xx,yy] = global.peca_mouse;
-										global.peca_mouse = -1;
+										global.peca_mouse = NADA;
 									}
 								}
 							}

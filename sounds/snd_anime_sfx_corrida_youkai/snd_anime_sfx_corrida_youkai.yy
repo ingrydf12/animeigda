@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_anime_sfx_corrida_youkai",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.744966,
+  "name":"snd_anime_sfx_corrida_youkai",
+  "parent":{
+    "name":"YOUKAIS",
+    "path":"folders/Sons/SFX/PECAS/YOUKAIS.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_anime_sfx_corrida_youkai.ogg",
+  "type":0,
+  "volume":1.0,
+}

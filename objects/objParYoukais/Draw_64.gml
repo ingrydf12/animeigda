@@ -7,27 +7,29 @@ if global.selecao_pecas or (global.derrota or global.vitoria) or global.pause {e
 //var escala = global.escala_sprites;
 var gw = global.view_w, gh = global.view_h;
 var mx = device_mouse_x_to_gui(0), my = device_mouse_y_to_gui(0);
-var margin = 50*escala, str_h = string_height("I")*escala;
-var c = c_gray, alpha = 1;
+var margin = 64*escala, str_h = string_height("I")*escala;
+var input_color = make_color_rgb(83,14,16), non_option_color = make_color_rgb(94,82,77), button_color = make_color_rgb(207,174,104);
+var c = input_color, c2 = non_option_color, alpha = 1;
 draw_set_font(fnt_ingame);
 
 if global.informacoes_peca {
 	if global.informacoes_peca_inst == self {
-		var wquad = 250*escala, hquad = 200*escala;
-		var xquad = margin, yquad = gh-margin-hquad;
+		var wquad = 240*escala, hquad = 220*escala;
+		var xquad = gw-margin-wquad, yquad = gh-margin-hquad;
 		
-		draw_rectangle_color(xquad,yquad,xquad+wquad,yquad+hquad,c,c,c,c,false);
+		//draw_rectangle_color(xquad,yquad,xquad+wquad,yquad+hquad,c,c,c,c,false);
 		
-		var buff_quad = 8*escala;
+		var buff_quad = 24*escala;
 		var xinfo = xquad+buff_quad, yinfo = yquad+buff_quad;
-		var winfo = wquad-(buff_quad*2), hinfo = 184*escala;
-		c = c_orange;
-		draw_rectangle_color(xinfo,yinfo,xinfo+winfo,yinfo+hinfo,c,c,c,c,false);
+		var winfo = wquad-(buff_quad*2), hinfo = hquad-(buff_quad*2);
+		draw_sprite_stretched(sprCardsPecasYoukais,0,0,0,gw,gh);
+		//draw_set_alpha(.8)
+		//draw_rectangle_color(xquad,yquad,xquad+wquad,yquad+hquad,c,c,c,c,false);
+		//draw_rectangle_color(xinfo,yinfo,xinfo+winfo,yinfo+hinfo,c,c,c,c,false);
 		
 		var buff_dados = 4*escala;
 		
 		//NOME
-		c = c_white;
 		var xnome = xinfo+(winfo/2), ynome = yinfo+buff_dados;
 		draw_set_halign(fa_middle);
 		draw_text_transformed_color(xnome,ynome,nome,escala,escala,0,c,c,c,c,1);
@@ -41,15 +43,14 @@ if global.informacoes_peca {
 		//DANO
 		var xdano = xvida, ydano = yvida+buff_dados+str_h;
 		var str_dano = "Dano: " + string(dano);
-		
 		draw_text_transformed_color(xdano,ydano,str_dano,escala,escala,0,c,c,c,c,1);
 		
 		//PASSIVA
-		var xpassiva = xinfo+buff_dados, ypassiva = ydano+buff_quad+str_h;
+		var xpassiva = xinfo+buff_dados, ypassiva = ydano+buff_dados+str_h;
 		var wpassiva = winfo-(buff_dados*2), hpassiva = 30*escala;
-		var str_passiva = "DESATIVAR: DISFARCE";
+		var str_passiva = "DESAT. DISFARCE";
 		
-		alpha = 1; c = c_green; var sc = .8;
+		alpha = 1; c = button_color; var sc = .8;
 		
 		//FAZER UM SWITCH PARA CADA PEÇA
 		switch peca_id {
@@ -57,7 +58,7 @@ if global.informacoes_peca {
 				
 				if estado == 0 {
 					//ESTÁ NO MODO DISFARCE ATUALMENTE
-					c = c_green;
+					c = button_color;
 					
 					//VERIFICAR SE O MOUSE ESTÁ POR CIMA
 					if point_in_rectangle(mx,my,xpassiva,ypassiva,xpassiva+wpassiva,ypassiva+hpassiva) {
@@ -79,13 +80,13 @@ if global.informacoes_peca {
 					}
 				} else {
 					//NÃO ESTÁ NO MODO DISFARCE ATUALMENTE
-					c = c_dkgray;
+					c = non_option_color;
 					str_passiva = "COOLDOWN..."
 					
 					//VERIFICAR SE JÁ PODE ALTERNAR PARA O MODO DE DISFARCE NOVAMENTE
 					if disfarce_round_timer >= disfarce_rounds {
-						c = c_green;
-						str_passiva = "ATIVAR: DISFARCE"
+						c = button_color;
+						str_passiva = "ATIVAR DISFARCE"
 						
 						//VERIFICAR SE O MOUSE ESTÁ POR CIMA
 						if point_in_rectangle(mx,my,xpassiva,ypassiva,xpassiva+wpassiva,ypassiva+hpassiva) {
@@ -118,8 +119,8 @@ if global.informacoes_peca {
 				//VERIFICAR EM QUE ESTADO SE ENCONTRA
 				if estado == 0 {
 					//MODO DISFARCE
-					c = c_green;
-					str_passiva = "ATIVAR: ARMADILHA";
+					c = button_color;
+					str_passiva = "ATIVAR ARMADILHA";
 					
 					//VERIFICAR SE O MOUSE ESTÁ POR CIMA
 					if point_in_rectangle(mx,my,xpassiva,ypassiva,xpassiva+wpassiva,ypassiva+hpassiva) {
@@ -142,7 +143,7 @@ if global.informacoes_peca {
 					}
 				} else if estado == 1 {
 					//MODO ARMADILHA
-					c = c_dkgray;
+					c = non_option_color;
 					str_passiva = "ARMADILHA ATIVADA";
 					
 					//VERIFICAR SE O MOUSE ESTÁ POR CIMA
@@ -152,13 +153,13 @@ if global.informacoes_peca {
 					}
 				} else {
 					//MODO SCARY
-					c = c_dkgray;
+					c = non_option_color;
 					str_passiva = "COOLDOWN..."
 					
 					//VERIFICAR SE JÁ PODE ALTERNAR PARA O MODO DE DISFARCE NOVAMENTE
 					if disfarce_round_timer > disfarce_rounds {
-						c = c_green;
-						str_passiva = "ATIVAR: DISFARCE"
+						c = button_color;
+						str_passiva = "ATIVAR DISFARCE"
 						
 						if point_in_rectangle(mx,my,xpassiva,ypassiva,xpassiva+wpassiva,ypassiva+hpassiva) {
 							alpha = .7;
@@ -185,15 +186,15 @@ if global.informacoes_peca {
 		draw_rectangle_color(xpassiva,ypassiva,xpassiva+wpassiva,ypassiva+hpassiva,c,c,c,c,false);
 		draw_set_alpha(1);
 		draw_set_valign(fa_middle);
-		c = c_white;
+		c = input_color;
 		draw_text_ext_transformed_color(xpassiva+(wpassiva/2),ypassiva+(hpassiva/2),str_passiva,12,wpassiva,escala,escala,0,c,c,c,c,1);
 		
 		//ATAQUE
-		var xataque = xpassiva, yataque = ypassiva+buff_quad+hpassiva;
+		var xataque = xpassiva, yataque = ypassiva+buff_dados+hpassiva;
 		var wataque = wpassiva, hataque = hpassiva;
 		
 		alpha = 1;
-		c = c_green; sc = .8;
+		c = button_color; sc = .8;
 		var str_atk = "MODO: ANDAR";
 		
 		//FAZER UM SWITCH PARA CADA PEÇA
@@ -202,7 +203,7 @@ if global.informacoes_peca {
 				
 				if array_ataques[estado] != noone {
 					//TEM A POSSIBILIDADE DE ATACAR
-					c = c_green;
+					c = button_color;
 					
 					if !attacked {
 						//VERIFICAR SE O MOUSE ESTÁ POR CIMA
@@ -225,14 +226,14 @@ if global.informacoes_peca {
 						}
 						
 						if can_attack {
-							c = c_green;
+							c = button_color;
 							str_atk = "MODO: ATACAR";
 						}
 					}
 					
 				} else {
 					//NÃO TEM A POSSIBILIDADE DE ATAQUE
-					c = c_dkgray
+					c = non_option_color;
 					str_atk = "SEM ATAQUES";
 					
 					if point_in_rectangle(mx,my,xataque,yataque,xataque+wataque,yataque+hataque) {
@@ -247,7 +248,7 @@ if global.informacoes_peca {
 			
 			case IdPecas.Tanuki:	//ÚNICA PEÇA ESPECIAL, POSSUI 3 ESTADOS (DISFARCE, ARMADILHA, SCARY)
 				//NÃO TEM A POSSIBILIDADE DE ATAQUE
-				c = c_dkgray
+				c = non_option_color;
 				str_atk = "SEM ATAQUES";
 				
 				if point_in_rectangle(mx,my,xataque,yataque,xataque+wataque,yataque+hataque) {
@@ -260,7 +261,7 @@ if global.informacoes_peca {
 		draw_set_alpha(alpha);
 		draw_rectangle_color(xataque,yataque,xataque+wataque,yataque+hataque,c,c,c,c,false);
 		draw_set_alpha(1);
-		c = c_white;
+		c = input_color;
 		draw_text_ext_transformed_color(xataque+(wataque/2),yataque+(hataque/2),str_atk,12,wataque,escala,escala,0,c,c,c,c,1);
 	}
 }

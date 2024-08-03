@@ -31,11 +31,11 @@ ds_menu_settings = create_menu_page(
 );
 
 ds_menu_credits = create_menu_page(
-	["andretlf", MenuElementType.Shift, noone,	0, ["PRODUTOR"]],
-	["Iago Frota", MenuElementType.Shift, noone,	0, ["GAME DESIGNER"]],
-	["Babs", MenuElementType.Shift, noone,	0, ["UX DESIGNER"]],
-	["Luska", MenuElementType.Shift, noone,	0, ["PROGRAMADOR"]],
-	["Seu Vagem", MenuElementType.Shift, noone,	0, ["PIXEL ARTIST"]],
+	//["andretlf", MenuElementType.Shift, noone,	0, ["PRODUTOR"]],
+	//["Iago Frota", MenuElementType.Shift, noone,	0, ["GAME DESIGNER"]],
+	//["Babs", MenuElementType.Shift, noone,	0, ["UX DESIGNER"]],
+	//["Luska", MenuElementType.Shift, noone,	0, ["PROGRAMADOR"]],
+	//["Seu Vagem", MenuElementType.Shift, noone,	0, ["PIXEL ARTIST"]],
 	["VOLTAR", MenuElementType.PageTransfer, MenuPage.Main]
 );
 

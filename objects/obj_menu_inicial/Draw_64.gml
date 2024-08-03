@@ -15,8 +15,20 @@ var xinicial = 96*escala, yinicial = gh/2;
 
 //FUNDO
 switch page {
+	case MenuPage.MapLevel:
+		draw_sprite_stretched(sprMenuPergaminho,0,0,0,gw,gh);
+		draw_sprite_stretched(sprIlustracaoMapaBloqueado,0,0,0,gw,gh);
+		break;
 	case MenuPage.Settings:
-		xinicial = 320 * escala; yinicial = (360*escala)-(96 * escala);
+		xinicial = 400 * escala; yinicial = (360*escala)-(72*escala);
+		draw_sprite_stretched(sprMenuPergaminho,0,0,0,gw,gh);
+		break;
+	case MenuPage.Main:
+		draw_sprite_stretched(sprIlustracaoMenuInicial,0,0,0,gw,gh);
+		break;
+	case MenuPage.Credits:
+		xinicial = xbuff*.7; yinicial = ybuff*.35;
+		draw_sprite_stretched(sprMenuCreditos,0,0,0,gw,gh);
 		break;
 }
 
@@ -37,46 +49,70 @@ switch page {
 			draw_text_transformed_color(lx_txt+xoff,ly_txt,ds_grid[# 0, i],escala,escala,0,c,c,c,c,1);
 		}
 		break;
+	case MenuPage.Credits:
+		draw_sprite_ext(sprVoltarMenuHover,0,xinicial,yinicial,escala*2,escala*2,0,c_white,1);
+		break;
 	case MenuPage.MapLevel:
+		
 		for (var i = 0; i < ds_h; i++) {
 			
-			switch i {
-				default:
-					lx_txt = 300*escala;
-					ly_txt = yinicial + 180*escala;
-					break;
-				case 0:
-					lx_txt = 300*escala;
-					ly_txt = yinicial - 80*escala;
-					break;
-				case 1:
-					lx_txt = 420*escala;
-					ly_txt = yinicial + 90*escala;
-					break;
-				case 2:
-					lx_txt = 600*escala;
-					ly_txt = yinicial - 30*escala;
-					break;
-				case 3:
-					lx_txt = 720*escala;
-					ly_txt = yinicial + 120*escala;
-					break;
-				case 4:
-					lx_txt = 900*escala;
-					ly_txt = yinicial + 50*escala;
-					break;
+			if file_exists("save.sav") {
+				ini_open("save.sav");
+				
+				var save = ini_read_real("mapas_liberados","Mapa "+string(i+1),false);
+						
+				ini_close();
+						
+				if save {
+					switch i {
+						default:
+							draw_sprite_stretched(sprIlustracaoMapa01,0,0,0,gw,gh);
+							break;
+						case 1:
+							draw_sprite_stretched(sprIlustracaoMapa02,0,0,0,gw,gh);
+							break;
+						case 2:
+							draw_sprite_stretched(sprIlustracaoMapa03,0,0,0,gw,gh);
+							break;
+						case 3:
+							draw_sprite_stretched(sprIlustracaoMapa04,0,0,0,gw,gh);
+							break;
+						case 4:
+							draw_sprite_stretched(sprIlustracaoMapa05,0,0,0,gw,gh);
+							break;
+					}
+					
+				}
+			} else {
+				draw_sprite_stretched(sprIlustracaoMapa01,0,0,0,gw,gh);
 			}
 			
-			
-			c = non_option_color;
-			xoff = 0;
-			
-			if menu_option[page] == i {
-				//xoff = xbuff/2;
-				c = input_color;
+			if menu_option[page] == (ds_h-1) {
+				draw_sprite_ext(sprVoltarMenuHover,0,xbuff*.7,ybuff*.35,escala*2,escala*2,0,c_white,1);
+			} else {
+				if menu_option[page] == i {
+					draw_sprite_ext(sprVoltarMenu,0,xbuff*.7,ybuff*.35,escala*2,escala*2,0,c_white,1);
+					
+					switch i {
+						default:
+							draw_sprite_ext(sprSelecaoMapa,0,495*escala,345*escala,escala*2,escala*2,0,c_white,1);
+							break;
+						case 1:
+							draw_sprite_ext(sprSelecaoMapa,0,585*escala,475*escala,escala*2,escala*2,0,c_white,1);
+							break;
+						case 2:
+							draw_sprite_ext(sprSelecaoMapa,0,720*escala,380*escala,escala*2,escala*2,0,c_white,1);
+							break;
+						case 3:
+							draw_sprite_ext(sprSelecaoMapa,0,920*escala,460*escala,escala*2,escala*2,0,c_white,1);
+							break;
+						case 4:
+							draw_sprite_ext(sprSelecaoMapa,0,1020*escala,315*escala,escala*2,escala*2,315,c_white,1);
+							break;
+					}
+				}
 			}
 			
-			draw_text_transformed_color(lx_txt+xoff,ly_txt,ds_grid[# 0, i],escala,escala,0,c,c,c,c,1);
 		}
 		break;
 }

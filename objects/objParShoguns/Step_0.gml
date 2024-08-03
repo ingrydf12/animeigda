@@ -83,9 +83,9 @@ if moving and !moved {
 		moved = true;
 	}
 	
-	if collision_rectangle(x,y,xdest+tamcell,ydest+tamcell,objParYoukais,false,false) {
-		var nearest_youkai = instance_nearest(x,y,objParYoukais);
-		
+	var nearest_youkai = collision_rectangle(x,y,xdest+tamcell,ydest+tamcell,objParYoukais,false,false)
+	
+	if nearest_youkai != noone {
 		switch nearest_youkai.peca_id {
 			default: //TODAS AS PEÇAS
 				if nearest_youkai.estado == 0 {
@@ -95,7 +95,7 @@ if moving and !moved {
 				break;
 			case IdPecas.Tanuki:
 				if nearest_youkai.estado == 1 {
-					var dir = floor(point_direction(xdest,ydest,x,y)/90);
+					var dir = floor(point_direction(nearest_youkai.x,nearest_youkai.y,lastx,lasty)/90);
 					xtabuleiro += lengthdir_x(1,dir*90); ytabuleiro += lengthdir_y(1,dir*90);
 					while (ds_g[# xtabuleiro, ytabuleiro] != NADA) {
 						xtabuleiro += lengthdir_x(1,dir*90); ytabuleiro += lengthdir_y(1,dir*90);
@@ -104,10 +104,21 @@ if moving and !moved {
 					
 					var x1 = xinicial+(xtabuleiro*tamcell)+(xtabuleiro*buff), y1 = yinicial+(ytabuleiro*tamcell)+(ytabuleiro*buff);
 					
-					vida_atual-=nearest_youkai.dano;
-					nearest_youkai.estado = 2;
-					nearest_youkai.armadilha = false;
-					nearest_youkai.armadilha_timer = 0;
+					with (nearest_youkai) {
+						other.vida_atual-=dano;
+						sprite = sprite_atk;
+						sprite_index = sprite;
+	
+						if animation_end() {
+							sprite = array_sprites[estado];
+		
+							sprite_index = sprite;
+							attacking = false;
+						}
+						estado = 2;
+						armadilha = false;
+						armadilha_timer = 0;
+					}
 					
 					moving = true;
 					moved = false;

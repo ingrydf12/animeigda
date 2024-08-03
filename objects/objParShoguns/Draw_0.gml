@@ -37,9 +37,10 @@ if hit {
 if global.selecao_pecas or (global.derrota or global.vitoria) {exit}
 
 if informacoes {
-	c = c_white;
-	draw_set_alpha(.4);
-	draw_rectangle_color(x,y,x+tamcell,y+tamcell,c,c,c,c,false);
+	c = c_red;
+	draw_set_alpha(.6);
+	draw_rectangle_color(x,y,x+tamcell,y+tamcell,c,c,c,c,true);
+	draw_rectangle_color(x+1,y+1,x+tamcell-1,y+tamcell-1,c,c,c,c,true);
 	draw_set_alpha(1);
 }
 

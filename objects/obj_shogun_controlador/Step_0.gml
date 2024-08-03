@@ -4,6 +4,7 @@
 
 if room == rm_menu {exit}
 if global.vitoria or global.derrota {exit}
+if global.pause {exit}
 
 //VARIÁVEIS LOCAIS
 var ds_g = global.grid_tabuleiro;	//FORMA SIMPLIFICADA PARA SE REFERENCIAR ÀS GRIDS
@@ -32,18 +33,19 @@ if global.turno == TURNO_INIMIGO {
 			var range_min = arr[1];
 			var range_max = arr[2];
 			
+			var youkai = youkaiProximo(range_min, range_max, inst.x, inst.y);
+			
 			if inst.moving {exit}
 			
 			if inst.moved {
-				
 				//DETECTAR PRIMEIRO SE EXISTE UM YOUKAI PRÓXIMO
-				if youkaiProximo(range_min, range_max, inst.x, inst.y) {
+				if youkai != noone {
 					inst.estado = 1;
 					inst.reset_state_timer = 0;
 					
 					switch atk {
-						case atkPertoInimigo: script_execute(atk,inst, nearest_youkai); break;
-						case atkDistanciaInimigo: script_execute(atk, inst,nearest_youkai,range_min,range_max); break;
+						case atkPertoInimigo: script_execute(atk,inst, youkai); break;
+						case atkDistanciaInimigo: script_execute(atk, inst,youkai,range_min,range_max); break;
 					}
 					
 				//SE NÃO TIVER UM YOUKAIS PRÓXIMO, DETECTAR SE A SACERDOTISA ESTÁ PRÓXIMA
@@ -52,8 +54,8 @@ if global.turno == TURNO_INIMIGO {
 					inst.reset_state_timer = 0;
 				
 					switch atk {
-						case atkPertoInimigo: script_execute(atk,inst, nearest_youkai); break;
-						case atkDistanciaInimigo: script_execute(atk, inst,nearest_youkai,range_min,range_max); break;
+						case atkPertoInimigo: script_execute(atk,inst, youkai); break;
+						case atkDistanciaInimigo: script_execute(atk, inst,youkai,range_min,range_max); break;
 					}
 				}
 				
@@ -65,13 +67,13 @@ if global.turno == TURNO_INIMIGO {
 			
 			
 			//DETECTAR PRIMEIRO SE EXISTE UM YOUKAI PRÓXIMO
-			if youkaiProximo(range_min, range_max, inst.x, inst.y) {
+			if youkai != noone {
 				inst.estado = 1;
 				inst.reset_state_timer = 0;
 				
 				switch atk {
-					case atkPertoInimigo: script_execute(atk,inst, nearest_youkai); break;
-					case atkDistanciaInimigo: script_execute(atk, inst,nearest_youkai,range_min,range_max); break;
+					case atkPertoInimigo: script_execute(atk,inst, youkai); break;
+					case atkDistanciaInimigo: script_execute(atk, inst,youkai,range_min,range_max); break;
 				}
 				
 				num_inst++;
@@ -84,8 +86,8 @@ if global.turno == TURNO_INIMIGO {
 				inst.reset_state_timer = 0;
 				
 				switch atk {
-					case atkPertoInimigo: script_execute(atk,inst, nearest_youkai); break;
-					case atkDistanciaInimigo: script_execute(atk, inst,nearest_youkai,range_min,range_max); break;
+					case atkPertoInimigo: script_execute(atk,inst, youkai); break;
+					case atkDistanciaInimigo: script_execute(atk, inst,youkai,range_min,range_max); break;
 				}
 				
 				num_inst++;
@@ -100,7 +102,17 @@ if global.turno == TURNO_INIMIGO {
 				ytab = inst.ytabuleiro;
 				
 				//AÇÕES DAS PEÇAS
-				var dir = floor( ((inst.estado == 0 ? point_direction(inst.x, inst.y,objSacerdotisa.x,objSacerdotisa.y) : point_direction(inst.x,inst.y,nearest_youkai.x,nearest_youkai.y))+(irandom_range(0,90))) /90);
+				var dir;
+				if inst.estado == 0 {
+					dir = floor((point_direction(inst.x, inst.y,objSacerdotisa.x,objSacerdotisa.y)+45)/90);
+				} else {
+					if youkai != noone {
+						dir = floor((point_direction(inst.x,inst.y,youkai.x,youkai.y)+45)/90);
+					} else {
+						dir = floor((point_direction(inst.x,inst.y,nearest_youkai.x,nearest_youkai.y)+45)/90);
+					}
+				}
+				
 				if tries >= limit_tries {
 					dir = irandom_range(0,3);
 					
@@ -155,6 +167,8 @@ if global.turno == TURNO_INIMIGO {
 				
 				if (xx != xtab or yy != ytab) {
 					inst.moving = true;
+					inst.lastx = inst.x;
+					inst.lasty = inst.y;
 					inst.xdest = x1;
 					inst.ydest = y1;
 					//inst.direcao_peca = floor(point_direction(inst.x,inst.y,x1,y1)/90);

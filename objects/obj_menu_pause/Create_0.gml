@@ -29,7 +29,7 @@ repeat (arr_leng) {
 }
 
 escala = global.escala_hud;
-back_id = menu;
+back_id = sprMenuInicial;
 inputting = false;
 input_color = make_color_rgb(83,14,16);
 non_option_color = make_color_rgb(94,82,77);

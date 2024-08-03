@@ -123,13 +123,13 @@ if inputting {
 		
 		switch page {
 			default:
-				layer_background_sprite(back_id,menu);
+				layer_background_sprite(back_id,sprMenuInicial);
 				break;
 			case MenuPage.Settings:
-				layer_background_sprite(back_id,configuracoes);
+				layer_background_sprite(back_id,sprMenuConfiguracoes);
 				break;
 			case MenuPage.MapLevel:
-				layer_background_sprite(back_id,mapa);
+				layer_background_sprite(back_id,sprMenuMapa);
 				break;
 		}
 	}
@@ -138,9 +138,10 @@ if inputting {
 		switch page {
 			case MenuPage.Settings:
 			case MenuPage.MapLevel:
+			case MenuPage.Credits:
 				audio_play_sound(snd_anime_sfx_ui_clicknormal,2,false,1*global.sfx_volume);
 				
-				layer_background_sprite(back_id,menu);
+				layer_background_sprite(back_id,sprMenuInicial);
 				page = MenuPage.Main;
 				break;
 		}
